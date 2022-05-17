@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+pdflatex -output-directory=texdata main.tex 

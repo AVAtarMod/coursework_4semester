@@ -1,0 +1,3 @@
+Literature
+texdata/*.*
+!texdata/*.pdf
