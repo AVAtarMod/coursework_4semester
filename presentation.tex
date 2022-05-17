@@ -2,6 +2,7 @@
 
 \usepackage[russian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[outputdir=cache]{minted}
 
 \usetheme{Madrid}
 \usecolortheme{dove}
@@ -14,7 +15,18 @@
 
 \begin{document}
 \begin{frame}
-    \begin{titlepage}
-    \end{titlepage}
+    \centering\includegraphics[width=0.4\textwidth]{images/vyatsu_logo.png}\\
+    \titlepage
+\end{frame}
+\begin{frame}[fragile=singleslide]
+    \frametitle{Code slide}
+Пример кода на python:
+    \begin{minted}{c}
+        int main() {
+        printf("hello, world");
+        return 0;
+        }
+    \end{minted}
+---
 \end{frame}
 \end{document}

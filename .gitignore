@@ -1,3 +1,4 @@
 Literature
-texdata/*.*
-!texdata/*.pdf
+cache/*.*
+cache/_minted-presentation
+!cache/*.pdf
