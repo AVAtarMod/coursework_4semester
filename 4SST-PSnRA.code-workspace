@@ -2,6 +2,12 @@
     "folders": [
         {
             "path": "."
+        },
+        {
+            "path": "../../../Programming/C++/Laboratory/Template"
+        },
+        {
+            "path": "../../Latex"
         }
     ],
     "settings": {

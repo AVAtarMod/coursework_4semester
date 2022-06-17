@@ -1,18 +1,22 @@
 \documentclass[oneside,final,14pt]{extreport}
-
 \usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
 \usepackage[russian]{babel}
 \usepackage{vmargin}
 \usepackage{indentfirst}
+\usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{ulem}
 \usepackage{amsfonts}
 \usepackage[hidelinks,linktoc=all]{hyperref}
 
 \setpapersize{A4}
 \setmarginsrb{1.5cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
 \sloppy
+
 
 \titleformat{\chapter}[display]
 {\normalfont\large\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Large}
@@ -21,10 +25,11 @@
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{#1}}
 
-\begin{document}
+\onehalfspacing
 
+\begin{document}
 %title-page
-\input{titlepage}
+\include{cw-titlepage}
 \thispagestyle{empty}
 \clearpage
 
@@ -41,8 +46,8 @@
 \end{enumerate}
 Метод комплексных чисел является расширением аналитического метода (метод №\ref{gmethod:enum1}).
 Он позволяет представить геометрические объекты 2-мерной плоскости в виде набора комплексных чисел и равенств, отражающих взаимосвязи между ними.\\
-При этом данный метод рассматривается в школах только как материал для самостоятельного изучения\cite{edu:problem},\cite[стр.6]{book:ponarin}. Особенность данного метода состоит в его контринтуитивности и сложности (например, спиральное подобия -- части основ метода)\\
-Проблема состоит в том, что для данного метода отсутствуют программные материалы для внедрения в среду самостоятельного обучения.\\
+При этом данный метод рассматривается в школах только как материал для самостоятельного изучения\cite{edu:problem},\cite[стр.6]{book:ponarin}. Особенность данного метода состоит в его контринтуитивности и сложности (например, спирального подобия -- одной из основ метода)\\
+Проблема состоит в том, что для данного метода отсутствуют программные материалы для внедрения в среду самостоятельного и школьного обучения.\\
 % 1. Метод контринтуитивен и непривычен для учащихся (подготовить мат. для внедрения)
 % 2. Особенно непривычно выглядит спиральное подобие как геом. ипостась умножения
 Целью данной работы является изучение метода комплексных чисел при решении геометрических задач, реализация программной верификации решения выбранных задач.\\
@@ -70,7 +75,7 @@
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/img1}
+    \includegraphics[width=0.35\textwidth]{images/img1}
     \caption{Изображение числа \(z\) на плоскости}
     \label{img1}
 \end{figure}
@@ -100,9 +105,9 @@ A_1 , B\); \(B, C_1 , A\); \(A_1 , B_1 , C_1\):
     \label{form:2}
 \end{equation}
 Так как \(\displaystyle
-    m=\frac{1}{2}(a+a_1),\;
-    n=\frac{1}{2}(b+b_1),\;
-    p=\frac{1}{2}(c+c_1)
+m=\frac{1}{2}(a+a_1),\;
+n=\frac{1}{2}(b+b_1),\;
+p=\frac{1}{2}(c+c_1)
 \), то доказываемое равенство (\ref{form:2}) эквивалентно такому:
 
 \(
@@ -110,8 +115,8 @@ A_1 , B\); \(B, C_1 , A\); \(A_1 , B_1 , C_1\):
 \) или, после перемножения,
 \begin{equation}
     \begin{aligned}
-            &a(\bar{b_1} - \bar{c}) + a(\bar{b}- \bar{c_1}) + a_1(\bar{b_1} - \bar{c_1}) + a_1(\bar{b}- \bar{c}) + b(\bar{c_1} - \bar{a}) + b(\bar{c}- \bar{a_1}) +\\
-            &+b_1(\bar{c_1}-\bar{a_1})+b_1 (\bar{c}-\bar{a})+c(\bar{a_1}-\bar{b})+c(\bar{a}-\bar{b_1})+c_1 (\bar{a_1}-\bar{b_1} )+c_1(\bar{a}-\bar{b})=0.
+         & a(\bar{b_1} - \bar{c}) + a(\bar{b}- \bar{c_1}) + a_1(\bar{b_1} - \bar{c_1}) + a_1(\bar{b}- \bar{c}) + b(\bar{c_1} - \bar{a}) + b(\bar{c}- \bar{a_1}) + \\
+         & +b_1(\bar{c_1}-\bar{a_1})+b_1 (\bar{c}-\bar{a})+c(\bar{a_1}-\bar{b})+c(\bar{a}-\bar{b_1})+c_1 (\bar{a_1}-\bar{b_1} )+c_1(\bar{a}-\bar{b})=0.
     \end{aligned}
     \label{form:3}
 \end{equation}
@@ -119,7 +124,10 @@ A_1 , B\); \(B, C_1 , A\); \(A_1 , B_1 , C_1\):
 равенств (\ref{form:1})
 \paragraph*{Алгоритм программного решения задачи:} На вход программы передаются координаты свободных точек, в данном примере это координаты точек \(A,B,C,A_1\). По данным входным данным строится прямая, соответствующая условиям задачи.
 
+\tcchapter{Заключение}
+
+
 %bibliography
-\input{sources.tex}
+\input{cw-sources.tex}
 
 \end{document}
