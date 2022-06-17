@@ -4,9 +4,6 @@
             "path": "."
         },
         {
-            "path": "../../../Programming/C++/Laboratory/Template"
-        },
-        {
             "path": "../../Latex"
         }
     ],
@@ -109,6 +106,11 @@
                 "env": {}
             },
         ],
-        "latex-workshop.latex.outDir": "%DIR%/cache"
+        "latex-workshop.latex.outDir": "%DIR%/cache",
+        "files.associations": {
+            "complex": "cpp",
+            "tuple": "cpp",
+            "iostream": "cpp"
+        }
     }
 }

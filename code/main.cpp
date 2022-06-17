@@ -1,8 +1,12 @@
+#include "complexn.hpp"
+#include "functions.hpp"
+
+#include "task1.cpp"
+#include "task2.cpp"
+#include "task3.cpp"
+
 #include <iostream>
 
-void task1();
-void task2();
-void task3();
 
 int main(int argc, char const* argv[])
 {
@@ -43,9 +47,3 @@ int main(int argc, char const* argv[])
         }
     }
 }
-
-void task1() { 
-    
-}
-void task2() { }
-void task3() { }
