@@ -2,3 +2,6 @@ Literature
 cache/*.*
 cache/_minted-presentation
 !cache/*.pdf
+code/build
+code/build/**
+code/*.app
