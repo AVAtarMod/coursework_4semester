@@ -3,10 +3,12 @@
 
 #include <iostream>
 
+// TODO write comments
+
 class ComplexNumber {
 private:
-    double imaginary;
-    double real;
+    double _imaginary;
+    double _real;
     friend std::ostream& operator<<(std::ostream& out, const ComplexNumber& number);
     friend std::istream& operator>>(std::istream& in, ComplexNumber& number);
 
@@ -14,17 +16,17 @@ public:
     ComplexNumber(double real = 0, double imaginary = 0);
     ComplexNumber(const ComplexNumber& source);
 
-    ComplexNumber operator=(const ComplexNumber& source);
-
-    ComplexNumber  operator+(const ComplexNumber& b) const;
+    ComplexNumber operator=(const ComplexNumber& b);
+    
+    ComplexNumber operator+(const ComplexNumber& b) const;
     ComplexNumber operator-(const ComplexNumber& b) const;
     ComplexNumber operator*(const ComplexNumber& b) const;
     ComplexNumber operator/(const ComplexNumber& b) const;
 
     bool operator==(const ComplexNumber& b) const;
     bool operator!=(const ComplexNumber& b) const;
-    bool operator>(const ComplexNumber& b) const;
-    bool operator<(const ComplexNumber& b) const;
+    // bool operator>(const ComplexNumber& b) const;
+    // bool operator<(const ComplexNumber& b) const;
 
     static bool isCollinear(const ComplexNumber& a, const ComplexNumber& b);
     static bool isOnSameLine(const ComplexNumber& a, const ComplexNumber& b, const ComplexNumber& c);

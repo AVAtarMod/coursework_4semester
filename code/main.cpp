@@ -1,4 +1,4 @@
-#include "complexn.hpp"
+#include "ComplexNumber.hpp"
 #include "functions.hpp"
 
 #include "task1.cpp"
@@ -6,7 +6,6 @@
 #include "task3.cpp"
 
 #include <iostream>
-
 
 int main(int argc, char const* argv[])
 {
@@ -33,12 +32,12 @@ int main(int argc, char const* argv[])
             break;
         case 2:
             std::cout << "Задача №2\n";
-            task1();
+            task2();
             std::cout << "-----\n";
             break;
         case 3:
             std::cout << "Задача №3\n";
-            task1();
+            task3();
             std::cout << "-----\n";
             break;
         default:
