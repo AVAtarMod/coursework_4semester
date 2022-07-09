@@ -1,12 +1,13 @@
-#include "complexn.hpp"
+#include "ComplexNumber.hpp"
 #include "functions.hpp"
 
-void task1()
+inline void task1()
 {
     const int numbersCount = 9;
     ComplexNumber numbers[numbersCount];
-    ComplexNumber &a = numbers[0], // References for readability
-        &b = numbers[1],
+    // Reference for readability
+    ComplexNumber &a = numbers[0],
+                  &b = numbers[1],
                   &c = numbers[2],
                   &a1 = numbers[3],
                   &b1 = numbers[4],

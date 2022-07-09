@@ -1,1 +1,2 @@
-void task3() { }
+
+inline void task3() { }
