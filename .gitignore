@@ -5,3 +5,4 @@ cache/_minted-presentation
 code/build
 code/build/**
 code/*.app
+*.pdf
