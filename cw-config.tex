@@ -1,0 +1,72 @@
+\documentclass[oneside,final,14pt]{extreport}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{vmargin}
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{xinttools}
+\usepackage{ragged2e}
+\usepackage{ulem}
+\usepackage{listings}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{xstring}
+\usepackage[abspath]{currfile}
+\usepackage[hidelinks,linktoc=all]{hyperref}
+
+\setpapersize{A4}
+\setmarginsrb{1.5cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+\sloppy
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+    language=C++,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+\newcommand{\runtimeFsep}{/}
+\newcommand{\updateRuntimeFsep}{\IfSubStr{\currfileabsdir}{/}{}{\renewcommand{\runtimeFsep}{\backslash}}}
+
+\updateRuntimeFsep
+
+\makeatletter
+\DeclareRobustCommand{\filename}[2][]{%
+    \begingroup
+    % \lstname seems to change hyphens into \textendash
+    \def\textendash{-}%
+    \filename@parse{#2}%
+    \IfSubStr{\filename@base}{\runtimeFsep}{\filename@parse{\filename@base}}{}%
+    \edef\filename@base{\detokenize\expandafter{\filename@base}}%
+    #1{\filename@base.\filename@ext}%
+    \endgroup
+}
+\makeatother
+
+\titleformat{\chapter}[display]
+{\normalfont\large\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Large}
+
+\newcommand\tcchapter[1]{%
+    \chapter*{#1}%
+    \addcontentsline{toc}{chapter}{#1}}
+
+\onehalfspacing
