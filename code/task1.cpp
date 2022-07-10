@@ -3,6 +3,7 @@
 
 inline void task1()
 {
+    // TODO test on cw-main data (or almost same data)
     const int numbersCount = 9;
     ComplexNumber numbers[numbersCount];
     const std::string labels[9] = { "A", "B", "C", "A1", "B1", "C1", "M", "N", "P" };
