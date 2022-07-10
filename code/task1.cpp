@@ -5,6 +5,7 @@ inline void task1()
 {
     const int numbersCount = 9;
     ComplexNumber numbers[numbersCount];
+    const std::string labels[9] = { "A", "B", "C", "A1", "B1", "C1", "M", "N", "P" };
     // Reference for readability
     ComplexNumber &a = numbers[0],
                   &b = numbers[1],
@@ -16,7 +17,7 @@ inline void task1()
                   &n = numbers[7],
                   &p = numbers[8];
 
-    Task1_ReadNumbersFromUser(numbers);
+    Task1_ReadNumbersFromUser(numbers, labels);
 
     std::pair<ComplexNumber, ComplexNumber> pairs[2] { { a, b }, { b1, a1 } };
 
@@ -26,8 +27,9 @@ inline void task1()
     p = ComplexNumber::middle(c, c1);
 
     if (ComplexNumber::isOnSameLine(m, n, p)) {
+        std::cout << "Вычисленные координаты:\n";
         for (size_t i = 0; i < numbersCount; i++) {
-            std::cout << numbers[i] << "\n";
+            std::cout << " " + labels[i] + ": " << numbers[i] << "\n";
         }
     }
 }
