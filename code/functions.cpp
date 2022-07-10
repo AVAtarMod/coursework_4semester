@@ -1,27 +1,36 @@
 #include "functions.hpp"
+#include "Line.hpp"
+
+#include <cmath>
 
 ComplexNumber intersect(lineSegment_t first, lineSegment_t second)
 {
-    return ComplexNumber::getZero();
+    Line firstL(first.first, first.second), secondL(second.first, second.second);
+
+    double x = (secondL.B() - firstL.B()) / (firstL.K() - secondL.K());
+    double tmp = firstL.y(x);
+    double y = std::isinf(tmp) ? secondL.y(x) : tmp;
+
+    return ComplexNumber(x, y);
 }
 
 bool isPointBelongsSegment(lineSegment_t segment, ComplexNumber point)
 {
     ComplexNumber &a = segment.first, &b = segment.second;
+    Line line(a, b);
 
-    double reMax = std::max(a.Re, b.Re), reMin = std::min(a.Re, b.Re);
-    double imMax = std::max(a.Im, b.Im), imMin = std::min(a.Im, b.Im);
+    double imMax = std::max(a.Im(), b.Im()), imMin = std::min(a.Im(), b.Im());
+    double reMax = std::max(a.Re(), b.Re()), reMin = std::min(a.Re(), b.Re());
+    bool isPointInBounds
+        = (imMin <= point.Im() && point.Im() <= imMax)
+        && (reMin <= point.Re() && point.Re() <= reMax);
 
-    bool belongsByRe = reMin < point.Re && point.Re < reMax;
-    bool belongsByIm = imMin < point.Im && point.Im < imMax;
-
-    return ComplexNumber::isOnSameLine(a, b, point) && belongsByIm && belongsByRe;
+    return line.isBelongs(point) && isPointInBounds;
 }
 
-void Task1_ReadNumbersFromUser(ComplexNumber arr[5])
+void Task1_ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5])
 {
     const size_t labelsCount = 5;
-    std::string labels[labelsCount] { "a", "b", "c", "a1", "b1" };
 
     ComplexNumber &a = arr[0],
                   &b = arr[1],
@@ -32,6 +41,14 @@ void Task1_ReadNumbersFromUser(ComplexNumber arr[5])
     bool isTriangle = false, isValidA1 = false, isValidB1 = false;
     while (!(isTriangle && isValidA1 && isValidB1)) {
         std::cout << "Введите координаты точек a,b,c,a1,b1:\n";
+        if (std::cin.fail()) {
+            if (std::cin.eof()) {
+                std::cout << "User input was canceled. Aborting...\n";
+                return;
+            }
+            std::cin.ignore();
+            std::cin.clear();
+        }
         for (size_t i = 0; i < labelsCount; i++) {
             std::cout << "  " << labels[i] << ": ";
             std::cin >> arr[i];
