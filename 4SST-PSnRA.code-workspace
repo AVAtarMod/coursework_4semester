@@ -5,6 +5,9 @@
         },
         {
             "path": "../../Latex"
+        },
+        {
+            "path": "../../../Programming/0.Settings/Configs"
         }
     ],
     "settings": {
