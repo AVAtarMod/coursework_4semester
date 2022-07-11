@@ -4,75 +4,46 @@
 #include <limits>
 #include <stdexcept>
 
-struct EquationDataFromPoints {
-    Point A, B;
-    double eqK, eqB, xConst, yConst;
-    bool inited = false;
-} tmp;
+class LineEquation {
+private:
+    Point _A, _B;
+    double _k, _b, _x, _y;
+    double xDiff, yDiff;
+    static bool _inited;
+    LineType type;
 
-void initTmpFromPoints(const Point& a, const Point& b)
-{
-    if (a == b || std::isinf(a.X()) || std::isinf(a.Y()) || std::isinf(b.X()) || std::isinf(b.Y()))
-        throw std::runtime_error("Cannot create line from 2 equal points, or coordinates incorrect (a.e. Inf)");
+    void initByLineType();
 
-    if (!tmp.inited || tmp.A != a || tmp.B != b) {
-        tmp.A = a, tmp.B = b;
+public:
+    LineEquation() {};
+    LineEquation(const Point& a, const Point& b);
 
-        double yDiff = tmp.B.Y() - tmp.A.Y();
-        double xDiff = tmp.B.X() - tmp.A.X();
+    double K() { return _k; }
+    double B() { return _b; }
 
-        int lineType = (xDiff == 0) ? 0 : ((yDiff == 0) ? 1 : 2);
-        switch (lineType) {
-        case 0:
-            // Y may be any, x = const
-            tmp.eqK = 0;
-            tmp.eqB = std::numeric_limits<double>::infinity();
-            tmp.xConst = tmp.B.X();
-            break;
-        case 1:
-            // X may be any, y = const
-            tmp.eqK = 0;
-            tmp.eqB = 0;
-            tmp.yConst = tmp.B.Y();
-            break;
-        case 2:
-            // Normal line, y = kx + b
-            tmp.eqK = yDiff / xDiff;
-            tmp.eqB = (-tmp.A.X() * yDiff + tmp.A.Y() * xDiff) / xDiff;
-            break;
-        default:
-            break;
-        }
+    double xConst() { return _x; }
+    double yConst() { return _y; }
 
-        tmp.inited = true;
-    }
-
-    return;
-}
-
-double Line::getKFromPoints(const Point& a, const Point& b)
-{
-    initTmpFromPoints(a, b);
-    return tmp.eqK;
-}
-double Line::getBFromPoints(const Point& a, const Point& b)
-{
-    initTmpFromPoints(a, b);
-    return tmp.eqB;
-}
+    LineType getType() { return type; }
+} equation;
 
 Line::Line(std::pair<Point, Point> pair)
-    : _k(getKFromPoints(pair.first, pair.second)),
-      _b(getBFromPoints(pair.first, pair.second))
 {
-    if (std::isinf(_b)) {
-        _type = LineType::CONST_X;
-        _x = tmp.xConst;
-    } else if (_k == 0) {
-        _type = LineType::CONST_Y;
-        _y = tmp.yConst;
-    } else
-        _type = LineType::NORMAL;
+    equation = LineEquation(pair.first, pair.second);
+
+    _k = equation.K();
+    _b = equation.B();
+    _type = equation.getType();
+    switch (_type) {
+    case LineType::CONST_X:
+        _x = equation.xConst();
+        break;
+    case LineType::CONST_Y:
+        _y = equation.yConst();
+        break;
+    default:
+        break;
+    }
 }
 
 double Line::y(double x) const
@@ -144,4 +115,55 @@ bool Line::isBelongs(Point point)
     default:
         return false;
     }
+}
+
+bool LineEquation::_inited = false;
+
+void LineEquation::initByLineType()
+{
+    switch (type) {
+    case LineType::CONST_X:
+        // Y may be any, x = const
+        _k = 0;
+        _b = std::numeric_limits<double>::infinity();
+        _x = _B.X();
+        break;
+    case LineType::CONST_Y:
+        // X may be any, y = const
+        _k = 0;
+        _b = 0;
+        _y = _B.Y();
+        break;
+    case LineType::NORMAL:
+        // Normal line, y = kx + b
+        _k = yDiff / xDiff;
+        _b = (-_A.X() * yDiff + _A.Y() * xDiff) / xDiff;
+        break;
+    default:
+        break;
+    }
+}
+
+LineEquation::LineEquation(const Point& a, const Point& b)
+{
+    if (a == b
+        || std::isinf(a.X())
+        || std::isinf(b.X())
+        || std::isinf(a.Y())
+        || std::isinf(b.Y()))
+        throw std::runtime_error("Cannot create line from 2 equal points, or coordinates incorrect (a.e. Inf)");
+
+    if (!_inited || _A != a || _B != b) {
+        _A = a, _B = b;
+
+        yDiff = _B.Y() - _A.Y();
+        xDiff = _B.X() - _A.X();
+        type = (xDiff == 0)
+            ? LineType::CONST_X
+            : ((yDiff == 0) ? LineType::CONST_Y : LineType::NORMAL);
+
+        initByLineType();
+        _inited = true;
+    }
+    return;
 }

@@ -27,8 +27,6 @@ private:
     static double getBFromPoints(const Point& a, const Point& b);
 
 public:
-    
-
     Line(double k, double b) : _k(k), _b(b) { }
     Line(std::pair<Point, Point> pair);
     Line(Point first, Point second) : Line(std::make_pair(first, second)) { }
