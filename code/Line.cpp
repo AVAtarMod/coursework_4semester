@@ -6,10 +6,9 @@
 
 class LineEquation {
 private:
-    Point _A, _B;
+    Point _pointA, _pointB;
     double _k, _b, _x, _y;
     double xDiff, yDiff;
-    static bool _inited;
     LineType type;
 
     void initByLineType();
@@ -25,11 +24,11 @@ public:
     double yConst() { return _y; }
 
     LineType getType() { return type; }
-} equation;
+};
 
 Line::Line(std::pair<Point, Point> pair)
 {
-    equation = LineEquation(pair.first, pair.second);
+    LineEquation equation = LineEquation(pair.first, pair.second);
 
     _k = equation.K();
     _b = equation.B();
@@ -117,8 +116,6 @@ bool Line::isBelongs(Point point)
     }
 }
 
-bool LineEquation::_inited = false;
-
 void LineEquation::initByLineType()
 {
     switch (type) {
@@ -126,18 +123,18 @@ void LineEquation::initByLineType()
         // Y may be any, x = const
         _k = 0;
         _b = std::numeric_limits<double>::infinity();
-        _x = _B.X();
+        _x = _pointB.X();
         break;
     case LineType::CONST_Y:
         // X may be any, y = const
         _k = 0;
         _b = 0;
-        _y = _B.Y();
+        _y = _pointB.Y();
         break;
     case LineType::NORMAL:
         // Normal line, y = kx + b
         _k = yDiff / xDiff;
-        _b = (-_A.X() * yDiff + _A.Y() * xDiff) / xDiff;
+        _b = (-_pointA.X() * yDiff + _pointA.Y() * xDiff) / xDiff;
         break;
     default:
         break;
@@ -153,17 +150,14 @@ LineEquation::LineEquation(const Point& a, const Point& b)
         || std::isinf(b.Y()))
         throw std::runtime_error("Cannot create line from 2 equal points, or coordinates incorrect (a.e. Inf)");
 
-    if (!_inited || _A != a || _B != b) {
-        _A = a, _B = b;
+    _pointA = a, _pointB = b;
 
-        yDiff = _B.Y() - _A.Y();
-        xDiff = _B.X() - _A.X();
-        type = (xDiff == 0)
-            ? LineType::CONST_X
-            : ((yDiff == 0) ? LineType::CONST_Y : LineType::NORMAL);
+    yDiff = _pointB.Y() - _pointA.Y();
+    xDiff = _pointB.X() - _pointA.X();
+    type = (xDiff == 0)
+        ? LineType::CONST_X
+        : ((yDiff == 0) ? LineType::CONST_Y : LineType::NORMAL);
 
-        initByLineType();
-        _inited = true;
-    }
+    initByLineType();
     return;
 }
