@@ -11,7 +11,7 @@ int main(int argc, char const* argv[])
 {
     bool noData = false;
     if (argc == 1) {
-        std::cout << "Введите программу для запуска: ";
+        std::cout << "Enter program number to launch: ";
         argc++;
         noData = true;
     }
@@ -26,22 +26,22 @@ int main(int argc, char const* argv[])
 
         switch (choice) {
         case 1:
-            std::cout << "Задача №1\n";
+            std::cout << "Task #1\n";
             task1();
             std::cout << "-----\n";
             break;
         case 2:
-            std::cout << "Задача №2\n";
+            std::cout << "Task #2\n";
             task2();
             std::cout << "-----\n";
             break;
         case 3:
-            std::cout << "Задача №3\n";
+            std::cout << "Task #3\n";
             task3();
             std::cout << "-----\n";
             break;
         default:
-            std::cout << "Номер задачи введён не верно либо не удалось конвертировать введённые данные\n";
+            std::cout << "Entered program number is incorrect, retry.\n";
             break;
         }
     }

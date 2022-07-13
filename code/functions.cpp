@@ -40,7 +40,7 @@ void Task1_ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5]
 
     bool isTriangle = false, isValidA1 = false, isValidB1 = false;
     while (!(isTriangle && isValidA1 && isValidB1)) {
-        std::cout << "Введите координаты точек a,b,c,a1,b1:\n";
+        std::cout << "Enter coordinates of a,b,c,a1,b1 points:\n";
         if (std::cin.fail()) {
             if (std::cin.eof()) {
                 std::cout << "User input was canceled. Aborting...\n";
@@ -60,10 +60,10 @@ void Task1_ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5]
         isValidB1 = isPointBelongsSegment({ a, c }, b1);
 
         if (!isTriangle)
-            std::cerr << "Некорректные a,b,c. Должны быть точками треугольника ABC\n";
+            std::cerr << "Incorrect a,b,c. Must be points of the triangle ABC\n";
         if (!isValidA1)
-            std::cerr << "Некорректная a1. Должна быть на отрезке BC\n";
+            std::cerr << "The a1 is incorrect. Must belong to segment of line BC\n";
         if (!isValidB1)
-            std::cerr << "Некорректная b1. Должна быть на отрезке AC\n";
+            std::cerr << "The b1 is incorrect. Must belong to segment of line AC\n";
     }
 }

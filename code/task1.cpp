@@ -28,7 +28,7 @@ inline void task1()
     p = ComplexNumber::middle(c, c1);
 
     if (ComplexNumber::isOnSameLine(m, n, p)) {
-        std::cout << "Вычисленные координаты:\n";
+        std::cout << "Computed coordinates:\n";
         for (size_t i = 0; i < numbersCount; i++) {
             std::cout << " " + labels[i] + ": " << numbers[i] << "\n";
         }
