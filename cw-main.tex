@@ -1,18 +1,6 @@
 \input{cw-config.tex}
 
 
-% NormalTeXSyntaxON
-\def\setcase#1 {\expandafter\def\csname col:#1\endcsname}
-\def\taskFileName#1{\expandafter\ifx\csname col:#1\endcsname\relax \coldefault 
-                \else \csname col:#1\endcsname\fi}
-
-\def\coldefault {code/taskN.cpp}    
-\setcase 1      {code/task1.cpp} 
-\setcase 2      {code/task2.cpp}
-\setcase 3      {code/task3.cpp}
-
-% NormalTeXSyntaxOff
-
 \begin{document}
 \lstset{language=[11]C++}
 %title-page
@@ -150,5 +138,6 @@ p=\frac{1}{2}(c+c_1)
 достигнута.
 %bibliography
 \input{cw-sources.tex}
+\input{cw-appendix.tex}
 
 \end{document}

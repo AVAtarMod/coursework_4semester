@@ -1,0 +1,28 @@
+\clearpage
+\tcchapter{Приложения}
+\appendix
+
+% \titlelabel{Приложение \thetitle.\quad}
+\titleformat{\section}[block]{\bfseries}{Приложение \Alph{section}.}{1em}{}[]
+\renewcommand{\thesection}{\Alph{section}}
+
+\section{Листинг программы}
+{\setlength{\parindent}{0cm}
+\inputcode[frame=none]{code/main.cpp}
+\inputcode[frame=none]{\taskFileName{1}}
+\inputcode[frame=none]{\taskFileName{2}}
+\inputcode[frame=none]{\taskFileName{3}}
+% TODO add tasks
+\vspace{20pt}
+\inputcode[frame=none]{code/functions.hpp}
+\inputcode[frame=none]{code/functions.cpp}
+\vspace{20pt}
+\inputcode[frame=none]{code/ComplexNumber.hpp}
+\inputcode[frame=none]{code/ComplexNumber.cpp}
+\vspace{20pt}
+\inputcode[frame=none]{code/Line.hpp}
+\inputcode[frame=none]{code/Line.cpp}
+\vspace{20pt}
+\inputcode[frame=none]{code/Point.hpp}
+\inputcode[frame=none]{code/Point.cpp}
+}

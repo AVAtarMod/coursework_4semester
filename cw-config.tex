@@ -62,11 +62,33 @@
 }
 \makeatother
 
+\makeatletter
+\newcommand\inputcode[2][]{
+    \filename{#2}:
+    \lstinputlisting[%
+        #1,
+    ]{#2}%
+}
+\makeatother
+
 \titleformat{\chapter}[display]
 {\normalfont\large\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Large}
 
 \newcommand\tcchapter[1]{%
     \chapter*{#1}%
-    \addcontentsline{toc}{chapter}{#1}}
+    \addcontentsline{toc}{chapter}{#1}
+}
 
 \onehalfspacing
+
+% NormalTeXSyntaxON
+\def\setcase#1 {\expandafter\def\csname col:#1\endcsname}
+\def\taskFileName#1{\expandafter\ifx\csname col:#1\endcsname\relax \coldefault 
+                \else \csname col:#1\endcsname\fi}
+
+\def\coldefault {code/taskN.cpp}    
+\setcase 1      {code/task1.cpp} 
+\setcase 2      {code/task2.cpp}
+\setcase 3      {code/task3.cpp}
+
+% NormalTeXSyntaxOff
