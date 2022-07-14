@@ -41,7 +41,9 @@
     stringstyle=\color{mauve},
     breaklines=true,
     breakatwhitespace=true,
-    tabsize=3
+    tabsize=3,
+    literate=%
+        {©}{{\copyright}}{4}
 }
 
 \newcommand{\runtimeFsep}{/}
@@ -83,11 +85,11 @@
 
 % NormalTeXSyntaxON
 \def\setcase#1 {\expandafter\def\csname col:#1\endcsname}
-\def\taskFileName#1{\expandafter\ifx\csname col:#1\endcsname\relax \coldefault 
-                \else \csname col:#1\endcsname\fi}
+\def\taskFileName#1{\expandafter\ifx\csname col:#1\endcsname\relax \coldefault
+    \else \csname col:#1\endcsname\fi}
 
-\def\coldefault {code/taskN.cpp}    
-\setcase 1      {code/task1.cpp} 
+\def\coldefault {code/taskN.cpp}
+\setcase 1      {code/task1.cpp}
 \setcase 2      {code/task2.cpp}
 \setcase 3      {code/task3.cpp}
 
