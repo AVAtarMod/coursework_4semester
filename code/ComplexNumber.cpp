@@ -59,7 +59,7 @@ bool ComplexNumber::isCollinear(const ComplexNumber& a, const ComplexNumber& b)
 
 bool ComplexNumber::isOnSameLine(const ComplexNumber& a, const ComplexNumber& b, const ComplexNumber& c)
 {
-    return Line(a, b).isBelongs(c);
+    return Line(a, b).isBelongs(static_cast<Point>(c));
 }
 
 ComplexNumber ComplexNumber::middle(const ComplexNumber& a, const ComplexNumber& b)

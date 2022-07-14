@@ -4,33 +4,7 @@
 #include <limits>
 #include <stdexcept>
 
-class LineEquation {
-private:
-    Point _pointA, _pointB;
-    double _k, _b, _x, _y;
-    double xDiff, yDiff;
-    bool _inited = false;
-    LineType type;
-
-    void initByLineType();
-
-public:
-    LineEquation() {};
-    LineEquation(const Point& a, const Point& b);
-    LineEquation(const ComplexNumber& a, const ComplexNumber& b);
-
-    double K() const { return _k; }
-    double B() const { return _b; }
-
-    double xConst() const { return _x; }
-    double yConst() const { return _y; }
-
-    bool isInited() const { return _inited; }
-
-    LineType getType() const { return type; }
-};
-
-void Line::finishInit(const LineEquation& initedEquation)
+void Line::finishInit(const implementation::LineEquation& initedEquation)
 {
     if (!initedEquation.isInited())
         throw std::runtime_error("Cannot finish line initialization with not inited equation!");
@@ -52,13 +26,13 @@ void Line::finishInit(const LineEquation& initedEquation)
 
 Line::Line(const std::pair<Point, Point>& pair)
 {
-    LineEquation equation = LineEquation(pair.first, pair.second);
+    implementation::LineEquation equation = implementation::LineEquation(pair.first, pair.second);
     finishInit(equation);
 }
 
 Line::Line(const ComplexNumber& first, const ComplexNumber& second)
 {
-    LineEquation equation = LineEquation(first, second);
+    implementation::LineEquation equation = implementation::LineEquation(first, second);
     finishInit(equation);
 }
 
@@ -134,8 +108,8 @@ bool Line::isBelongs(Point point)
     }
 }
 
-// LineEquation section
-
+// implementation section
+namespace implementation {
 void LineEquation::initByLineType()
 {
     switch (type) {
@@ -184,3 +158,4 @@ LineEquation::LineEquation(const Point& a, const Point& b)
     _inited = true;
     return;
 }
+} // namespace implementation

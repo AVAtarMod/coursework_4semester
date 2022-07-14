@@ -27,17 +27,17 @@ int main(int argc, char const* argv[])
         switch (choice) {
         case 1:
             std::cout << "Task #1\n";
-            task1();
+            task1::solve();
             std::cout << "-----\n";
             break;
         case 2:
             std::cout << "Task #2\n";
-            task2();
+            // task2();
             std::cout << "-----\n";
             break;
         case 3:
             std::cout << "Task #3\n";
-            task3();
+            // task3();
             std::cout << "-----\n";
             break;
         default:

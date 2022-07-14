@@ -12,6 +12,38 @@ enum class LineType {
 };
 
 /**
+ * @brief This namespace contain implentation details only , don't use it!
+ */
+namespace implementation
+{
+class LineEquation {
+private:
+    Point _pointA, _pointB;
+    double _k, _b, _x, _y;
+    double xDiff, yDiff;
+    bool _inited = false;
+    LineType type;
+
+    void initByLineType();
+
+public:
+    LineEquation() {};
+    LineEquation(const Point& a, const Point& b);
+    LineEquation(const ComplexNumber& a, const ComplexNumber& b);
+
+    double K() const { return _k; }
+    double B() const { return _b; }
+
+    double xConst() const { return _x; }
+    double yConst() const { return _y; }
+
+    bool isInited() const { return _inited; }
+
+    LineType getType() const { return type; }
+};
+} // namespace implementation
+
+/**
  * @brief Represents line by equation 'y = kx + b'
  */
 class Line {
@@ -26,7 +58,7 @@ private:
 
     static double getKFromPoints(const Point& a, const Point& b);
     static double getBFromPoints(const Point& a, const Point& b);
-    void finishInit(const LineEquation& initedEquation);
+    void finishInit(const implementation::LineEquation& initedEquation);
 
 public:
     Line(double k, double b) : _k(k), _b(b) { }

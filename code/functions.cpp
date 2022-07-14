@@ -28,7 +28,7 @@ bool isPointBelongsSegment(clineSegment_t segment, ComplexNumber cpoint)
     return line.isBelongs(static_cast<Point>(cpoint)) && isPointInBounds;
 }
 
-void Task1_ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5])
+void task1::ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5])
 {
     const size_t labelsCount = 5;
 

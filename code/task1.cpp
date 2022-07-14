@@ -1,7 +1,7 @@
 #include "ComplexNumber.hpp"
 #include "functions.hpp"
 
-inline void task1()
+inline void task1::solve()
 {
     // TODO test on cw-main data (or almost same data)
     const int numbersCount = 9;
@@ -18,7 +18,7 @@ inline void task1()
                   &n = numbers[7],
                   &p = numbers[8];
 
-    Task1_ReadNumbersFromUser(numbers, labels);
+    ReadNumbersFromUser(numbers, labels);
 
     std::pair<ComplexNumber, ComplexNumber> pairs[2] { { a, b }, { b1, a1 } };
 
@@ -32,7 +32,6 @@ inline void task1()
         for (size_t i = 0; i < numbersCount; i++) {
             std::cout << " " + labels[i] + ": " << numbers[i] << "\n";
         }
-    }
-    else
+    } else
         std::cerr << "The computed points M,N,P is not belong to the same line, so the Guss's theorem is not true.\n";
 }
