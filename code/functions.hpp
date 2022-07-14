@@ -6,15 +6,15 @@
 #include <cmath>
 #include <tuple>
 
-using lineSegment_t = std::pair<ComplexNumber, ComplexNumber>;
+using clineSegment_t = std::pair<ComplexNumber, ComplexNumber>;
 
 /**
  * @brief Intersect of 2 line segments
  * @return ComplexNumber, intersection point of lines
  */
-ComplexNumber intersect(lineSegment_t first, lineSegment_t second);
+ComplexNumber intersect(clineSegment_t first, clineSegment_t second);
 
-bool isPointBelongsSegment(lineSegment_t segment, ComplexNumber point);
+bool isPointBelongsSegment(clineSegment_t segment, ComplexNumber point);
 
 void Task1_ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5]);
 

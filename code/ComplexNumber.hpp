@@ -24,7 +24,7 @@ public:
     ComplexNumber operator*(const ComplexNumber& b) const;
     // TODO ComplexNumber operator/(const ComplexNumber& b) const;
 
-    operator Point() const { return Point(Re(), Im()); }
+    explicit operator Point() const { return Point(Re(), Im()); }
 
     bool operator==(const ComplexNumber& b) const;
     bool operator!=(const ComplexNumber& b) const;

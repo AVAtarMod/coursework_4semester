@@ -1,6 +1,7 @@
 #ifndef LINE_LIB
 #define LINE_LIB
 
+#include "ComplexNumber.hpp"
 #include "Point.hpp"
 #include <tuple>
 
@@ -20,18 +21,24 @@ private:
     /**
      * @brief Defines y or x constant value if _type is CONST_X or CONST_Y. This is reference for memory optimization.
      */
-    double &_x = _b, &_y  = _k;
+    double &_x = _b, &_y = _k;
     LineType _type;
 
     static double getKFromPoints(const Point& a, const Point& b);
     static double getBFromPoints(const Point& a, const Point& b);
+    void finishInit(const LineEquation& initedEquation);
 
 public:
     Line(double k, double b) : _k(k), _b(b) { }
-    Line(std::pair<Point, Point> pair);
-    Line(Point first, Point second) : Line(std::make_pair(first, second)) { }
+    Line(const std::pair<Point, Point>& pair);
+    Line(const Point& first, const Point& second) : Line(std::make_pair(first, second)) { }
+    
+    /**
+     * @brief Construct a new Line object (algorithm is same as for the two Points)
+     */
+    Line(const ComplexNumber& first, const ComplexNumber& second);
 
-    LineType getType() const { return _type;}
+    LineType getType() const { return _type; }
 
     double y(double x) const;
     double x(double y) const;

@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-ComplexNumber intersect(lineSegment_t first, lineSegment_t second)
+ComplexNumber intersect(clineSegment_t first, clineSegment_t second)
 {
     Line firstL(first.first, first.second), secondL(second.first, second.second);
 
@@ -14,7 +14,7 @@ ComplexNumber intersect(lineSegment_t first, lineSegment_t second)
     return ComplexNumber(x, y);
 }
 
-bool isPointBelongsSegment(lineSegment_t segment, ComplexNumber point)
+bool isPointBelongsSegment(clineSegment_t segment, ComplexNumber cpoint)
 {
     ComplexNumber &a = segment.first, &b = segment.second;
     Line line(a, b);
@@ -22,10 +22,10 @@ bool isPointBelongsSegment(lineSegment_t segment, ComplexNumber point)
     double imMax = std::max(a.Im(), b.Im()), imMin = std::min(a.Im(), b.Im());
     double reMax = std::max(a.Re(), b.Re()), reMin = std::min(a.Re(), b.Re());
     bool isPointInBounds
-        = (imMin <= point.Im() && point.Im() <= imMax)
-        && (reMin <= point.Re() && point.Re() <= reMax);
+        = (imMin <= cpoint.Im() && cpoint.Im() <= imMax)
+        && (reMin <= cpoint.Re() && cpoint.Re() <= reMax);
 
-    return line.isBelongs(point) && isPointInBounds;
+    return line.isBelongs(static_cast<Point>(cpoint)) && isPointInBounds;
 }
 
 void Task1_ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5])

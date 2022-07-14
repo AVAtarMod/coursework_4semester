@@ -9,6 +9,7 @@ private:
     Point _pointA, _pointB;
     double _k, _b, _x, _y;
     double xDiff, yDiff;
+    bool _inited = false;
     LineType type;
 
     void initByLineType();
@@ -16,33 +17,49 @@ private:
 public:
     LineEquation() {};
     LineEquation(const Point& a, const Point& b);
+    LineEquation(const ComplexNumber& a, const ComplexNumber& b);
 
-    double K() { return _k; }
-    double B() { return _b; }
+    double K() const { return _k; }
+    double B() const { return _b; }
 
-    double xConst() { return _x; }
-    double yConst() { return _y; }
+    double xConst() const { return _x; }
+    double yConst() const { return _y; }
 
-    LineType getType() { return type; }
+    bool isInited() const { return _inited; }
+
+    LineType getType() const { return type; }
 };
 
-Line::Line(std::pair<Point, Point> pair)
+void Line::finishInit(const LineEquation& initedEquation)
 {
-    LineEquation equation = LineEquation(pair.first, pair.second);
+    if (!initedEquation.isInited())
+        throw std::runtime_error("Cannot finish line initialization with not inited equation!");
 
-    _k = equation.K();
-    _b = equation.B();
-    _type = equation.getType();
+    _k = initedEquation.K();
+    _b = initedEquation.B();
+    _type = initedEquation.getType();
     switch (_type) {
     case LineType::CONST_X:
-        _x = equation.xConst();
+        _x = initedEquation.xConst();
         break;
     case LineType::CONST_Y:
-        _y = equation.yConst();
+        _y = initedEquation.yConst();
         break;
     default:
         break;
     }
+}
+
+Line::Line(const std::pair<Point, Point>& pair)
+{
+    LineEquation equation = LineEquation(pair.first, pair.second);
+    finishInit(equation);
+}
+
+Line::Line(const ComplexNumber& first, const ComplexNumber& second)
+{
+    LineEquation equation = LineEquation(first, second);
+    finishInit(equation);
 }
 
 double Line::y(double x) const
@@ -89,6 +106,7 @@ bool Line::isInX(double x) const
         return false;
     }
 }
+
 bool Line::isInY(double y) const
 {
     switch (_type) {
@@ -116,6 +134,8 @@ bool Line::isBelongs(Point point)
     }
 }
 
+// LineEquation section
+
 void LineEquation::initByLineType()
 {
     switch (type) {
@@ -141,6 +161,8 @@ void LineEquation::initByLineType()
     }
 }
 
+LineEquation::LineEquation(const ComplexNumber& a, const ComplexNumber& b) : LineEquation(static_cast<Point>(a), static_cast<Point>(b)) { }
+
 LineEquation::LineEquation(const Point& a, const Point& b)
 {
     if (a == b
@@ -159,5 +181,6 @@ LineEquation::LineEquation(const Point& a, const Point& b)
         : ((yDiff == 0) ? LineType::CONST_Y : LineType::NORMAL);
 
     initByLineType();
+    _inited = true;
     return;
 }
