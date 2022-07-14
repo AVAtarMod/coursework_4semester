@@ -1,28 +1,28 @@
 \clearpage
 \tcchapter{Приложения}
 \appendix
-
-% \titlelabel{Приложение \thetitle.\quad}
+% FIXME TOC format of the sections
 \titleformat{\section}[block]{\bfseries}{Приложение \Alph{section}.}{1em}{}[]
 \renewcommand{\thesection}{\Alph{section}}
 
 \section{Листинг программы}
 {\setlength{\parindent}{0cm}
-\inputcode[frame=none]{code/main.cpp}
-\inputcode[frame=none]{\taskFileName{1}}
-\inputcode[frame=none]{\taskFileName{2}}
-\inputcode[frame=none]{\taskFileName{3}}
+\inputcode[Файл меню ]{code/main.cpp}{frame=none}
+\inputcode{\taskFileName{1}}{frame=none}
+\inputcode{\taskFileName{2}}{frame=none}
+\inputcode{\taskFileName{3}}{frame=none}
 % TODO add tasks
 \vspace{20pt}
-\inputcode[frame=none]{code/functions.hpp}
-\inputcode[frame=none]{code/functions.cpp}
+
+\inputcode{code/functions.hpp}{frame=none}
+\inputcode{code/functions.cpp}{frame=none}
 \vspace{20pt}
-\inputcode[frame=none]{code/ComplexNumber.hpp}
-\inputcode[frame=none]{code/ComplexNumber.cpp}
+\inputcode{code/ComplexNumber.hpp}{frame=none}
+\inputcode{code/ComplexNumber.cpp}{frame=none}
 \vspace{20pt}
-\inputcode[frame=none]{code/Line.hpp}
-\inputcode[frame=none]{code/Line.cpp}
+\inputcode{code/Line.hpp}{frame=none}
+\inputcode{code/Line.cpp}{frame=none}
 \vspace{20pt}
-\inputcode[frame=none]{code/Point.hpp}
-\inputcode[frame=none]{code/Point.cpp}
+\inputcode{code/Point.hpp}{frame=none}
+\inputcode{code/Point.cpp}{frame=none}
 }
