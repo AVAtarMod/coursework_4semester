@@ -4,4 +4,6 @@ cache/_minted-presentation
 !cache/*.pdf
 code/build
 code/*.app
+code/*.d
+code/*.dg
 *.pdf
