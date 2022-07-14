@@ -33,4 +33,6 @@ inline void task1()
             std::cout << " " + labels[i] + ": " << numbers[i] << "\n";
         }
     }
+    else
+        std::cerr << "The computed points M,N,P is not belong to the same line, so the Guss's theorem is not true.\n";
 }
