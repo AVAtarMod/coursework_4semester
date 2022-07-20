@@ -25,14 +25,16 @@ ComplexNumber intersect(clineSegment_t first, clineSegment_t second);
 
 bool isPointBelongsSegment(clineSegment_t segment, ComplexNumber point);
 
+// TODO output variables to console and to file (one function with task option)
+
 namespace task1 {
-void ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5]);
-void solve();
+void readTriangleFromUser(ComplexNumber arr[3], const std::string labels[3], int& returnCode);
+void solve(int& returnCode);
 } // namespace task1
 
 namespace task5 {
-void ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5]);
-void solve();
+void readNumbersFromUser(ComplexNumber arr[5], const std::string labels[5], int& returnCode);
+void solve(int& returnCode);
 } // namespace task5
 
 template <class T>

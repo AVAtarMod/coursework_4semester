@@ -9,17 +9,18 @@
 
 int main(int argc, char const* argv[])
 {
-    bool noData = false;
-    if (argc == 1) {
+    int parameters = argc;
+    bool useStdinToInit = false;
+    if (parameters == 1) {
         std::cout << "Enter program number to launch: ";
-        argc++;
-        noData = true;
+        parameters = 2;
+        useStdinToInit = true;
     }
-    for (int i = 1; i < argc; i++) {
-        int choice;
-        if (noData) {
+    for (int i = 1; i < parameters; i++) {
+        int choice, returnCode = 0;
+        if (useStdinToInit) {
             std::cin >> choice;
-            std::cin.ignore(32767, '\n');
+            std::cin.ignore();
         } else {
             choice = std::stoi(argv[i]);
         }
@@ -37,12 +38,15 @@ int main(int argc, char const* argv[])
             break;
         case 5:
             std::cout << "Task #5\n";
-            task5::solve();
+            task5::solve(returnCode);
             std::cout << "-----\n";
             break;
         default:
             std::cout << "Entered program number is incorrect, retry.\n";
             break;
         }
+
+        if (returnCode != EXIT_SUCCESS)
+            return returnCode;
     }
 }

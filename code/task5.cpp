@@ -1,13 +1,14 @@
 #include "ComplexNumber.hpp"
 #include "functions.hpp"
 
-inline void task5::solve()
+void task5::solve(int& returnCode)
 {
+    returnCode = 0;
     // TODO test on cw-main data (or almost same data)
     const int numbersCount = 9;
     ComplexNumber numbers[numbersCount];
     const std::string labels[numbersCount] = { "A", "B", "C", "A1", "B1", "C1", "M", "N", "P" };
-    // Reference for readability
+    // References for readability
     ComplexNumber &a = numbers[0],
                   &b = numbers[1],
                   &c = numbers[2],
@@ -18,7 +19,9 @@ inline void task5::solve()
                   &n = numbers[7],
                   &p = numbers[8];
 
-    ReadNumbersFromUser(numbers, labels);
+    readNumbersFromUser(numbers, labels, returnCode);
+    if (returnCode != EXIT_SUCCESS)
+        return;
 
     std::pair<ComplexNumber, ComplexNumber> pairs[2] { { a, b }, { b1, a1 } };
 
@@ -28,6 +31,7 @@ inline void task5::solve()
     p = ComplexNumber::middle(c, c1);
 
     if (ComplexNumber::isOnSameLine(m, n, p)) {
+        // TODO use special function here
         std::cout << "Computed coordinates:\n";
         for (size_t i = 0; i < numbersCount; i++) {
             std::cout << " " + labels[i] + ": " << numbers[i] << "\n";

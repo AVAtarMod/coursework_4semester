@@ -66,3 +66,8 @@ ComplexNumber ComplexNumber::middle(const ComplexNumber& a, const ComplexNumber&
 {
     return ComplexNumber((a.Re() + b.Re()) / 2, (a.Im() + b.Im()) / 2);
 }
+
+ComplexNumber ComplexNumber::conjugate(const ComplexNumber& number)
+{
+    return ComplexNumber(number.Re(), -number.Im());
+}

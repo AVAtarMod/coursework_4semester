@@ -33,6 +33,7 @@ public:
     static bool isOnSameLine(const ComplexNumber& a, const ComplexNumber& b, const ComplexNumber& c);
 
     static ComplexNumber middle(const ComplexNumber& a, const ComplexNumber& b);
+    static ComplexNumber conjugate(const ComplexNumber& number);
 
     const double& Re() const { return _real; }
     const double& Im() const { return _imaginary; }
