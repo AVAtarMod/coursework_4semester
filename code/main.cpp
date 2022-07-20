@@ -25,11 +25,6 @@ int main(int argc, char const* argv[])
         }
 
         switch (choice) {
-        case 1:
-            std::cout << "Task #1\n";
-            task1::solve();
-            std::cout << "-----\n";
-            break;
         case 2:
             std::cout << "Task #2\n";
             // task2();
@@ -38,6 +33,11 @@ int main(int argc, char const* argv[])
         case 3:
             std::cout << "Task #3\n";
             // task3();
+            std::cout << "-----\n";
+            break;
+        case 5:
+            std::cout << "Task #5\n";
+            task5::solve();
             std::cout << "-----\n";
             break;
         default:

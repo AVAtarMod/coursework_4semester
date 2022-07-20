@@ -30,6 +30,11 @@ void ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5]);
 void solve();
 } // namespace task1
 
+namespace task5 {
+void ReadNumbersFromUser(ComplexNumber arr[5], const std::string labels[5]);
+void solve();
+} // namespace task5
+
 template <class T>
 typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
 almost_equal(T x, T y, int ulp)

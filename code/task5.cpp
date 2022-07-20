@@ -1,12 +1,12 @@
 #include "ComplexNumber.hpp"
 #include "functions.hpp"
 
-inline void task1::solve()
+inline void task5::solve()
 {
     // TODO test on cw-main data (or almost same data)
     const int numbersCount = 9;
     ComplexNumber numbers[numbersCount];
-    const std::string labels[9] = { "A", "B", "C", "A1", "B1", "C1", "M", "N", "P" };
+    const std::string labels[numbersCount] = { "A", "B", "C", "A1", "B1", "C1", "M", "N", "P" };
     // Reference for readability
     ComplexNumber &a = numbers[0],
                   &b = numbers[1],
