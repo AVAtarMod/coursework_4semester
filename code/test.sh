@@ -131,9 +131,12 @@ runTests() {
 
             local exitc=$?
             printDebugMessage "     \$?=$exitc"
-            if [[ "$run_info" != "$expected" || $exitc > 0 ]]; then
+            if [[ $run_info != $expected || $exitc > 0 ]]; then
+                printDebugMessage "     condition: '$run_info != $expected || $exitc > 0'"
                 echo -e "${BRED}Test (task #${taskId}) '$line' failed${NC}"
-                echo -e "${BRED}    Run info: $run_info"
+                echo -e "${BRED}    Run info: '$run_info'"
+                echo -e "${BCYAN}    Expected: '$expected'${NC}"
+                echo -e "${BRED}    Exit code: $exitc"
             elif [[ $verbose == 1 && $run_info == $expected ]]; then
                 echo -e "${BGREEN}Test (task #${taskId}) '$line' passed${NC}"
             fi
@@ -148,9 +151,7 @@ initTasks() {
     local count=0
     local description
 
-    if [[ $debug == 1 ]]; then
-        echo "[DEBUG] Discovered tests:"
-    fi
+    printDebugMessage " Discovered tests:"
     while IFS= read -r line; do
         if [[ "$line" =~ $pattern ]]; then
             taskId=${BASH_REMATCH[1]}
@@ -161,9 +162,7 @@ initTasks() {
             else
                 tasks[$taskId]+=$'\n'"$description"
             fi
-            if [[ $debug == 1 ]]; then
-                echo "[DEBUG]   Test for ${taskId}: $description"
-            fi
+            printDebugMessage "   Test for ${taskId}: '$description'"
         fi
     done <<<$content
 }

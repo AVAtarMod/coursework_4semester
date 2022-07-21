@@ -129,7 +129,7 @@ void printElementUnixStyle(const ElementType& type, const void* data)
     case ElementType::ComplexNumber:
         number = static_cast<const ComplexNumber*>(data);
         if (number)
-            std::cout << number->Im() << ' ' << number->Re();
+            std::cout << number->Re() << ' ' << number->Im();
         break;
 
     case ElementType::String:
@@ -218,8 +218,8 @@ void printMessage(const ProgramOptions& options, const char* format, ...)
     va_end(data);
 }
 
-void printNumbers(ComplexNumber numbers[], const std::string labels[],
-                  const ProgramOptions& options, const size_t amount)
+void printNumbers(const ProgramOptions& options, const ComplexNumber numbers[],
+                  const std::string labels[], const size_t amount)
 {
     switch (options.outputStyle) {
     case ProgramOptions::UNIX:

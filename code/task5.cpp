@@ -5,9 +5,9 @@ void task5::solve(int& returnCode, const ProgramOptions& options)
 {
     returnCode = 0;
     // TODO test on cw-main data (or almost same data)
-    const int numbersCount = 9;
-    ComplexNumber numbers[numbersCount];
-    const std::string labels[numbersCount] = { "A", "B", "C", "A1", "B1", "C1", "M", "N", "P" };
+    const int numbersAmount = 9;
+    ComplexNumber numbers[numbersAmount];
+    const std::string labels[numbersAmount] = { "A", "B", "C", "A1", "B1", "C1", "M", "N", "P" };
     // References for readability
     ComplexNumber &a = numbers[0],
                   &b = numbers[1],
@@ -32,7 +32,7 @@ void task5::solve(int& returnCode, const ProgramOptions& options)
 
     if (ComplexNumber::isOnSameLine(m, n, p)) {
         printMessage(options, "Computed coordinates:");
-        printNumbers()
+        printNumbers(options, numbers, labels, numbersAmount);
     } else
         std::cerr << "The computed points M,N,P is not belong to the same line, so the Guss's theorem is not true.\n";
 }
