@@ -1,7 +1,7 @@
 #include "ComplexNumber.hpp"
 #include "functions.hpp"
 
-void task5::solve(int& returnCode)
+void task5::solve(int& returnCode, const ProgramOptions& options)
 {
     returnCode = 0;
     // TODO test on cw-main data (or almost same data)
@@ -19,7 +19,7 @@ void task5::solve(int& returnCode)
                   &n = numbers[7],
                   &p = numbers[8];
 
-    readNumbersFromUser(numbers, labels, returnCode);
+    readNumbersFromUser(numbers, labels, options, returnCode);
     if (returnCode != EXIT_SUCCESS)
         return;
 
@@ -31,11 +31,8 @@ void task5::solve(int& returnCode)
     p = ComplexNumber::middle(c, c1);
 
     if (ComplexNumber::isOnSameLine(m, n, p)) {
-        // TODO use special function here
-        std::cout << "Computed coordinates:\n";
-        for (size_t i = 0; i < numbersCount; i++) {
-            std::cout << " " + labels[i] + ": " << numbers[i] << "\n";
-        }
+        printMessage(options, "Computed coordinates:");
+        printNumbers()
     } else
         std::cerr << "The computed points M,N,P is not belong to the same line, so the Guss's theorem is not true.\n";
 }

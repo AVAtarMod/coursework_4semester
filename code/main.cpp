@@ -5,14 +5,30 @@
 #include "task2.cpp"
 #include "task3.cpp"
 
+#include <cstring>
 #include <iostream>
+
+const char* taskMessageBegin = "Task #";
+const char* taskMessageEnd = "-----\n";
+
+void printTaskBegin(const ProgramOptions& options, int choice)
+{
+    const std::string message = taskMessageBegin + std::to_string(choice) + '\n';
+    printMessage(options, message.c_str());
+}
+
+void printTaskEnd(const ProgramOptions& options)
+{
+    printMessage(options, taskMessageEnd);
+}
 
 int main(int argc, char const* argv[])
 {
     int parameters = argc;
+    ProgramOptions options;
     bool useStdinToInit = false;
     if (parameters == 1) {
-        std::cout << "Enter program number to launch: ";
+        printMessage(options, "Enter program number to launch: ");
         parameters = 2;
         useStdinToInit = true;
     }
@@ -22,27 +38,31 @@ int main(int argc, char const* argv[])
             std::cin >> choice;
             std::cin.ignore();
         } else {
+            if (strcmp(argv[i], "-d") == 0) {
+                options.outputStyle = ProgramOptions::UNIX;
+                continue;
+            }
             choice = std::stoi(argv[i]);
         }
 
         switch (choice) {
         case 2:
-            std::cout << "Task #2\n";
+            printTaskBegin(options, choice);
             // task2();
-            std::cout << "-----\n";
+            printTaskEnd(options);
             break;
         case 3:
-            std::cout << "Task #3\n";
+            printTaskBegin(options, choice);
             // task3();
-            std::cout << "-----\n";
+            printTaskEnd(options);
             break;
         case 5:
-            std::cout << "Task #5\n";
-            task5::solve(returnCode);
-            std::cout << "-----\n";
+            printTaskBegin(options, choice);
+            task5::solve(returnCode, options);
+            printTaskEnd(options);
             break;
         default:
-            std::cout << "Entered program number is incorrect, retry.\n";
+            std::cerr << "Entered program number is incorrect, retry.\n";
             break;
         }
 
