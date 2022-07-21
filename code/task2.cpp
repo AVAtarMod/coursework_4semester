@@ -1,3 +1,2 @@
 
 inline void task2() { }
-

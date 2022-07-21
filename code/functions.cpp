@@ -219,7 +219,7 @@ void printMessage(const ProgramOptions& options, const char* format, ...)
 }
 
 void printNumbers(ComplexNumber numbers[], const std::string labels[],
-    const ProgramOptions& options, const size_t amount)
+                  const ProgramOptions& options, const size_t amount)
 {
     switch (options.outputStyle) {
     case ProgramOptions::UNIX:

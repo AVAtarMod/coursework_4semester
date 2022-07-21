@@ -14,8 +14,7 @@ enum class LineType {
 /**
  * @brief This namespace contain implentation details only , don't use it!
  */
-namespace implementation
-{
+namespace implementation {
 class LineEquation {
 private:
     Point _pointA, _pointB;
@@ -64,7 +63,7 @@ public:
     Line(double k, double b) : _k(k), _b(b) { }
     Line(const std::pair<Point, Point>& pair);
     Line(const Point& first, const Point& second) : Line(std::make_pair(first, second)) { }
-    
+
     /**
      * @brief Construct a new Line object (algorithm is same as for the two Points)
      */
