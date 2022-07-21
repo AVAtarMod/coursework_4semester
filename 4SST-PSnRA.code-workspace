@@ -166,7 +166,20 @@
             "streambuf": "cpp",
             "cfenv": "cpp",
             "cinttypes": "cpp",
-            "typeinfo": "cpp"
+            "typeinfo": "cpp",
+            "strstream": "cpp",
+            "bitset": "cpp",
+            "condition_variable": "cpp",
+            "set": "cpp",
+            "optional": "cpp",
+            "source_location": "cpp",
+            "mutex": "cpp",
+            "semaphore": "cpp",
+            "stop_token": "cpp",
+            "thread": "cpp",
+            "typeindex": "cpp",
+            "valarray": "cpp",
+            "variant": "cpp"
         },
         "doxdocgen.file.copyrightTag": [
             "@copyright Copyright © {year} Grigory Stupnikov. All rights reserved. Licensed under GNU GPLv3. See https://opensource.org/licenses/GPL-3.0."
