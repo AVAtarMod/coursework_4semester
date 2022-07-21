@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 TESTS_FILE="./files/tests.txt"
 APP_FILE="./debug.app"
+APP_OPTIONS="-d"
 BUILD_APP_CMD="make dev"
 BUILD_APP_ERRMSG="Cannot build application. See log above."
 # Array in format
@@ -94,7 +95,8 @@ help() {
     echo
     echo "Список возможных параметров (вводить через пробел):"
     echo "-h    Вывести справку"
-    echo "-d    Включить отладочную информацию для -s"
+    echo "-d    Включить отладочную информацию"
+    echo "-v    Включить более подробный вывод"
     echo
     echo "Coursework test runner. Copyright (C) 2021  Stupnikov Grigory, лицензировано под GPLv3"
     exit 0
@@ -117,18 +119,22 @@ runTests() {
     for taskId in "${!tasks[@]}"; do
         data=${tasks[$taskId]}
         while IFS= read -r line; do
+            line=$(echo $line | sed 's/#.*//g' | xargs)
             numbers=$(echo $line | cut -d'|' -f1)
-            expected=$(getReturnCode $(echo $line | cut -d'|' -f2))
+            expected=$(echo $line | cut -d'|' -f2 | xargs)
             printDebugMessage "test $data"
             printDebugMessage "     expected: $expected"
 
-            local run_info=$(echo "$numbers" | $APP_FILE $taskId 2>&1)
+            local run_info=$(echo "$numbers" | $APP_FILE $APP_OPTIONS $taskId 2>&1)
+            printDebugMessage "Running command 'echo \"$numbers\" | $APP_FILE $APP_OPTIONS $taskId 2>&1'"
+            printDebugMessage "$run_info"
+
             local exitc=$?
             printDebugMessage "     \$?=$exitc"
-            if [[ $exitc != $expected ]]; then
+            if [[ "$run_info" != "$expected" || $exitc > 0 ]]; then
                 echo -e "${BRED}Test (task #${taskId}) '$line' failed${NC}"
                 echo -e "${BRED}    Run info: $run_info"
-            elif [[ $verbose == 1 && $exitc == $expected ]]; then
+            elif [[ $verbose == 1 && $run_info == $expected ]]; then
                 echo -e "${BGREEN}Test (task #${taskId}) '$line' passed${NC}"
             fi
         done <<<$data
@@ -160,17 +166,6 @@ initTasks() {
             fi
         fi
     done <<<$content
-}
-
-getReturnCode() {
-    case "$1" in
-    success)
-        echo 0
-        ;;
-    fail)
-        echo 1
-        ;;
-    esac
 }
 
 main "$@"
