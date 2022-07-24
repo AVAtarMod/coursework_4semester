@@ -1,2 +1,2 @@
 
-inline void task2() { }
+inline void task2() {}
