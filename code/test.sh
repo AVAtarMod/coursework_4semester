@@ -11,6 +11,7 @@ BUILD_APP_ERRMSG="Cannot build application. See log above."
 tasks=()
 debug=0
 verbose=0
+exit_code=0
 
 main() {
     while [ -n "$1" ]; do
@@ -118,6 +119,7 @@ runTests() {
     fi
     for taskId in "${!tasks[@]}"; do
         data=${tasks[$taskId]}
+        local i=1
         while IFS= read -r line; do
             line=$(echo $line | sed 's/#.*//g' | xargs)
             numbers=$(echo $line | cut -d'|' -f1)
@@ -126,20 +128,23 @@ runTests() {
             printDebugMessage "     expected: $expected"
 
             local run_info=$(echo "$numbers" | $APP_FILE $APP_OPTIONS $taskId 2>&1)
+            local exitc=$?
+
             printDebugMessage "Running command 'echo \"$numbers\" | $APP_FILE $APP_OPTIONS $taskId 2>&1'"
             printDebugMessage "$run_info"
-
-            local exitc=$?
             printDebugMessage "     \$?=$exitc"
+
             if [[ $run_info != $expected || $exitc > 0 ]]; then
                 printDebugMessage "     condition: '$run_info != $expected || $exitc > 0'"
-                echo -e "${BRED}Test (task #${taskId}) '$line' failed${NC}"
+                echo -e "${BRED}Test #${taskId}-$i '$line' failed${NC}"
                 echo -e "${BRED}    Run info: '$run_info'"
                 echo -e "${BCYAN}    Expected: '$expected'${NC}"
                 echo -e "${BRED}    Exit code: $exitc"
+                exit_code=1
             elif [[ $verbose == 1 && $run_info == $expected ]]; then
-                echo -e "${BGREEN}Test (task #${taskId}) '$line' passed${NC}"
+                echo -e "${BGREEN}Test #${taskId}-$i '$line' passed${NC}"
             fi
+            let ++i
         done <<<$data
     done
 }
@@ -168,3 +173,4 @@ initTasks() {
 }
 
 main "$@"
+exit $exit_code
