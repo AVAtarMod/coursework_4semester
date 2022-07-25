@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run tests",
+            "group": "test",
+            "type": "shell",
+            "command": "sh -c './test.sh -v'",
+            "options": {
+                "cwd": "${workspaceFolder}/code"
+            },
+        }
+    ]
+}
