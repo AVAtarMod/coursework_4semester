@@ -1,5 +1,5 @@
 /**
- * @file tasks_functions.hpp
+ * @file tfunctions.hpp
  * @author Grigory Stupnikov (stud128245@vyatsu.ru)
  * @brief
  * @version 0.1
@@ -8,10 +8,11 @@
  * @copyright Copyright © 2022 Grigory Stupnikov. All rights reserved. Licensed
  * under GNU GPLv3. See https://opensource.org/licenses/GPL-3.0.
  */
-#ifndef FUNCTIONS_LIB
-#define FUNCTIONS_LIB
+#ifndef COURSEWORK_4_1_TFUNCTIONS_HPP
+#define COURSEWORK_4_1_TFUNCTIONS_HPP
 
 #include "ComplexNumber.hpp"
+
 #include <cmath>
 #include <limits>
 #include <tuple>
@@ -31,10 +32,11 @@ struct ProgramOptions
  * @brief Intersect of 2 line segments
  * @return ComplexNumber, intersection point of lines
  */
-ComplexNumber intersect(clineSegment_t first, clineSegment_t second);
+ComplexNumber intersect(const clineSegment_t& first, clineSegment_t second);
 
-bool isPointBelongsSegment(clineSegment_t segment, ComplexNumber point);
+bool isPointBelongsSegment(const clineSegment_t& segment, ComplexNumber point);
 
+clineSegment_t perpendicular(const clineSegment_t& to, ComplexNumber from);
 /**
  * @brief Print message. It prints only numbers if options.outputStyle == UNIX.
  * Passing non null-terminated string is UB, don't do this!
@@ -73,4 +75,4 @@ typename std::enable_if< !std::numeric_limits< T >::is_integer, bool >::type alm
           || std::fabs(x - y) < std::numeric_limits< T >::min();
 }
 
-#endif // FUNCTIONS_LIB
+#endif // COURSEWORK_4_1_TFUNCTIONS_HPP

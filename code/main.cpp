@@ -1,5 +1,5 @@
 #include "ComplexNumber.hpp"
-#include "tasks_functions.hpp"
+#include "tfunctions.hpp"
 
 #include "task1.cpp"
 #include "task2.cpp"

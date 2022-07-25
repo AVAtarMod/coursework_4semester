@@ -1,9 +1,9 @@
 #include "Circle.hpp"
 
 #include "Line.hpp"
+#include "functions.hpp"
 #include <cmath>
 #include <exception>
-#include "functions.hpp"
 
 Circle::Circle(const Point& a, const Point& b, const Point& c)
 {
@@ -21,18 +21,18 @@ Circle::Circle(const Point& a, const Point& b, const Point& c)
    const double denominator =
      (aX * (bY - cY) + bX * (cY - aY) + cX * (aY - bY));
    X = (-1 / 2) *
-       (aY * ((pow(bX, 2) + pow(bY, 2)) - (pow(cX, 2) + pow(cY, 2))) +
-        bY * ((pow(cX, 2) + pow(cY, 2)) - (pow(aX, 2) + pow(aY, 2))) +
-        cY * ((pow(aX, 2) + pow(aY, 2)) - (pow(bX, 2) + pow(bY, 2)))) /
+       (aY * ((power(bX, 2) + power(bY, 2)) - (power(cX, 2) + power(cY, 2))) +
+        bY * ((power(cX, 2) + power(cY, 2)) - (power(aX, 2) + power(aY, 2))) +
+        cY * ((power(aX, 2) + power(aY, 2)) - (power(bX, 2) + power(bY, 2)))) /
        denominator;
    Y = (1 / 2) *
-       (aX * ((pow(bX, 2) + pow(bY, 2)) - (pow(cX, 2) + pow(cY, 2))) +
-        bX * ((pow(cX, 2) + pow(cY, 2)) - (pow(aX, 2) + pow(aY, 2))) +
-        cX * ((pow(aX, 2) + pow(aY, 2)) - (pow(bX, 2) + pow(bY, 2)))) /
+       (aX * ((power(bX, 2) + power(bY, 2)) - (power(cX, 2) + power(cY, 2))) +
+        bX * ((power(cX, 2) + power(cY, 2)) - (power(aX, 2) + power(aY, 2))) +
+        cX * ((power(aX, 2) + power(aY, 2)) - (power(bX, 2) + power(bY, 2)))) /
        denominator;
 
    _center = Point(X, Y);
-   _radius = sqrt(pow(aX - _center.X(), 2) + pow(aY - _center.Y(), 2));
+   _radius = sqrt(power(aX - _center.X(), 2) + power(aY - _center.Y(), 2));
 }
 
 Circle::~Circle()

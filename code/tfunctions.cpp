@@ -1,4 +1,4 @@
-#include "tasks_functions.hpp"
+#include "tfunctions.hpp"
 #include "Line.hpp"
 
 #include <cmath>
@@ -27,7 +27,7 @@ const std::unordered_map< std::string, ElementType > specifiers = {
    { "%s", ElementType::String }
 };
 
-ComplexNumber intersect(clineSegment_t first, clineSegment_t second)
+ComplexNumber intersect(const clineSegment_t& first, clineSegment_t second)
 {
    Line firstL(first.first, first.second), secondL(second.first, second.second);
 
@@ -38,9 +38,9 @@ ComplexNumber intersect(clineSegment_t first, clineSegment_t second)
    return ComplexNumber(x, y);
 }
 
-bool isPointBelongsSegment(clineSegment_t segment, ComplexNumber cpoint)
+bool isPointBelongsSegment(const clineSegment_t& segment, ComplexNumber cpoint)
 {
-   ComplexNumber &a = segment.first, &b = segment.second;
+   const ComplexNumber &a = segment.first, &b = segment.second;
    Line line(a, b);
 
    double imMax = std::max(a.Im(), b.Im()), imMin = std::min(a.Im(), b.Im());
@@ -76,7 +76,7 @@ void task1::readTriangleFromUser(ComplexNumber arr[3],
       }
 
       for (size_t i = 0; i < labelsCount; i++) {
-         std::cout << "  " << labels[i] << ": ";
+         printMessage(options, (' ' + labels[i] + ": ").c_str());
          std::cin >> arr[i];
       }
 
@@ -264,4 +264,10 @@ const void* extractElipsisElement(va_list* elipsis,
       default:
          return nullptr;
    }
+}
+
+clineSegment_t perpendicular(const clineSegment_t& to, ComplexNumber from){
+   clineSegment_t result;
+   result.first = from;
+   return result;
 }
