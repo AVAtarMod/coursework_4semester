@@ -3,6 +3,12 @@
 
 static const ComplexNumber zero = ComplexNumber(0, 0);
 
+ComplexNumber::ComplexNumber(const Point& point)
+{
+   _real = point.X();
+   _imaginary = point.Y();
+}
+
 ComplexNumber::ComplexNumber(double real, double imaginary) :
   _imaginary(imaginary), _real(real)
 {
@@ -25,11 +31,11 @@ std::istream& operator>>(std::istream& in, ComplexNumber& number)
    return in;
 }
 
-ComplexNumber& ComplexNumber::operator=(const ComplexNumber& b)
+void ComplexNumber::operator=(const ComplexNumber& b)
 {
    this->_real = b.Re();
    this->_imaginary = b.Im();
-   return *this;
+   return;
 }
 
 ComplexNumber ComplexNumber::operator+(const ComplexNumber& b) const

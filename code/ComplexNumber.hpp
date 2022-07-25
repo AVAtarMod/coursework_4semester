@@ -18,8 +18,9 @@ class ComplexNumber
   public:
    ComplexNumber(double real = 0, double imaginary = 0);
    ComplexNumber(const ComplexNumber& source);
+   ComplexNumber(const Point& point);
 
-   ComplexNumber& operator=(const ComplexNumber& b);
+   void operator=(const ComplexNumber& b);
 
    ComplexNumber operator+(const ComplexNumber& b) const;
    ComplexNumber operator-(const ComplexNumber& b) const;
