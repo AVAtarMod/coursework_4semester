@@ -2,6 +2,10 @@
 Language: Cpp
 BasedOnStyle: Mozilla
 AccessModifierOffset: -1
+
+AlignOperands: Align
+BreakBeforeBinaryOperators: None
+
 # AlignArrayOfStructures: Left
 AllowShortLambdasOnASingleLine: Inline
 AlwaysBreakAfterDefinitionReturnType: None
