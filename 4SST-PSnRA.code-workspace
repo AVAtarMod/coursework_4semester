@@ -184,6 +184,9 @@
         "doxdocgen.file.copyrightTag": [
             "@copyright Copyright © {year} Grigory Stupnikov. All rights reserved. Licensed under GNU GPLv3. See https://opensource.org/licenses/GPL-3.0."
         ],
-        "doxdocgen.generic.authorEmail": "stud128245@vyatsu.ru"
+        "doxdocgen.generic.authorEmail": "stud128245@vyatsu.ru",
+        "yaml.schemas": {
+            "file:///home/lgs/.vscode-oss/extensions/ms-python.python-2022.10.1/schemas/conda-meta.json": "file:///home/lgs/UNI/Course%20work/4SST-PSnRA/code/.clang-format"
+        }
     }
 }
