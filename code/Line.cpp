@@ -1,5 +1,5 @@
 #include "Line.hpp"
-#include "functions.hpp"
+#include "tasks_functions.hpp"
 #include <cmath>
 #include <limits>
 #include <stdexcept>

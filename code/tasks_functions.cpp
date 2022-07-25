@@ -1,4 +1,4 @@
-#include "functions.hpp"
+#include "tasks_functions.hpp"
 #include "Line.hpp"
 
 #include <cmath>
@@ -65,7 +65,7 @@ void task1::readTriangleFromUser(ComplexNumber arr[3],
 
    bool isTriangle = false;
    while (!isTriangle) {
-      printMessage(options, "Enter coordinates of a,b,c,a1,b1 points:\n");
+      printMessage(options, "Enter coordinates of triangle's points:\n");
       if (std::cin.fail()) {
          if (std::cin.eof()) {
             std::cerr << "User input was canceled. Aborting...\n";

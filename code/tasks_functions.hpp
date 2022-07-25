@@ -1,5 +1,5 @@
 /**
- * @file functions.hpp
+ * @file tasks_functions.hpp
  * @author Grigory Stupnikov (stud128245@vyatsu.ru)
  * @brief
  * @version 0.1

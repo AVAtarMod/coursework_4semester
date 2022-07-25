@@ -1,13 +1,13 @@
 #include "ComplexNumber.hpp"
-#include "functions.hpp"
+#include "tasks_functions.hpp"
 
 void task5::solve(int& returnCode, const ProgramOptions& options)
 {
    returnCode = 0;
    const int numbersAmount = 9;
    ComplexNumber numbers[numbersAmount];
-   const std::string labels[numbersAmount] = { "A",  "B", "C", "A1", "B1",
-                                               "C1", "M", "N", "P" };
+   const std::string labels[numbersAmount] { "A",  "B", "C", "A1", "B1",
+                                             "C1", "M", "N", "P" };
    // clang-format off
    
    // References for readability
