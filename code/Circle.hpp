@@ -6,11 +6,15 @@
 class Circle
 {
   private:
-   Point center;
-   unsigned int radius;
+   Point _center;
+   unsigned int _radius;
 
   public:
    Circle(const Point& a, const Point& b, const Point& c);
+
+   Point center() const { return _center; }
+   unsigned int radius() const { return _radius; }
+   
    ~Circle();
 };
 
