@@ -14,9 +14,7 @@ class LineSegment
    LineSegment(const Line& l, const Point endpoints[2]);
 
    std::pair< Point, Point > getEndpoints();
-   const double& length() const;
-
-   static LineSegment makePerpendicular(const Line& to, const Point& from);
+   double length() const;
 
    ~LineSegment();
 };
