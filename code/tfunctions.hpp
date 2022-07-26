@@ -36,7 +36,6 @@ ComplexNumber intersect(const clineSegment_t& first, clineSegment_t second);
 
 bool isPointBelongsSegment(const clineSegment_t& segment, ComplexNumber point);
 
-clineSegment_t perpendicular(const clineSegment_t& to, ComplexNumber from);
 /**
  * @brief Print message. It prints only numbers if options.outputStyle == UNIX.
  * Passing non null-terminated string is UB, don't do this!

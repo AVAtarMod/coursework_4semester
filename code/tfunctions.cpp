@@ -29,13 +29,8 @@ const std::unordered_map< std::string, ElementType > specifiers = {
 
 ComplexNumber intersect(const clineSegment_t& first, clineSegment_t second)
 {
-   Line firstL(first.first, first.second), secondL(second.first, second.second);
-
-   double x = (secondL.B() - firstL.B()) / (firstL.K() - secondL.K());
-   double tmp = firstL.y(x);
-   double y = std::isinf(tmp) ? secondL.y(x) : tmp;
-
-   return ComplexNumber(x, y);
+   return ComplexNumber { Line::intersect(Line(first.first, first.second),
+                                          Line(second.first, second.second)) };
 }
 
 bool isPointBelongsSegment(const clineSegment_t& segment, ComplexNumber cpoint)
@@ -264,10 +259,4 @@ const void* extractElipsisElement(va_list* elipsis,
       default:
          return nullptr;
    }
-}
-
-clineSegment_t perpendicular(const clineSegment_t& to, ComplexNumber from){
-   clineSegment_t result;
-   result.first = from;
-   return result;
 }

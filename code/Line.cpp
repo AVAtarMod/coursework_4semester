@@ -4,7 +4,34 @@
 #include <limits>
 #include <stdexcept>
 
-void Line::finishInit(const implementation::LineEquation& initedEquation)
+class Line::LineEquation
+{
+  private:
+   Point _pointA, _pointB;
+   double _k, _b, _x, _y;
+   double xDiff, yDiff;
+   bool _inited = false;
+   LineType type;
+
+   void initByLineType();
+
+  public:
+   LineEquation() {};
+   LineEquation(const Point& a, const Point& b);
+   LineEquation(const ComplexNumber& a, const ComplexNumber& b);
+
+   double K() const { return _k; }
+   double B() const { return _b; }
+
+   double xConst() const { return _x; }
+   double yConst() const { return _y; }
+
+   bool isInited() const { return _inited; }
+
+   LineType getType() const { return type; }
+};
+
+void Line::finishInit(const LineEquation& initedEquation)
 {
    if (!initedEquation.isInited())
       throw std::runtime_error(
@@ -25,17 +52,26 @@ void Line::finishInit(const implementation::LineEquation& initedEquation)
    }
 }
 
+Line::Line(double k, double b) : _k(k), _b(b)
+{
+   if (std::isinf(k)) {
+      throw std::runtime_error(
+        "Cannot construct line x = ? from equation y = kx + b");
+   } else if (k == 0) {
+      _type = LineType::CONST_Y;
+      _y = b;
+   }
+}
+
 Line::Line(const std::pair< Point, Point >& pair)
 {
-   implementation::LineEquation equation =
-     implementation::LineEquation(pair.first, pair.second);
+   LineEquation equation = LineEquation(pair.first, pair.second);
    finishInit(equation);
 }
 
 Line::Line(const ComplexNumber& first, const ComplexNumber& second)
 {
-   implementation::LineEquation equation =
-     implementation::LineEquation(first, second);
+   LineEquation equation = LineEquation(first, second);
    finishInit(equation);
 }
 
@@ -84,16 +120,16 @@ bool Line::isInY(double y) const
 {
    switch (_type) {
       case LineType::CONST_X:
-      case LineType::NORMAL:
-         return true;
       case LineType::CONST_Y:
          return _y == y;
+      case LineType::NORMAL:
+         return true;
       default:
-         return 0;
+         return false;
    }
 }
 
-bool Line::isBelongs(Point point)
+bool Line::isBelongs(Point point) const
 {
    switch (_type) {
       case LineType::CONST_X:
@@ -107,55 +143,146 @@ bool Line::isBelongs(Point point)
    }
 }
 
-// implementation section
-namespace implementation {
-   void LineEquation::initByLineType()
-   {
-      switch (type) {
-         case LineType::CONST_X:
-            // Y may be any, x = const
-            _k = 0;
-            _b = std::numeric_limits< double >::infinity();
-            _x = _pointB.X();
-            break;
-         case LineType::CONST_Y:
-            // X may be any, y = const
-            _k = 0;
-            _b = 0;
-            _y = _pointB.Y();
-            break;
-         case LineType::NORMAL:
-            // Normal line, y = kx + b
-            _k = yDiff / xDiff;
-            _b = (-_pointA.X() * yDiff + _pointA.Y() * xDiff) / xDiff;
-            break;
-         default:
-            break;
+Line Line::makePerpendicular(const Line& to, const Point& from)
+{
+   /**
+    * @brief Random constant
+    */
+   const unsigned int yDiff = 5;
+
+   switch (to.getType()) {
+      case LineType::CONST_X:
+         // Perpendicular is CONST_Y, y = from.Y
+         return Line { 0, from.Y() };
+      case LineType::CONST_Y:
+         // Perpendicular is CONST_X, x = from.X
+         // We should use constructor by 2 points because y = kx + b not
+         // represent equation x = const
+         return Line { from, Point { from.X(), from.Y() + yDiff } };
+      case LineType::NORMAL:
+         // Perpendicular is NORMAL, k = -1/to.k and 'to' on perpendicular
+         {
+            const double k = -1 / to.K();
+            const double b = from.Y() + from.X() / to.K();
+            return Line(k, b);
+         }
+      default:
+         return Line(0, 0);
+   }
+}
+
+Point intersectEqualType(const Line& first, const Line& second)
+{
+   switch (first.getType()) {
+      case LineType::CONST_X:
+      case LineType::CONST_Y:
+         return Point { std::numeric_limits< double >::infinity(),
+                        std::numeric_limits< double >::infinity() };
+      case LineType::NORMAL: {
+         const double x = (second.B() - first.B()) / (first.K() - second.K());
+         const double y = second.y(x);
+         return Point { x, y };
       }
+      default:
+         return Point();
    }
+}
 
-   LineEquation::LineEquation(const ComplexNumber& a, const ComplexNumber& b) :
-     LineEquation(static_cast< Point >(a), static_cast< Point >(b))
-   {
+Point intersectSubNormalType(const Line& first, const Line& second)
+{
+   Line f { first }, s { second };
+   /**
+    * @brief Random constant value
+    */
+   const unsigned int cv = 0;
+
+   // Make first is NORMAL
+   if (first.getType() != LineType::NORMAL)
+      swap(f, s);
+
+   switch (second.getType()) {
+      case LineType::CONST_X:
+         return Point { second.x(cv), first.y(second.x(cv)) };
+      case LineType::CONST_Y:
+         return Point { first.x(second.y(cv)), second.y(cv) };
+      default:
+         return Point();
    }
+}
 
-   LineEquation::LineEquation(const Point& a, const Point& b)
-   {
-      if (a == b || std::isinf(a.X()) || std::isinf(b.X()) ||
-          std::isinf(a.Y()) || std::isinf(b.Y()))
-         throw std::runtime_error(
-           "Cannot create line from 2 equal points, or coordinates incorrect (a.e. Inf)");
+Point Line::intersect(const Line& first, const Line& second)
+{
+   Line f { first }, s { second };
 
-      _pointA = a, _pointB = b;
+   if (first._type == second._type) {
+      return intersectEqualType(first, second);
+   } else if (first._type == LineType::NORMAL ||
+              second._type == LineType::NORMAL) {
+      return intersectSubNormalType(first, second);
+   } else {
+      // first is CONST_Y, second is CONST_X or vice versa
+      // Make first is CONST_X
+      if (first._type != LineType::CONST_X)
+         swap(f, s);
 
-      yDiff = _pointB.Y() - _pointA.Y();
-      xDiff = _pointB.X() - _pointA.X();
-      type = (xDiff == 0)
-               ? LineType::CONST_X
-               : ((yDiff == 0) ? LineType::CONST_Y : LineType::NORMAL);
-
-      initByLineType();
-      _inited = true;
-      return;
+      return Point { first._x, second._y };
    }
-} // namespace implementation
+}
+
+void swap(Line& left, Line& right)
+{
+   std::swap(left._k, right._k);
+   std::swap(left._b, right._b);
+   std::swap(left._type, right._type);
+}
+
+// implementation section
+void Line::LineEquation::initByLineType()
+{
+   switch (type) {
+      case LineType::CONST_X:
+         // Y may be any, x = const
+         _k = 0;
+         _b = std::numeric_limits< double >::infinity();
+         _x = _pointB.X();
+         break;
+      case LineType::CONST_Y:
+         // X may be any, y = const
+         _k = 0;
+         _b = 0;
+         _y = _pointB.Y();
+         break;
+      case LineType::NORMAL:
+         // Normal line, y = kx + b
+         _k = yDiff / xDiff;
+         _b = (-_pointA.X() * yDiff + _pointA.Y() * xDiff) / xDiff;
+         break;
+      default:
+         break;
+   }
+}
+
+Line::LineEquation::LineEquation(const ComplexNumber& a,
+                                 const ComplexNumber& b) :
+  LineEquation(static_cast< Point >(a), static_cast< Point >(b))
+{
+}
+
+Line::LineEquation::LineEquation(const Point& a, const Point& b)
+{
+   if (a == b || std::isinf(a.X()) || std::isinf(b.X()) || std::isinf(a.Y()) ||
+       std::isinf(b.Y()))
+      throw std::runtime_error(
+        "Cannot create line from 2 equal points, or coordinates incorrect (a.e. Inf)");
+
+   _pointA = a, _pointB = b;
+
+   yDiff = _pointB.Y() - _pointA.Y();
+   xDiff = _pointB.X() - _pointA.X();
+   type = (xDiff == 0) ? LineType::CONST_X
+                       : ((yDiff == 0) ? LineType::CONST_Y : LineType::NORMAL);
+
+   initByLineType();
+   _inited = true;
+   return;
+}
