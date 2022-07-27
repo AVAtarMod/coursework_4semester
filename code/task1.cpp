@@ -27,14 +27,14 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
    // clang-format on
 
    readTriangleFromUser(numbers, labels, options, returnCode);
-   if (returnCode != EXIT_FAILURE)
+   if (returnCode != EXIT_SUCCESS)
       return;
 
    Circle circle { static_cast< Point >(a),
                    static_cast< Point >(b),
                    static_cast< Point >(c) };
 
-   o = { circle.center() };
+   o = ComplexNumber::floor({ circle.center() }, 2);
 
    const Line AB { a, b };
    const Line p = Line::makePerpendicular(AB, static_cast< Point >(o));
@@ -52,6 +52,7 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
                      -static_cast< Point >(o).Y() + 2 * i.Y() };
          break;
    }
+   d = ComplexNumber::floor(d, 2);
 
    const LineSegment sCD { static_cast< Point >(c), static_cast< Point >(d) },
      sAC { static_cast< Point >(a), static_cast< Point >(c) },
@@ -59,9 +60,10 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
      sAB { static_cast< Point >(a), static_cast< Point >(b) };
 
    // Check 'CD^2 = R^2 + AC^2 + BC^2 - AB^2'
-   if (power(sCD.length(), 2) ==
-       power(circle.radius(), 2) + power(sAC.length(), 2) +
-         power(sBC.length(), 2) - power(sAB.length(), 2)) {
+   if (almost_equal(power(sCD.length(), 2),
+                    power(circle.radius(), 2) + power(sAC.length(), 2) +
+                      power(sBC.length(), 2) - power(sAB.length(), 2),
+                    2)) {
       printMessage(options, "Computed coordinates:\n");
       printNumbers(options, numbers, labels, numbersCount);
    } else
