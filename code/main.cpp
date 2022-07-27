@@ -46,14 +46,9 @@ int main(int argc, char const* argv[])
       }
 
       switch (choice) {
-         case 2:
+         case 1:
             printTaskBegin(options, choice);
-            // task2();
-            printTaskEnd(options);
-            break;
-         case 3:
-            printTaskBegin(options, choice);
-            // task3();
+            task1::solve(returnCode, options);
             printTaskEnd(options);
             break;
          case 5:

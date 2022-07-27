@@ -15,6 +15,10 @@ class Point
    }
    bool operator!=(const Point& a) const { return !(*this == a); }
 
+   static Point middle(const Point& a, const Point& b){
+      return Point((a._x + b._x) / 2, (a._y + b._y) / 2);
+   }
+
    const double& X() const { return _x; }
    const double& Y() const { return _y; }
 };
