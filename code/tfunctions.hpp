@@ -1,7 +1,7 @@
 /**
  * @file tfunctions.hpp
- * @author Grigory Stupnikov (stud128245@vyatsu.ru)
- * @brief
+ * @author Grigory Stupnikov (gs.obr@ya.ru)
+ * @brief Namespaces and functions with task implementation code
  * @version 0.1
  * @date 2022-07-14
  *
@@ -13,8 +13,6 @@
 
 #include "ComplexNumber.hpp"
 
-#include <cmath>
-#include <limits>
 #include <tuple>
 
 using clineSegment_t = std::pair< ComplexNumber, ComplexNumber >;
@@ -60,18 +58,6 @@ namespace task5 {
                             const ProgramOptions& options, int& returnCode);
 
    void solve(int& returnCode, const ProgramOptions& options);
-}
-
-template< class T >
-typename std::enable_if< !std::numeric_limits< T >::is_integer, bool >::type almost_equal(
-  T x, T y, int ulp)
-{
-   // the machine epsilon has to be scaled to the magnitude of the values used
-   // and multiplied by the desired precision in ULPs (units in the last place)
-   return std::fabs(x - y) <=
-            std::numeric_limits< T >::epsilon() * std::fabs(x + y) * ulp
-          // unless the result is subnormal
-          || std::fabs(x - y) < std::numeric_limits< T >::min();
 }
 
 #endif // COURSEWORK_4_1_TFUNCTIONS_HPP

@@ -4,6 +4,7 @@
 #include <cmath>
 #include <cstdarg>
 #include <cstring>
+#include <functions.hpp>
 #include <unordered_map>
 
 void printElementRichStyle(const char* specifier, const void* data);
@@ -53,6 +54,7 @@ void task1::readTriangleFromUser(ComplexNumber arr[3],
    const size_t labelsCount = 3;
 
    // clang-format off
+   
    ComplexNumber  &a = arr[0],
                   &b = arr[1],
                   &c = arr[2];
@@ -73,9 +75,10 @@ void task1::readTriangleFromUser(ComplexNumber arr[3],
       for (size_t i = 0; i < labelsCount; i++) {
          printMessage(options, (' ' + labels[i] + ": ").c_str());
          std::cin >> arr[i];
+         arr[i] = ComplexNumber::floor(arr[i], 2);
       }
 
-      isTriangle = !ComplexNumber::isOnSameLine(a, b, c);
+      isTriangle = !Line::isOnSameLine(a, b, c);
       if (!isTriangle)
          std::cerr << "Incorrect a,b,c. Must be points of the triangle ABC\n";
    }
@@ -111,9 +114,10 @@ void task5::readNumbersFromUser(ComplexNumber arr[5],
       for (size_t i = 0; i < labelsCount; i++) {
          printMessage(options, (' ' + labels[i] + ": ").c_str());
          std::cin >> arr[i];
+         arr[i] = ComplexNumber::floor(arr[i], 2);
       }
 
-      isTriangle = !ComplexNumber::isOnSameLine(a, b, c);
+      isTriangle = !Line::isOnSameLine(a, b, c);
       isValidA1 = isPointBelongsSegment({ b, c }, a1);
       isValidB1 = isPointBelongsSegment({ a, c }, b1);
 
