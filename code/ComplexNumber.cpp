@@ -1,6 +1,8 @@
 #include "ComplexNumber.hpp"
 #include "Line.hpp"
 
+#include "functions.hpp"
+
 static const ComplexNumber zero = ComplexNumber(0, 0);
 
 ComplexNumber::ComplexNumber(const Point& point)
@@ -60,24 +62,13 @@ bool ComplexNumber::operator!=(const ComplexNumber& b) const
    return !(*this == b);
 }
 
-bool ComplexNumber::isCollinear(const ComplexNumber& a, const ComplexNumber& b)
-{
-   return true;
-}
-
-bool ComplexNumber::isOnSameLine(const ComplexNumber& a, const ComplexNumber& b,
-                                 const ComplexNumber& c)
-{
-   return Line(a, b).isBelongs(static_cast< Point >(c));
-}
-
-ComplexNumber ComplexNumber::middle(const ComplexNumber& a,
-                                    const ComplexNumber& b)
-{
-   return ComplexNumber((a.Re() + b.Re()) / 2, (a.Im() + b.Im()) / 2);
-}
-
 ComplexNumber ComplexNumber::conjugate(const ComplexNumber& number)
 {
    return ComplexNumber(number.Re(), -number.Im());
+}
+
+ComplexNumber ComplexNumber::floor(const ComplexNumber& number, int8_t ulp)
+{
+   return ComplexNumber(::floor(number._real, ulp),
+                        ::floor(number._imaginary, 2));
 }

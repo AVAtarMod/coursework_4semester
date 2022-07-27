@@ -32,12 +32,15 @@ class ComplexNumber
    bool operator==(const ComplexNumber& b) const;
    bool operator!=(const ComplexNumber& b) const;
 
-   static bool isCollinear(const ComplexNumber& a, const ComplexNumber& b);
-   static bool isOnSameLine(const ComplexNumber& a, const ComplexNumber& b,
-                            const ComplexNumber& c);
-
-   static ComplexNumber middle(const ComplexNumber& a, const ComplexNumber& b);
    static ComplexNumber conjugate(const ComplexNumber& number);
+   /**
+    * @brief Round ComplexNumber to specified digits after decimal separator
+    *
+    * @param number source number
+    * @param ulp amount digits after decimal separator
+    * @return ComplexNumber - Rounded number
+    */
+   static ComplexNumber floor(const ComplexNumber& number, int8_t ulp);
 
    const double& Re() const { return _real; }
    const double& Im() const { return _imaginary; }
