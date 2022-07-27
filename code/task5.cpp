@@ -1,4 +1,5 @@
 #include "ComplexNumber.hpp"
+#include "Line.hpp"
 #include "tfunctions.hpp"
 
 void task5::solve(int& returnCode, const ProgramOptions& options)
@@ -28,11 +29,11 @@ void task5::solve(int& returnCode, const ProgramOptions& options)
    std::pair< ComplexNumber, ComplexNumber > pairs[2] { { a, b }, { b1, a1 } };
 
    c1 = intersect(pairs[0], pairs[1]);
-   m = ComplexNumber::middle(a, a1);
-   n = ComplexNumber::middle(b, b1);
-   p = ComplexNumber::middle(c, c1);
+   m = Point::middle(static_cast<Point>(a), static_cast<Point>(a1));
+   n = Point::middle(static_cast<Point>(b), static_cast<Point>(b1));
+   p = Point::middle(static_cast<Point>(c), static_cast<Point>(c1));
 
-   if (ComplexNumber::isOnSameLine(m, n, p)) {
+   if (Line::isOnSameLine(m, n, p)) {
       printMessage(options, "Computed coordinates:");
       printNumbers(options, numbers, labels, numbersAmount);
    } else
