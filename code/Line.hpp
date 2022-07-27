@@ -28,11 +28,9 @@ class Line
 
    static double getKFromPoints(const Point& a, const Point& b);
    static double getBFromPoints(const Point& a, const Point& b);
-   
+
    class LineEquation;
    void finishInit(const LineEquation& initedEquation);
-
-   friend void swap(Line& left, Line& right);
 
   public:
    Line(double k, double b);
@@ -46,6 +44,7 @@ class Line
     * Points)
     */
    Line(const ComplexNumber& first, const ComplexNumber& second);
+   Line(const Line& source);
 
    LineType getType() const { return _type; }
 
@@ -57,13 +56,27 @@ class Line
    bool isInX(double x) const;
    bool isInY(double y) const;
    bool isBelongs(Point point) const;
+   bool isCollinear(const Line& other) const;
+
+   /**
+    * @brief Swap Line @b this with @b other
+    */
+   void swap(Line& other) { Line::swap(*this, other); };
+
+   void operator=(const Line& other);
 
    static Line makePerpendicular(const Line& to, const Point& from);
    /**
     * @brief Intersect of 2 line segments
-    * @return Point, intersection point of lines, or (Inf;Inf) if lines is collinear
+    * @return Point, intersection point of lines, or (Inf;Inf) if lines is
+    * collinear
     */
    static Point intersect(const Line& first, const Line& second);
+   static bool isOnSameLine(const Point& a, const Point& b, const Point& c);
+   static bool isOnSameLine(const ComplexNumber& a, const ComplexNumber& b,
+                            const ComplexNumber& c);
+
+   static void swap(Line& left, Line& right);
 };
 
 #endif // LINE_LIB

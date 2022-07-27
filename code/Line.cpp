@@ -1,5 +1,5 @@
 #include "Line.hpp"
-#include "tfunctions.hpp"
+#include "functions.hpp"
 #include <cmath>
 #include <limits>
 #include <stdexcept>
@@ -31,6 +31,10 @@ class Line::LineEquation
    LineType getType() const { return type; }
 };
 
+Point intersectEqualType(const Line& first, const Line& second);
+Point intersectSubNormalType(const Line& first, const Line& second);
+
+#pragma region Constructors
 void Line::finishInit(const LineEquation& initedEquation)
 {
    if (!initedEquation.isInited())
@@ -75,6 +79,12 @@ Line::Line(const ComplexNumber& first, const ComplexNumber& second)
    finishInit(equation);
 }
 
+Line::Line(const Line& source)
+{
+   *this = source;
+}
+#pragma endregion
+#pragma region Getters and methods
 double Line::y(double x) const
 {
    switch (_type) {
@@ -142,6 +152,14 @@ bool Line::isBelongs(Point point) const
          return false;
    }
 }
+#pragma endregion
+
+void Line::operator=(const Line& other)
+{
+   _k = other._k;
+   _b = other._b;
+   _type = other._type;
+}
 
 Line Line::makePerpendicular(const Line& to, const Point& from)
 {
@@ -171,48 +189,8 @@ Line Line::makePerpendicular(const Line& to, const Point& from)
    }
 }
 
-Point intersectEqualType(const Line& first, const Line& second)
-{
-   switch (first.getType()) {
-      case LineType::CONST_X:
-      case LineType::CONST_Y:
-         return Point { std::numeric_limits< double >::infinity(),
-                        std::numeric_limits< double >::infinity() };
-      case LineType::NORMAL: {
-         const double x = (second.B() - first.B()) / (first.K() - second.K());
-         const double y = second.y(x);
-         return Point { x, y };
-      }
-      default:
-         return Point();
-   }
-}
-
-Point intersectSubNormalType(const Line& first, const Line& second)
-{
-   Line f { first }, s { second };
-   /**
-    * @brief Random constant value
-    */
-   const unsigned int cv = 0;
-
-   // Make first is NORMAL
-   if (first.getType() != LineType::NORMAL)
-      swap(f, s);
-
-   switch (second.getType()) {
-      case LineType::CONST_X:
-         return Point { second.x(cv), first.y(second.x(cv)) };
-      case LineType::CONST_Y:
-         return Point { first.x(second.y(cv)), second.y(cv) };
-      default:
-         return Point();
-   }
-}
-
 Point Line::intersect(const Line& first, const Line& second)
 {
-   Line f { first }, s { second };
 
    if (first._type == second._type) {
       return intersectEqualType(first, second);
@@ -222,21 +200,39 @@ Point Line::intersect(const Line& first, const Line& second)
    } else {
       // first is CONST_Y, second is CONST_X or vice versa
       // Make first is CONST_X
-      if (first._type != LineType::CONST_X)
-         swap(f, s);
+      Line f { first }, s { second };
+      if (f._type != LineType::CONST_X)
+         Line::swap(f, s);
 
-      return Point { first._x, second._y };
+      return Point { f._x, s._y };
    }
 }
 
-void swap(Line& left, Line& right)
+bool Line::isCollinear(const Line& other) const
 {
-   std::swap(left._k, right._k);
-   std::swap(left._b, right._b);
-   std::swap(left._type, right._type);
+   // TODO
+   return true;
 }
 
-// implementation section
+bool Line::isOnSameLine(const Point& a, const Point& b, const Point& c)
+{
+   return Line(a, b).isBelongs(c);
+}
+bool Line::isOnSameLine(const ComplexNumber& a, const ComplexNumber& b,
+                        const ComplexNumber& c)
+{
+   return isOnSameLine(
+     static_cast< Point >(a), static_cast< Point >(b), static_cast< Point >(c));
+}
+
+void Line::swap(Line& left, Line& right)
+{
+   Line tmp { left };
+   left = right;
+   right = tmp;
+}
+
+#pragma region Implementation
 void Line::LineEquation::initByLineType()
 {
    switch (type) {
@@ -286,3 +282,43 @@ Line::LineEquation::LineEquation(const Point& a, const Point& b)
    _inited = true;
    return;
 }
+
+Point intersectEqualType(const Line& first, const Line& second)
+{
+   switch (first.getType()) {
+      case LineType::CONST_X:
+      case LineType::CONST_Y:
+         return Point { std::numeric_limits< double >::infinity(),
+                        std::numeric_limits< double >::infinity() };
+      case LineType::NORMAL: {
+         const double x = (second.B() - first.B()) / (first.K() - second.K());
+         const double y = second.y(x);
+         return Point { x, y };
+      }
+      default:
+         return Point();
+   }
+}
+
+Point intersectSubNormalType(const Line& first, const Line& second)
+{
+   Line f { first }, s { second };
+   /**
+    * @brief Random constant value
+    */
+   const unsigned int cv = 0;
+
+   // Make first is NORMAL
+   if (f.getType() != LineType::NORMAL)
+      Line::swap(f, s);
+
+   switch (s.getType()) {
+      case LineType::CONST_X:
+         return Point { s.x(cv), f.y(s.x(cv)) };
+      case LineType::CONST_Y:
+         return Point { f.x(s.y(cv)), s.y(cv) };
+      default:
+         return Point();
+   }
+}
+#pragma endregion
