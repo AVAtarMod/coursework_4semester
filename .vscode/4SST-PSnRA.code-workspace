@@ -1,15 +1,18 @@
 {
     "folders": [
-        {
-            "path": "."
-        },
-        {
-            "path": "../../Latex"
-        },
-        {
-            "path": "../../../Programming/0.Settings/Configs"
-        }
-    ],
+      {
+         "path": "../"
+      },
+      {
+         "path": "../../../Latex"
+      },
+      {
+         "path": "../../../../Programming/0.Settings/Configs"
+      },
+      {
+         "path": "../../../../Programming/C++/Library"
+      }
+   ],
     "settings": {
         "better-comments.tags": [
             {
@@ -185,9 +188,10 @@
         "doxdocgen.file.copyrightTag": [
             "@copyright Copyright © {year} Grigory Stupnikov. All rights reserved. Licensed under GNU GPLv3. See https://opensource.org/licenses/GPL-3.0."
         ],
-        "doxdocgen.generic.authorEmail": "stud128245@vyatsu.ru",
+        "doxdocgen.generic.authorEmail": "gs.obr@ya.ru",
         "yaml.schemas": {
             "file:///home/lgs/.vscode-oss/extensions/ms-python.python-2022.10.1/schemas/conda-meta.json": "file:///home/lgs/UNI/Course%20work/4SST-PSnRA/code/.clang-format"
-        }
+      },
+      "C_Cpp.default.cppStandard": "c++11"
     }
 }
