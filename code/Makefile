@@ -1,16 +1,19 @@
 # Compiler settings - Can be customized.
 CC = g++
-LIB_PATH = -iquote ~/Programming/C++/Includes
-CXXFLAGS = -std=c++17 -O2 $(LIB_PATH)
-LDFLAGS =
-DEVFLAGS = -std=c++17 -Wall -Wextra -Wsign-conversion -pedantic-errors -Werror -Wuninitialized -g3  -Wno-error=unused-but-set-parameter -Wno-error=unused-parameter $(LIB_PATH)
+LIB = -I$(LIBRARY_CPP) -L$(LIBRARY_CPP)
+
+RELEASE_LDFLAGS = -lfunctions
+RELEASE_CCFLAGS = -std=c++11 -O2 $(LIB)
+
+DEBUG_LDFLAGS = -lfunctions-debug
+DEBUG_CCFLAGS = -std=c++11 -Wall -Wextra -Wsign-conversion -pedantic-errors -Werror -Wuninitialized -g3  -Wno-error=unused-but-set-parameter -Wno-error=unused-parameter -Wno-error=unknown-pragmas $(LIB)
 
 # Makefile settings - Can be customized.
 APPNAME = realease.app
 APPNAMEDEV = debug.app
 EXT = .cpp
 SRCDIR = .
-OBJDIR = build/
+OBJDIR = build
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
@@ -35,17 +38,17 @@ dev: $(APPNAMEDEV) cleandepdev cleandep
 
 # Builds the app
 $(APPNAME): $(OBJ)
-	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+	$(CC) $(RELEASE_CCFLAGS) -o $@ $^ $(RELEASE_LDFLAGS)
 
 $(APPNAMEDEV): $(OBJDEV)
-	$(CC) $(DEVFLAGS) -o $@ $^ $(LDFLAGS)
+	$(CC) $(DEBUG_CCFLAGS) -o $@ $^ $(DEBUG_LDFLAGS)
 
 # Creates the dependecy rules
 %.d: $(SRCDIR)/%$(EXT)
-	@$(CPP) $(CXXFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
+	@$(CPP) $(RELEASE_CCFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
 
 %.dg: $(SRCDIR)/%$(EXT)
-	@$(CPP) $(DEVFLAGS) $< -MM -MT $(@:%.dg=$(OBJDIR)/%.odg) >$@
+	@$(CPP) $(DEBUG_CCFLAGS) $< -MM -MT $(@:%.dg=$(OBJDIR)/%.odg) >$@
 
 # Includes all .h files
 -include $(DEP)
@@ -54,10 +57,10 @@ $(APPNAMEDEV): $(OBJDEV)
 
 # Building rule for .o files and its .c/.cpp in combination with all .h
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+	$(CC) $(RELEASE_CCFLAGS) -o $@ -c $<
 
 $(OBJDIR)/%.odg: $(SRCDIR)/%$(EXT)
-	$(CC) $(DEVFLAGS) -o $@ -c $<
+	$(CC) $(DEBUG_CCFLAGS) -o $@ -c $<
 
 ################### Cleaning rules for Unix-based OS ###################
 # Cleans complete project
