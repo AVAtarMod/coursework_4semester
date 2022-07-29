@@ -2,7 +2,7 @@
 #include "Line.hpp"
 #include "tfunctions.hpp"
 
-void task5::solve(int& returnCode, const ProgramOptions& options)
+inline void task5::solve(int& returnCode, const ProgramOptions& options)
 {
    returnCode = 0;
    const int numbersAmount = 9;
