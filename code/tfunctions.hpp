@@ -53,11 +53,33 @@ namespace task1 {
    void solve(int& returnCode, const ProgramOptions& options);
 }
 
+namespace task2 {
+   void readNumbersFromUser(ComplexNumber arr[4], const std::string labels[4],
+                            const ProgramOptions& options, int& returnCode);
+   void solve(int& returnCode, const ProgramOptions& options);
+}
+namespace task3 {
+   void solve(int& returnCode, const ProgramOptions& options);
+}
+namespace task4 {
+   void solve(int& returnCode, const ProgramOptions& options);
+}
 namespace task5 {
    void readNumbersFromUser(ComplexNumber arr[5], const std::string labels[5],
                             const ProgramOptions& options, int& returnCode);
 
    void solve(int& returnCode, const ProgramOptions& options);
 }
-
+namespace task6 {
+   void solve(int& returnCode, const ProgramOptions& options);
+}
+namespace task7 {
+   void solve(int& returnCode, const ProgramOptions& options);
+}
+namespace task8 {
+   void solve(int& returnCode, const ProgramOptions& options);
+}
+namespace task9 {
+   void solve(int& returnCode, const ProgramOptions& options);
+}
 #endif // COURSEWORK_4_1_TFUNCTIONS_HPP

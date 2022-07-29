@@ -84,6 +84,43 @@ void task1::readTriangleFromUser(ComplexNumber arr[3],
    }
 }
 
+void task2::readNumbersFromUser(ComplexNumber arr[4],
+                                const std::string labels[4],
+                                const ProgramOptions& options, int& returnCode)
+{
+   returnCode = 0;
+   const size_t labelsCount = 4;
+
+   // clang-format off
+   ComplexNumber  &a = arr[0],
+                  &b = arr[1];
+   // clang-format on
+
+   bool isEqual = true;
+   while (isEqual) {
+      printMessage(
+        options,
+        "Enter coordinates of a,b,n,t points (must conform x^2+y^2 = 1, t between a and b):\n");
+      if (std::cin.fail()) {
+         if (std::cin.eof()) {
+            std::cerr << "User input was canceled. Aborting...\n";
+            returnCode = 1;
+            return;
+         }
+         std::cin.ignore();
+         std::cin.clear();
+      }
+      for (size_t i = 0; i < labelsCount; i++) {
+         printMessage(options, (' ' + labels[i] + ": ").c_str());
+         std::cin >> arr[i];
+         arr[i] = ComplexNumber::floor(arr[i], 2);
+      }
+
+      if (a == b)
+         std::cerr << "Incorrect a,b. Must be not equal\n";
+   }
+}
+
 void task5::readNumbersFromUser(ComplexNumber arr[5],
                                 const std::string labels[5],
                                 const ProgramOptions& options, int& returnCode)
