@@ -164,7 +164,7 @@ void Line::operator=(const Line& other)
 Line Line::makePerpendicular(const Line& to, const Point& from)
 {
    /**
-    * @brief Random constant
+    * @brief Random constant, should be > 0
     */
    const unsigned int yDiff = 5;
 
