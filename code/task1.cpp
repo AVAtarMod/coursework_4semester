@@ -7,6 +7,14 @@
 
 inline void task1::solve(int& returnCode, const ProgramOptions& options)
 {
+   /**
+    * @brief Numbers differs lesser than comparePrecision
+    */
+   const double comparePrecision = 0.1;
+   /**
+    * @brief Amount digits after decimal separator
+    */
+   const int8_t roundPrecision = 2;
    returnCode = 0;
    const int numbersCount = 5;
    /**
@@ -34,7 +42,7 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
                    static_cast< Point >(b),
                    static_cast< Point >(c) };
 
-   o = ComplexNumber::floor({ circle.center() }, 2);
+   o = ComplexNumber::floor({ circle.center() }, roundPrecision);
 
    const Line AB { a, b };
    const Line p = Line::makePerpendicular(AB, static_cast< Point >(o));
@@ -52,7 +60,7 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
                      -static_cast< Point >(o).Y() + 2 * i.Y() };
          break;
    }
-   d = ComplexNumber::floor(d, 2);
+   d = ComplexNumber::floor(d, roundPrecision);
 
    const LineSegment sCD { static_cast< Point >(c), static_cast< Point >(d) },
      sAC { static_cast< Point >(a), static_cast< Point >(c) },
@@ -60,10 +68,10 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
      sAB { static_cast< Point >(a), static_cast< Point >(b) };
 
    // Check 'CD^2 = R^2 + AC^2 + BC^2 - AB^2'
-   if (almost_equal(power(sCD.length(), 2),
-                    power(circle.radius(), 2) + power(sAC.length(), 2) +
-                      power(sBC.length(), 2) - power(sAB.length(), 2),
-                    2)) {
+   const double lhs = power(sCD.length(), 2);
+   const double rhs = power(circle.radius(), 2) + power(sAC.length(), 2) +
+                      power(sBC.length(), 2) - power(sAB.length(), 2);
+   if (areEqual(lhs, rhs, comparePrecision)) {
       printMessage(options, "Computed coordinates:\n");
       printNumbers(options, numbers, labels, numbersCount);
    } else
