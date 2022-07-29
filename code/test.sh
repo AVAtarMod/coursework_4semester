@@ -48,7 +48,7 @@ main() {
 
    if [[ $exitc > 0 ]]; then
       printMessage "$build_res"
-      if ! printErrorMessageAndAsk "[ERROR] $BUILD_APP_ERRMSG"; then
+      if ! printErrorMessageAndAsk "$BUILD_APP_ERRMSG"; then
          exit $?
       fi
    fi
@@ -120,6 +120,7 @@ runTests() {
 initTasks() {
    local content=$(cat $TESTS_FILE)
    local pattern='^([0-9]+):'
+   local commentPattern='^#'
    local taskId
    local count=0
    local description
@@ -130,6 +131,10 @@ initTasks() {
          taskId=${BASH_REMATCH[1]}
       else
          description=$(echo $line | xargs) #Trim whitespaces
+         if [[ $description =~ $commentPattern ]]; then
+         printDebugMessage "   comment line: '$description'"
+            continue
+         fi
          if [[ -z ${tasks[$taskId]} ]]; then
             tasks[$taskId]=$description
          else
