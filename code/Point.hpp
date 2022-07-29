@@ -1,5 +1,5 @@
-#ifndef POINT_LIB
-#define POINT_LIB
+#ifndef COURSEWORK_4_1_POINT_HPP
+#define COURSEWORK_4_1_POINT_HPP
 
 class Point
 {
@@ -15,12 +15,20 @@ class Point
    }
    bool operator!=(const Point& a) const { return !(*this == a); }
 
-   static Point middle(const Point& a, const Point& b){
-      return Point((a._x + b._x) / 2, (a._y + b._y) / 2);
-   }
-
    const double& X() const { return _x; }
    const double& Y() const { return _y; }
+
+   static Point middle(const Point& a, const Point& b)
+   {
+      return Point((a._x + b._x) / 2, (a._y + b._y) / 2);
+   }
+   static Point zero() { return Point { 0, 0 }; }
+   /**
+    * @brief Does check is point has one or both coordinates at infinity
+    *
+    * @param point A point that need to check
+    */
+   static bool isAtInfinity(const Point& point);
 };
 
-#endif // POINT_LIB
+#endif // COURSEWORK_4_1_POINT_HPP
