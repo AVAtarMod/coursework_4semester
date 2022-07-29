@@ -21,8 +21,8 @@ OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
 DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
 
 SRCDEV = $(wildcard $(SRCDIR)/*$(EXT))
-OBJDEV = $(SRCDEV:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.odg)
-DEPDEV = $(OBJDEV:$(OBJDIR)/%.odg=%.dg)
+OBJDEV = $(SRCDEV:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o+debug)
+DEPDEV = $(OBJDEV:$(OBJDIR)/%.o+debug=%.d+debug)
 # UNIX-based OS variables & settings
 RM = rm
 DELOBJ = $(OBJ)
@@ -47,7 +47,7 @@ $(APPNAMEDEV): $(OBJDEV)
 %.d: $(SRCDIR)/%$(EXT)
 	@$(CPP) $(RELEASE_CCFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
 
-%.dg: $(SRCDIR)/%$(EXT)
+%.d+debug: $(SRCDIR)/%$(EXT)
 	@$(CPP) $(DEBUG_CCFLAGS) $< -MM -MT $(@:%.dg=$(OBJDIR)/%.odg) >$@
 
 # Includes all .h files
@@ -59,7 +59,7 @@ $(APPNAMEDEV): $(OBJDEV)
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
 	$(CC) $(RELEASE_CCFLAGS) -o $@ -c $<
 
-$(OBJDIR)/%.odg: $(SRCDIR)/%$(EXT)
+$(OBJDIR)/%.o+debug: $(SRCDIR)/%$(EXT)
 	$(CC) $(DEBUG_CCFLAGS) -o $@ -c $<
 
 ################### Cleaning rules for Unix-based OS ###################
