@@ -1,5 +1,5 @@
-#ifndef COMPLEXN_LIB
-#define COMPLEXN_LIB
+#ifndef COURSEWORK_4_1_COMPLEXNUMBER_HPP
+#define COURSEWORK_4_1_COMPLEXNUMBER_HPP
 
 #include "Point.hpp"
 #include <iostream>
@@ -45,7 +45,7 @@ class ComplexNumber
    const double& Re() const { return _real; }
    const double& Im() const { return _imaginary; }
 
-   static ComplexNumber getZero() { return ComplexNumber(0, 0); }
+   static ComplexNumber zero() { return ComplexNumber(0, 0); }
 };
 
-#endif // COMPLEXN_LIB
+#endif // COURSEWORK_4_1_COMPLEXNUMBER_HPP

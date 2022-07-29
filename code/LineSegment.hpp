@@ -1,5 +1,5 @@
-#ifndef LINESEGMENT_LIB
-#define LINESEGMENT_LIB
+#ifndef COURSEWORK_4_1_LINESEGMENT_HPP
+#define COURSEWORK_4_1_LINESEGMENT_HPP
 
 #include "Line.hpp"
 
@@ -19,4 +19,4 @@ class LineSegment
    ~LineSegment();
 };
 
-#endif // LINESEGMENT_LIB
+#endif // COURSEWORK_4_1_LINESEGMENT_HPP
