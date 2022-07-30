@@ -1,10 +1,11 @@
 #include "CircleArc.hpp"
 
+#include "functions.hpp"
+#include <cmath>
 #include <stdexcept>
 
-CircleArc::CircleArc(const Circle& circle, const Point& a, const Point& b,
-                     const Point& betweenAB) :
-  _circle(circle)
+void CircleArc::initByExactValues(const Point& a, const Point& b,
+                                  const Point& betweenAB)
 {
    bool isValidInput = _circle.isBelongs(a) && _circle.isBelongs(b) &&
                        _circle.isBelongs(betweenAB) && a != b && b != betweenAB;
@@ -12,33 +13,53 @@ CircleArc::CircleArc(const Circle& circle, const Point& a, const Point& b,
       throw std::invalid_argument(
         "CircleArc: Cannot construct. One or more points not at the circle or points equal");
 
-   _a = a;
-   _b = b;
-   _between = betweenAB;
+   Angle angles[3] { _circle.getAngle(a),
+                     _circle.getAngle(b),
+                     _circle.getAngle(betweenAB) };
+
+   if (angles[0].degrees() < angles[1].degrees()) {
+      _boundaries[0] = angles[0];
+      _boundaries[1] = angles[1];
+   } else {
+      _boundaries[0] = angles[1];
+      _boundaries[1] = angles[0];
+   }
+   _boundaries[2] = angles[2];
 }
 
-Point CircleArc::middle(const CircleArc& arc)
+CircleArc::CircleArc(const Circle& circle, const Point& a, const Point& b,
+                     const Point& betweenAB) :
+  _circle(circle)
 {
-   const double arcXMin = std::min(arc._a.X(), arc._b.X()),
-                arcXMax = std::max(arc._a.X(), arc._b.X());
-   const double x = arcXMin + (arcXMax - arcXMin) / 2;
-   auto yRaw = arc._circle.y(x);
-   double y;
-   if (arc._a.X() == -arc._b.X() || yRaw.first != yRaw.second) {
-      // y must be closer to _between by Y
-      y = (std::abs(yRaw.first - arc._between.Y()) <
-           std::abs(yRaw.second - arc._between.Y()))
-            ? yRaw.first
-            : yRaw.second;
-   } else if (yRaw.first == yRaw.second) {
-      y = yRaw.first;
-   }
-   return Point(x, y);
+   initByExactValues(a, b, betweenAB);
+}
+
+CircleArc::CircleArc(const Circle& circle, const Point& a, const Point& b,
+                     const Point& betweenAB, bool approximate) :
+  _circle(circle)
+{
+   if (approximate) {
+      initByExactValues(_circle.getExactPoint(a),
+                        _circle.getExactPoint(b),
+                        _circle.getExactPoint(betweenAB));
+   } else
+      initByExactValues(a, b, betweenAB);
+}
+
+bool CircleArc::isBelongs(const Point& point) const
+{
+   Point normalized { point.X() - _circle.center().X(),
+                      point.Y() - _circle.center().Y() };
+}
+
+Point CircleArc::middle() const
+{
+   const int comparePrecision = 100;
+   
 }
 
 CircleArc::~CircleArc()
 {
-   _a.~Point();
-   _b.~Point();
-   _between.~Point();
+   _boundaries[0].~Angle();
+   _boundaries[1].~Angle();
 }
