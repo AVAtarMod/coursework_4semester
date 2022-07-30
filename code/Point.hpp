@@ -14,6 +14,10 @@ class Point
       return X() == a.X() && Y() == a.Y();
    }
    bool operator!=(const Point& a) const { return !(*this == a); }
+   Point operator-(const Point& other) const
+   {
+      return Point(_x - other._x, _y - other._y);
+   }
 
    const double& X() const { return _x; }
    const double& Y() const { return _y; }
