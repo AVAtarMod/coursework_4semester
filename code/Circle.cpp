@@ -59,8 +59,8 @@ bool Circle::isBelongs(const Point& a, int8_t dds) const
       throw std::invalid_argument(
         "Circle::isBelongs: cannot set negative precision");
         
-   return floor(power(a.X() - _center.X(), 2) + power(a.Y() - _center.Y(), 2),
-                dds) == floor(power(_radius, 2), dds);
+   return round(power(a.X() - _center.X(), 2) + power(a.Y() - _center.Y(), 2),
+                dds) == round(power(_radius, 2), dds);
 }
 
 std::pair< double, double > Circle::y(double x) const
