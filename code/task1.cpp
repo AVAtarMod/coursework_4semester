@@ -8,7 +8,7 @@
 inline void task1::solve(int& returnCode, const ProgramOptions& options)
 {
    /**
-    * @brief Numbers differs lesser than comparePrecision
+    * @brief Numbers should differs lesser than comparePrecision
     */
    const double comparePrecision = 0.1;
    /**
@@ -42,7 +42,7 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
                    static_cast< Point >(b),
                    static_cast< Point >(c) };
 
-   o = ComplexNumber::floor({ circle.center() }, roundPrecision);
+   o = ComplexNumber::round({ circle.center() }, roundPrecision);
 
    const Line AB { a, b };
    const Line p = Line::makePerpendicular(AB, static_cast< Point >(o));
@@ -60,7 +60,7 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
                      -static_cast< Point >(o).Y() + 2 * i.Y() };
          break;
    }
-   d = ComplexNumber::floor(d, roundPrecision);
+   d = ComplexNumber::round(d, roundPrecision);
 
    const LineSegment sCD { static_cast< Point >(c), static_cast< Point >(d) },
      sAC { static_cast< Point >(a), static_cast< Point >(c) },

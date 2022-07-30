@@ -67,8 +67,8 @@ ComplexNumber ComplexNumber::conjugate(const ComplexNumber& number)
    return ComplexNumber(number.Re(), -number.Im());
 }
 
-ComplexNumber ComplexNumber::floor(const ComplexNumber& number, int8_t ulp)
+ComplexNumber ComplexNumber::round(const ComplexNumber& number, int8_t ulp)
 {
-   return ComplexNumber(::floor(number._real, ulp),
-                        ::floor(number._imaginary, 2));
+   return ComplexNumber(::round(number._real, ulp),
+                        ::round(number._imaginary, 2));
 }

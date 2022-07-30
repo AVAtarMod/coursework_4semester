@@ -40,7 +40,7 @@ class ComplexNumber
     * @param ulp amount digits after decimal separator
     * @return ComplexNumber - Rounded number
     */
-   static ComplexNumber floor(const ComplexNumber& number, int8_t ulp);
+   static ComplexNumber round(const ComplexNumber& number, int8_t ulp);
 
    const double& Re() const { return _real; }
    const double& Im() const { return _imaginary; }

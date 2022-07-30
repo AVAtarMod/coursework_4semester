@@ -75,7 +75,7 @@ void task1::readTriangleFromUser(ComplexNumber arr[3],
       for (size_t i = 0; i < labelsCount; i++) {
          printMessage(options, (' ' + labels[i] + ": ").c_str());
          std::cin >> arr[i];
-         arr[i] = ComplexNumber::floor(arr[i], 2);
+         arr[i] = ComplexNumber::round(arr[i], 2);
       }
 
       isTriangle = !Line::isOnSameLine(a, b, c);
@@ -113,10 +113,11 @@ void task2::readNumbersFromUser(ComplexNumber arr[4],
       for (size_t i = 0; i < labelsCount; i++) {
          printMessage(options, (' ' + labels[i] + ": ").c_str());
          std::cin >> arr[i];
-         arr[i] = ComplexNumber::floor(arr[i], 2);
+         arr[i] = ComplexNumber::round(arr[i], 2);
       }
 
-      if (a == b)
+      isEqual = a == b;
+      if (isEqual)
          std::cerr << "Incorrect a,b. Must be not equal\n";
    }
 }
@@ -151,7 +152,7 @@ void task5::readNumbersFromUser(ComplexNumber arr[5],
       for (size_t i = 0; i < labelsCount; i++) {
          printMessage(options, (' ' + labels[i] + ": ").c_str());
          std::cin >> arr[i];
-         arr[i] = ComplexNumber::floor(arr[i], 2);
+         arr[i] = ComplexNumber::round(arr[i], 2);
       }
 
       isTriangle = !Line::isOnSameLine(a, b, c);
