@@ -101,6 +101,7 @@ void task2::readNumbersFromUser(ComplexNumber arr[4],
       printMessage(
         options,
         "Enter coordinates of a,b,n,t points (must conform x^2+y^2 = 1, t between a and b):\n");
+
       if (std::cin.fail()) {
          if (std::cin.eof()) {
             std::cerr << "User input was canceled. Aborting...\n";
@@ -110,6 +111,7 @@ void task2::readNumbersFromUser(ComplexNumber arr[4],
          std::cin.ignore();
          std::cin.clear();
       }
+
       for (size_t i = 0; i < labelsCount; i++) {
          printMessage(options, (' ' + labels[i] + ": ").c_str());
          std::cin >> arr[i];

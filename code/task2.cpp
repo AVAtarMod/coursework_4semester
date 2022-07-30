@@ -14,6 +14,7 @@ inline void task2::solve(int& returnCode, const ProgramOptions& options)
    const uint8_t comparePrecision = 1;
    const int numbersCount = 5;
    const uint32_t circleRadius = 1;
+   const bool useApproximation = true;
 
    ComplexNumber numbers[numbersCount];
    const std::string labels[numbersCount] { "A", "B", "N", "T", "M" };
@@ -23,8 +24,8 @@ inline void task2::solve(int& returnCode, const ProgramOptions& options)
    ComplexNumber  &a = numbers[0],
                   &b = numbers[1], 
                   &n = numbers[2],
-                  &t = numbers[2],
-                  &m = numbers[3];
+                  &t = numbers[3],
+                  &m = numbers[4];
    // clang-format on
    const Circle circle { Point::zero(), circleRadius };
 
@@ -37,10 +38,13 @@ inline void task2::solve(int& returnCode, const ProgramOptions& options)
             !circle.isBelongs(static_cast< Point >(b), comparePrecision) ||
             !circle.isBelongs(static_cast< Point >(n), comparePrecision));
 
-   m = CircleArc::middle(CircleArc(circle,
-                                   static_cast< Point >(a),
-                                   static_cast< Point >(b),
-                                   static_cast< Point >(t)));
+   m = CircleArc(circle,
+                 static_cast< Point >(a),
+                 static_cast< Point >(b),
+                 static_cast< Point >(t),
+                 useApproximation)
+         .middle();
+
    const LineSegment AM { static_cast< Point >(a), static_cast< Point >(m) },
      MN { static_cast< Point >(m), static_cast< Point >(n) },
      AN { static_cast< Point >(a), static_cast< Point >(n) },
