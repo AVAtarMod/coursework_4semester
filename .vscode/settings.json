@@ -1,16 +1,17 @@
 {
     "spellright.language": [
-        "en_US",
-        "ru_RU"
-    ],
+      "en_US",
+      "ru_RU"
+   ],
     "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
-    ],
+      "markdown",
+      "latex",
+      "plaintext",
+      "log"
+   ],
     "spellright.parserByClass": {
-        "log": {
-            "parser": "plain"
-        }
-    }
+      "log": {
+         "parser": "plain"
+      }
+   }
 }
