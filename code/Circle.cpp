@@ -58,7 +58,7 @@ bool Circle::isBelongs(const Point& a, int8_t dds) const
    if (dds < 0)
       throw std::invalid_argument(
         "Circle::isBelongs: cannot set negative precision");
-        
+
    return round(power(a.X() - _center.X(), 2) + power(a.Y() - _center.Y(), 2),
                 dds) == round(power(_radius, 2), dds);
 }
@@ -74,6 +74,46 @@ std::pair< double, double > Circle::x(double y) const
    const double value =
      std::sqrt(power(_radius, 2) - power(y - _center.Y(), 2));
    return { _center.X() + value, _center.X() - value };
+}
+Angle Circle::getAngle(const Point& a) const
+{
+   Point normalized { a - _center };
+   if (!this->isBelongs(normalized))
+      normalized = getExactPoint(normalized);
+   Line l(_center, a);
+   switch (l.getType()) {
+      case LineType::CONST_X:
+         return (a.Y() > _center.Y()) ? Angle(90.0) :Angle(180.0);
+         break;
+
+      default:
+         break;
+   }
+}
+Point Circle::getExactPoint(const Point& a,
+                            ApproximationMethod m = BY_Y_AXIS) const
+{
+   switch (m) {
+      case BY_X_AXIS: {
+         auto yValues = y(a.X());
+         const double y = (std::fabs(yValues.first - a.X()) <
+                           std::fabs(yValues.second - a.X()))
+                            ? yValues.first
+                            : yValues.second;
+         return Point(a.X(), y);
+      }
+      case BY_Y_AXIS: {
+         auto xValues = x(a.Y());
+         const double x = (std::fabs(xValues.first - a.X()) <
+                           std::fabs(xValues.second - a.X()))
+                            ? xValues.first
+                            : xValues.second;
+         return Point(x, a.Y());
+      }
+      default:
+         break;
+   }
+   return Point::zero();
 }
 
 Circle::~Circle()
