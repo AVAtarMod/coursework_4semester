@@ -3,7 +3,7 @@
 TESTS_FILE="./files/tests.txt"
 APP_FILE="./debug.app"
 APP_OPTIONS="-d"
-BUILD_APP_CMD="make dev"
+BUILD_APP_CMD="make debug"
 BUILD_APP_ERRMSG="Cannot build application. See log above."
 # Array in format
 # [task number]="task numbers | expected result (success or fail)"
@@ -132,7 +132,7 @@ initTasks() {
       else
          description=$(echo $line | xargs) #Trim whitespaces
          if [[ $description =~ $commentPattern ]]; then
-         printDebugMessage "   comment line: '$description'"
+            printDebugMessage "   comment line: '$description'"
             continue
          fi
          if [[ -z ${tasks[$taskId]} ]]; then
