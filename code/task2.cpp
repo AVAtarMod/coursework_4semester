@@ -51,8 +51,9 @@ inline void task2::solve(int& returnCode, const ProgramOptions& options)
      BN { static_cast< Point >(b), static_cast< Point >(n) };
 
    // Check '|AM^2 - MN^2| = AN * BN'
-   if (std::abs(power(AM.length(), 2) - power(MN.length(), 2)) ==
-       AN.length() * BN.length()) {
+   if (areEqual(std::abs(power(AM.length(), 2) - power(MN.length(), 2)),
+                AN.length() * BN.length(),
+                static_cast< int8_t >(comparePrecision))) {
       printMessage(options, "Computed coordinates:\n");
       printNumbers(options, numbers, labels, numbersCount);
    } else
