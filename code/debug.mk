@@ -1,4 +1,4 @@
-BUILD_CCFLAGS = -std=c++11 -Wall -Wextra -Wsign-conversion -pedantic-errors -Werror -Wuninitialized -g3  -Wno-error=unused-but-set-parameter -Wno-error=unused-parameter -Wno-error=unknown-pragmas $(CC_INCLUDES)
+BUILD_CCFLAGS = -std=c++11 -Wall -Wextra -Wsign-conversion -pedantic-errors -Werror -Wuninitialized -g3  -Wno-error=unused-but-set-parameter -Wno-error=unused-parameter -Wno-error=unknown-pragmas -DDEBUG=1 $(CC_INCLUDES)
 BUILD_LDFLAGS = $(LDFLAGS) -lfunctions-debug
 
 # Makefile settings - Can be customized.
