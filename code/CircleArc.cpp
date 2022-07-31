@@ -17,14 +17,17 @@ void CircleArc::initByExactValues(const Point& a, const Point& b,
                      _circle.getAngle(b),
                      _circle.getAngle(betweenAB) };
 
-   if (angles[0].degrees() < angles[1].degrees()) {
-      _boundaries[0] = angles[0];
-      _boundaries[1] = angles[1];
+   const Angle& min = std::min(angles[0], angles[1]);
+   const Angle& max = (min == angles[0]) ? angles[1] : angles[0];
+   const Angle& between = angles[2];
+
+   if (between > max) {
+      _boundaries[0] = min;
+      _boundaries[1] = max;
    } else {
-      _boundaries[0] = angles[1];
-      _boundaries[1] = angles[0];
+      _boundaries[0] = max;
+      _boundaries[1] = min;
    }
-   _boundaries[2] = angles[2];
 }
 
 CircleArc::CircleArc(const Circle& circle, const Point& a, const Point& b,
@@ -48,14 +51,38 @@ CircleArc::CircleArc(const Circle& circle, const Point& a, const Point& b,
 
 bool CircleArc::isBelongs(const Point& point) const
 {
-   Point normalized { point.X() - _circle.center().X(),
-                      point.Y() - _circle.center().Y() };
+   Point tmp = point;
+   if (!_circle.isBelongs(tmp))
+      tmp = _circle.getExactPoint(tmp);
+
+   const Angle &left = _boundaries[0], &right = _boundaries[1];
+   const Angle& input = _circle.getAngle(point);
+
+   if (left <= input && input <= right)
+      return true;
+   else
+      return false;
+
+   throw std::runtime_error(
+     "CircleArc::isBelongs: passed invalid point, we tried to fix it but no success.");
 }
 
 Point CircleArc::middle() const
 {
-   const int comparePrecision = 100;
-   
+   const Angle &left = _boundaries[0], &right = _boundaries[1];
+   double degrees;
+   if (left < right) {
+      degrees = (left + right).degrees() / 2;
+      return _circle.getPoint(Angle(degrees));
+   } else if (left > right) {
+      degrees = (left + (Angle::fullAngle() - left + right) / 2).degrees();
+      return _circle.getPoint(degrees);
+   } else {
+      return _circle.getPoint(left);
+   }
+
+   throw std::runtime_error(
+     "CircleArc::middle: cannot construct middle. This is bug.");
 }
 
 CircleArc::~CircleArc()
