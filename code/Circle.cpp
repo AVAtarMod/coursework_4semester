@@ -77,21 +77,43 @@ std::pair< double, double > Circle::x(double y) const
 }
 Angle Circle::getAngle(const Point& a) const
 {
-   Point normalized { a - _center };
-   if (!this->isBelongs(normalized))
-      normalized = getExactPoint(normalized);
-   Line l(_center, a);
+   Point exact { a };
+   if (!this->isBelongs(exact))
+      exact = getExactPoint(exact);
+   Line l(_center, exact);
    switch (l.getType()) {
       case LineType::CONST_X:
-         return (a.Y() > _center.Y()) ? Angle(90.0) :Angle(180.0);
-         break;
-
+         return (a.Y() > _center.Y()) ? Angle(90.0) : Angle(270.0);
+      case LineType::CONST_Y:
+         return (a.X() > _center.X()) ? Angle(0.0) : Angle(180.0);
+      case LineType::NORMAL: {
+         double degree = std::atan(l.K()) * 180 / M_PI;
+         if (a.X() < _center.X())
+            degree = 360.0 - degree;
+         if (degree < 0)
+            degree = 360.0 + degree;
+         return Angle(degree);
+      }
       default:
          break;
    }
+   throw std::runtime_error("Cannot get angle of the point on circle");
 }
-Point Circle::getExactPoint(const Point& a,
-                            ApproximationMethod m = BY_Y_AXIS) const
+Point Circle::getPoint(const Angle& a) const
+{
+   /**
+    * @brief Convert degrees in radians and getting not scaled X
+    */
+   const double xRaw = std::cos(a.degrees() * M_PI / 180.0);
+   const double x = xRaw * _radius + _center.X();
+   auto yValues = y(x);
+   const double y = (a.degrees() > 180.0)
+                      ? std::min(yValues.first, yValues.second)
+                      : std::max(yValues.first, yValues.second);
+   return Point(x, y);
+}
+
+Point Circle::getExactPoint(const Point& a, ApproximationMethod m) const
 {
    switch (m) {
       case BY_X_AXIS: {
