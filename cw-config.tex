@@ -8,11 +8,11 @@
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{titlesec}
-\usepackage{amsmath}
 \usepackage{xinttools}
 \usepackage{ragged2e}
 \usepackage{ulem}
 \usepackage{listings}
+\usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{color}
 \usepackage{xstring}
@@ -28,23 +28,24 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{
-    frame=tb,
-    language=C++,
-    aboveskip=3mm,
-    belowskip=3mm,
-    showstringspaces=false,
-    columns=flexible,
-    basicstyle={\small\ttfamily},
-    numbers=none,
-    numberstyle=\tiny\color{gray},
-    keywordstyle=\color{blue},
-    commentstyle=\color{dkgreen},
-    stringstyle=\color{mauve},
-    breaklines=true,
-    breakatwhitespace=true,
-    tabsize=3,
-    literate=%
-        {©}{{\copyright}}{4}
+   frame=tb,
+   language=C++,
+   aboveskip=3mm,
+   belowskip=3mm,
+   showstringspaces=false,
+   columns=flexible,
+   basicstyle={\small\ttfamily},
+   numbers=none,
+   numberstyle=\tiny\color{gray},
+   keywordstyle=\color{blue},
+   commentstyle=\color{dkgreen},
+   stringstyle=\color{mauve},
+   breaklines=true,
+   breakatwhitespace=true,
+   tabsize=3,
+   literate=%
+      {©}{{\copyright}}{4},
+   emptylines=0
 }
 
 \newcommand{\runtimeFsep}{/}
@@ -54,23 +55,23 @@
 
 \makeatletter
 \DeclareRobustCommand{\filename}[2][]{%
-    \begingroup
-    % \lstname seems to change hyphens into \textendash
-    \def\textendash{-}%
-    \filename@parse{#2}%
-    \IfSubStr{\filename@base}{\runtimeFsep}{\filename@parse{\filename@base}}{}%
-    \edef\filename@base{\detokenize\expandafter{\filename@base}}%
-    #1{\filename@base.\filename@ext}%
-    \endgroup
+   \begingroup
+   % \lstname seems to change hyphens into \textendash
+   \def\textendash{-}%
+   \filename@parse{#2}%
+   \IfSubStr{\filename@base}{\runtimeFsep}{\filename@parse{\filename@base}}{}%
+   \edef\filename@base{\detokenize\expandafter{\filename@base}}%
+   #1{\filename@base.\filename@ext}%
+   \endgroup
 }
 \makeatother
 
 \makeatletter
 \newcommand\inputcode[3][]{
-    {\bfseries #1\filename{#2}}:
-    \lstinputlisting[%
-        #3,
-    ]{#2}%
+   {\bfseries #1\filename{#2}}:
+   \lstinputlisting[%
+      #3,
+   ]{#2}%
 }
 \makeatother
 
@@ -78,8 +79,8 @@
 {\normalfont\large\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Large}
 
 \newcommand\tcchapter[1]{%
-    \chapter*{#1}%
-    \addcontentsline{toc}{chapter}{#1}
+   \chapter*{#1}%
+   \addcontentsline{toc}{chapter}{#1}
 }
 
 \onehalfspacing
@@ -87,7 +88,7 @@
 % NormalTeXSyntaxON
 \def\setcase#1 {\expandafter\def\csname col:#1\endcsname}
 \def\taskFileName#1{\expandafter\ifx\csname col:#1\endcsname\relax \coldefault
-    \else \csname col:#1\endcsname\fi}
+   \else \csname col:#1\endcsname\fi}
 
 \def\coldefault {code/taskN.cpp}
 \setcase 1      {code/task1.cpp}
