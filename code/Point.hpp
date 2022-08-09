@@ -18,8 +18,15 @@ class Point
    {
       return Point(_x - other._x, _y - other._y);
    }
+   Point operator+(const Point& other) const
+   {
+      return Point(_x + other._x, _y + other._y);
+   }
 
-   const double& X() const { return _x; }
+     const double& X() const
+   {
+      return _x;
+   }
    const double& Y() const { return _y; }
 
    static Point middle(const Point& a, const Point& b)
