@@ -219,35 +219,43 @@
    Исходя из свойств комплексных чисел, зададим соответствующие сторонам векторы \(\overrightarrow{AC},\overrightarrow{AB},\overrightarrow{BD}\) и \(\overrightarrow{CD}\). Тогда \(\overrightarrow{AD} = \overrightarrow{AB} + \overrightarrow{BD}\) и \(\overrightarrow{BC} = -\overrightarrow{AB} + \overrightarrow{AC}\).
 
    \begin{flalign}
-       & AB^2 + BD^2 + CD^2 + AC^2 = \left\lvert \overrightarrow{AB}\right\rvert^2 + \left\lvert \overrightarrow{BD}\right\rvert^2 + \left\lvert \overrightarrow{CD}\right\rvert^2 + \left\lvert \overrightarrow{AC}\right\rvert^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 +                                                & \\ \nonumber
-       & + {\overrightarrow {CD}}^2 + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + (-\overrightarrow{AC} + \overrightarrow{AB} + \overrightarrow{BD})^2 + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 +                                                                & \\ \nonumber
-       & + ({\overrightarrow{AC}}^2 - \overrightarrow{AB}\overrightarrow{AC} - \overrightarrow{BD}\overrightarrow{AC} - \overrightarrow{AB}\overrightarrow{AC} + {\overrightarrow{AB}}^2 + \overrightarrow{AB}\overrightarrow{BD} - \overrightarrow{BD}\overrightarrow{AC} + \overrightarrow{AB}\overrightarrow{BD} +                   & \\ \nonumber
-       & + {\overrightarrow{BD}}^2) + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 +({\overrightarrow{AC}}^2 - \overrightarrow{AB}\overrightarrow{AC} + {\overrightarrow{AB}}^2 - \overrightarrow{BD}\overrightarrow{AC} + \overrightarrow{AB}\overrightarrow{BD}) = \nonumber
+      \label{t3:s1}
+       & AB^2 + BD^2 + CD^2 + AC^2 = \left\lvert \overrightarrow{AB}\right\rvert^2 + \left\lvert \overrightarrow{BD}\right\rvert^2 + \left\lvert \overrightarrow{CD}\right\rvert^2 + \left\lvert \overrightarrow{AC}\right\rvert^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 +                              & \\ \nonumber
+       & + {\overrightarrow {CD}}^2 + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + (-\overrightarrow{AC} + \overrightarrow{AB} + \overrightarrow{BD})^2 + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 +                                              & \\ \nonumber
+       & + ({\overrightarrow{AC}}^2 - \overrightarrow{AB}\overrightarrow{AC} - \overrightarrow{BD}\overrightarrow{AC} - \overrightarrow{AB}\overrightarrow{AC} + {\overrightarrow{AB}}^2 + \overrightarrow{AB}\overrightarrow{BD} - \overrightarrow{BD}\overrightarrow{AC} + \overrightarrow{AB}\overrightarrow{BD} + & \\ \nonumber
+       & + {\overrightarrow{BD}}^2) + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 +({\overrightarrow{AC}}^2 - \overrightarrow{AB}\overrightarrow{AC} + {\overrightarrow{AB}}^2 - \overrightarrow{BD}\overrightarrow{AC} +
    \end{flalign}
    \begin{flalign*}
-       & = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 + (-\overrightarrow{AB}\overrightarrow{AC} + \overrightarrow{AB}\overrightarrow{BD}) & \\
+       & + \overrightarrow{AB}\overrightarrow{BD}) = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 + (-\overrightarrow{AB}\overrightarrow{AC} + \overrightarrow{AB}\overrightarrow{BD}) & \\
        & = 2{\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2
    \end{flalign*}
 
    \begin{flalign}
+      \label{t3:s2}
        & AD^2 + BC^2 = \left\lvert \overrightarrow{AD}\right\rvert^2 + \left\lvert \overrightarrow{BC}\right\rvert^2 = {\overrightarrow{AD}}^2 + {\overrightarrow{BC}}^2 = \left( \overrightarrow{AB} + \overrightarrow{BD}\right)^2 + & \\ \nonumber
        & \left( -\overrightarrow{AB} + \overrightarrow{AC}\right)^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 + ({\overrightarrow{AB}}^2 + 2AB \cdot BD - 2AC \cdot AB) =                          & \\ \nonumber
        & = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 + (\overrightarrow{AB} \cdot (AB + 2BD - 2AC))                                                                                                  & \\ \nonumber
        & = 2{\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2
    \end{flalign}
-
+   
+   \noindent
+   Таким образом, выражения (\ref{t3:s1}) и (\ref{t3:s2}) равны друг другу, что и требовалось доказать.
+   
    \paragraph{Алгоритм программного решения частного случая задачи:}
    На вход программы передаются координаты свободных точек комплексной плоскости, в данном примере это координаты
-   точек \(A,C,D\). Если \(A,C,D\) образуют треугольник, то по данным входным строится параллелограмм. Если
+   точек \(A,B,C\). Если \(A,B,C\) образуют треугольник, то по данным входным строится параллелограмм. Если
    условие задачи (\ref{t3:f1}) выполняется, то задача считается решенной для данных входных данных и на экран
-   выводятся координаты точки \(B\), а также координаты всех остальных. Блок-схема алгоритма приведена
+   выводятся координаты точки \(D\), а также координаты всех остальных. Блок-схема алгоритма приведена
    на Рис. \ref{t3:scheme}.
    \begin{center}
-      \includegraphics[width=0.9\textwidth]{images/task2-diagram.png}
+      \includegraphics[width=0.9\textwidth]{images/task3-diagram.png}
       \captionof{figure}{Блок-схема алгоритма программы}
       \label{t3:scheme}
    \end{center}
    \paragraph{Программная реализация задачи:}
+   Решение задачи написано на языке C++ в виде части программы для решения задач из данной работы.
+   Реализация алгоритма программы предоставлена в функции task3::solve (файл \filename{\taskFileName{3}}):
+   \lstinputlisting[frame=none,caption={Функция task3::solve},label=task3-code,captionpos=b,firstline=5]{\taskFileName{3}}
    \paragraph{Демонстрация работы:}
    TODO % TODO
 }
@@ -324,7 +332,7 @@
    \paragraph{Программная реализация задачи:} Решение задачи написано на языке C++ в виде части
    программы для решения задач из данной работы.
    Реализация алгоритма программы предоставлена в функции task5::solve (файл \filename{\taskFileName{5}}):
-   \lstinputlisting[frame=none,caption={Функция task5::solve},label=task1-code,captionpos=b,firstline=5]{\taskFileName{5}}
+   \lstinputlisting[frame=none,caption={Функция task5::solve},label=task5-code,captionpos=b,firstline=5]{\taskFileName{5}}
    \paragraph{Демонстрация работы:}
    Здесь будут скриншоты работы. TODO % TODO
 }
