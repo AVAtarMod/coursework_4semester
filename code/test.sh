@@ -170,8 +170,8 @@ initTasks() {
          taskId=${BASH_REMATCH[1]}
       else
          description=$(echo $line | xargs) #Trim whitespaces
-         if [[ $description =~ $commentPattern ]]; then
-            printDebugMessage "   comment line: '$description'"
+         if [[ $description =~ $commentPattern || -z $description ]]; then
+            printDebugMessage "   comment/empty line: '$description'"
             continue
          fi
          if [[ -z ${tasks[$taskId]} ]]; then
