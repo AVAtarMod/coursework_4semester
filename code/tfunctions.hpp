@@ -76,10 +76,4 @@ namespace task6 {
 namespace task7 {
    void solve(int& returnCode, const ProgramOptions& options);
 }
-namespace task8 {
-   void solve(int& returnCode, const ProgramOptions& options);
-}
-namespace task9 {
-   void solve(int& returnCode, const ProgramOptions& options);
-}
 #endif // COURSEWORK_4_1_TFUNCTIONS_HPP

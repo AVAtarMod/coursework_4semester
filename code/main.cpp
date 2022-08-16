@@ -8,8 +8,6 @@
 #include "task5.cpp"
 #include "task6.cpp"
 #include "task7.cpp"
-#include "task8.cpp"
-#include "task9.cpp"
 
 #include <cstring>
 #include <iostream>
@@ -85,16 +83,6 @@ int main(int argc, char const* argv[])
          case 7:
             printTaskBegin(options, choice);
             task7::solve(returnCode, options);
-            printTaskEnd(options);
-            break;
-         case 8:
-            printTaskBegin(options, choice);
-            task8::solve(returnCode, options);
-            printTaskEnd(options);
-            break;
-         case 9:
-            printTaskBegin(options, choice);
-            task9::solve(returnCode, options);
             printTaskEnd(options);
             break;
          default:
