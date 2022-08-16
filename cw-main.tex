@@ -216,31 +216,20 @@
       \label{t3:im}
    \end{figure}
    \paragraph{Решение задачи:}
-   Исходя из свойств комплексных чисел, зададим соответствующие сторонам векторы \(\overrightarrow{AC},\overrightarrow{AB},\overrightarrow{BD}\) и \(\overrightarrow{CD}\). Тогда \(\overrightarrow{AD} = \overrightarrow{AB} + \overrightarrow{BD}\) и \(\overrightarrow{BC} = -\overrightarrow{AB} + \overrightarrow{AC}\).
-
+   Зададим точку \(A(a) = 0 + i \cdot 0\).
+   Тогда верны следующие утверждения: \(d = c + b\), \(\overrightarrow{CB} = b - c\).
    \begin{flalign}
       \label{t3:s1}
-       & AB^2 + BD^2 + CD^2 + AC^2 = \left\lvert \overrightarrow{AB}\right\rvert^2 + \left\lvert \overrightarrow{BD}\right\rvert^2 + \left\lvert \overrightarrow{CD}\right\rvert^2 + \left\lvert \overrightarrow{AC}\right\rvert^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 +                              & \\ \nonumber
-       & + {\overrightarrow {CD}}^2 + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + (-\overrightarrow{AC} + \overrightarrow{AB} + \overrightarrow{BD})^2 + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 +                                              & \\ \nonumber
-       & + ({\overrightarrow{AC}}^2 - \overrightarrow{AB}\overrightarrow{AC} - \overrightarrow{BD}\overrightarrow{AC} - \overrightarrow{AB}\overrightarrow{AC} + {\overrightarrow{AB}}^2 + \overrightarrow{AB}\overrightarrow{BD} - \overrightarrow{BD}\overrightarrow{AC} + \overrightarrow{AB}\overrightarrow{BD} + & \\ \nonumber
-       & + {\overrightarrow{BD}}^2) + {\overrightarrow{AC}}^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 +({\overrightarrow{AC}}^2 - \overrightarrow{AB}\overrightarrow{AC} + {\overrightarrow{AB}}^2 - \overrightarrow{BD}\overrightarrow{AC} +
+       & AB^2 + BD^2 + CD^2 + AC^2 = \left\lvert b\right\rvert^2 + \left\lvert c\right\rvert^2 + \left\lvert b\right\rvert^2 + \left\lvert c\right\rvert^2 = 2b\bar{b} + 2c\bar{c} &
    \end{flalign}
-   \begin{flalign*}
-       & + \overrightarrow{AB}\overrightarrow{BD}) = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 + (-\overrightarrow{AB}\overrightarrow{AC} + \overrightarrow{AB}\overrightarrow{BD}) & \\
-       & = 2{\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2
-   \end{flalign*}
-
    \begin{flalign}
       \label{t3:s2}
-       & AD^2 + BC^2 = \left\lvert \overrightarrow{AD}\right\rvert^2 + \left\lvert \overrightarrow{BC}\right\rvert^2 = {\overrightarrow{AD}}^2 + {\overrightarrow{BC}}^2 = \left( \overrightarrow{AB} + \overrightarrow{BD}\right)^2 + & \\ \nonumber
-       & \left( -\overrightarrow{AB} + \overrightarrow{AC}\right)^2 = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 + ({\overrightarrow{AB}}^2 + 2AB \cdot BD - 2AC \cdot AB) =                          & \\ \nonumber
-       & = {\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2 + (\overrightarrow{AB} \cdot (AB + 2BD - 2AC))                                                                                                  & \\ \nonumber
-       & = 2{\overrightarrow{AB}}^2 + {\overrightarrow{BD}}^2 + {\overrightarrow{AC}}^2
+       & AD^2 + BC^2 = \left\lvert d\right\rvert^2 + \left\lvert b - c\right\rvert^2 = d\bar{d} + (b-c)(\bar{b}-\bar{c}) = (c+b)(\bar{c}+\bar{c}) + b\bar{b} - b\bar{c} - & \\ \nonumber
+       & - c\bar{b} + c\bar{c} = c\bar{c} + c\bar{b} + b\bar{c} + 2b\bar{b} + c\bar{c} - b\bar{c} - c\bar{b} = 2b\bar{b} + 2c\bar{c}                                      &
    \end{flalign}
-   
    \noindent
    Таким образом, выражения (\ref{t3:s1}) и (\ref{t3:s2}) равны друг другу, что и требовалось доказать.
-   
+
    \paragraph{Алгоритм программного решения частного случая задачи:}
    На вход программы передаются координаты свободных точек комплексной плоскости, в данном примере это координаты
    точек \(A,B,C\). Если \(A,B,C\) образуют треугольник, то по данным входным строится параллелограмм. Если
@@ -262,7 +251,6 @@
 {
    \section*{Задача 4}
    \paragraph{Постановка задачи:}
-   \paragraph{Решение задачи:}
    \paragraph{Алгоритм программного решения частного случая задачи:}
    \paragraph{Программная реализация задачи:}
    \paragraph{Демонстрация работы:}
@@ -339,6 +327,7 @@
 {
    \section*{Задача 6}
    \paragraph{Постановка задачи:}
+   Докажите, что диагонали вписанного в окружность четырёхугольника перпендикулярны, тогда и только тогда, когда сумма квадратов его противоположных сторон равна квадрату диаметра описанной окружности.
    \paragraph{Решение задачи:}
    \paragraph{Алгоритм программного решения частного случая задачи:}
    \paragraph{Программная реализация задачи:}
@@ -348,23 +337,8 @@
 {
    \section*{Задача 7}
    \paragraph{Постановка задачи:}
-   \paragraph{Решение задачи:}
-   \paragraph{Алгоритм программного решения частного случая задачи:}
-   \paragraph{Программная реализация задачи:}
-   \paragraph{Демонстрация работы:}
-   TODO % TODO
-}
-{
-   \section*{Задача 8}
-   \paragraph{Постановка задачи:}
-   \paragraph{Решение задачи:}
-   \paragraph{Алгоритм программного решения частного случая задачи:}
-   \paragraph{Программная реализация задачи:}
-   \paragraph{Демонстрация работы:}
-   TODO % TODO
-}{
-   \section*{Задача 9}
-   \paragraph{Постановка задачи:}
+   Докажите, что если средние линии четырёхугольника равны,
+   то его диагонали перпендикулярны, и обратно.
    \paragraph{Решение задачи:}
    \paragraph{Алгоритм программного решения частного случая задачи:}
    \paragraph{Программная реализация задачи:}
