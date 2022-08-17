@@ -74,6 +74,8 @@ namespace task6 {
    void solve(int& returnCode, const ProgramOptions& options);
 }
 namespace task7 {
+   void readNumbersFromUser(ComplexNumber arr[4], const std::string labels[4],
+                            const ProgramOptions& options, int& returnCode);
    void solve(int& returnCode, const ProgramOptions& options);
 }
 #endif // COURSEWORK_4_1_TFUNCTIONS_HPP
