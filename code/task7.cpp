@@ -12,7 +12,7 @@ inline void task7::solve(int& returnCode, const ProgramOptions& options)
     */
    const double comparePrecision = 0.1;
    const int numbersCount = 9;
-   const ComplexNumber half(1.0 / 2.0);
+   const ComplexNumber half(1.0 / 2.0, 1.0 / 2.0);
    LineSegment P1P2, T1T2;
 
    ComplexNumber numbers[numbersCount];
