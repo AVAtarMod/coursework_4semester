@@ -213,6 +213,21 @@ bool Line::isCollinear(const Line& other) const
    // TODO
    return true;
 }
+bool Line::isPerpendicular(const Line& other, double precision) const
+{
+   switch (_type) {
+      case LineType::CONST_X:
+         return other._type == LineType::CONST_Y;
+      case LineType::CONST_Y:
+         return other._type == LineType::CONST_X;
+      case LineType::NORMAL: {
+         return areEqual(other._k, -1 / _k, precision);
+      }
+      default:
+         break;
+   }
+   return false;
+}
 
 bool Line::isOnSameLine(const Point& a, const Point& b, const Point& c)
 {

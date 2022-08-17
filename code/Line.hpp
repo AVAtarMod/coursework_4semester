@@ -33,7 +33,7 @@ class Line
    void finishInit(const LineEquation& initedEquation);
 
   public:
-   Line(double k, double b);
+   Line(double k = 0, double b = 0);
    Line(const std::pair< Point, Point >& pair);
    Line(const Point& first, const Point& second) :
      Line(std::make_pair(first, second))
@@ -57,6 +57,7 @@ class Line
    bool isInY(double y) const;
    bool isBelongs(Point point) const;
    bool isCollinear(const Line& other) const;
+   bool isPerpendicular(const Line& other, double precision = 0.01) const;
 
    /**
     * @brief Swap Line @b this with @b other
