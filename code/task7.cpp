@@ -7,8 +7,7 @@
 inline void task7::solve(int& returnCode, const ProgramOptions& options)
 {
    /**
-    * @brief Compare with precision up to comparePrecision digits after decimal
-    * separator.
+    * @brief Compare with precision up to comparePrecision
     */
    const double comparePrecision = 0.1;
    const int numbersCount = 9;
