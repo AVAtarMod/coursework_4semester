@@ -71,6 +71,8 @@ namespace task5 {
    void solve(int& returnCode, const ProgramOptions& options);
 }
 namespace task6 {
+   void readNumbersFromUser(ComplexNumber arr[4], const std::string labels[4],
+                            const ProgramOptions& options, int& returnCode);
    void solve(int& returnCode, const ProgramOptions& options);
 }
 namespace task7 {

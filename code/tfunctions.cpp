@@ -1,5 +1,6 @@
 #include "tfunctions.hpp"
 #include "Line.hpp"
+#include "Quadrilateral.hpp"
 
 #include <cmath>
 #include <cstdarg>
@@ -169,6 +170,47 @@ void task5::readNumbersFromUser(ComplexNumber arr[5],
       if (!isValidB1)
          std::cerr
            << "The b1 is incorrect. Must belong to segment of line AC\n";
+   }
+}
+
+void task6::readNumbersFromUser(ComplexNumber arr[4],
+                                const std::string labels[4],
+                                const ProgramOptions& options, int& returnCode)
+{
+   returnCode = 0;
+   const size_t labelsCount = 4;
+
+   printMessage(
+     options,
+     "Enter coordinates of a,b,c,d points (must be points of quadrilateral):\n");
+   bool validPoints = false;
+   while (!validPoints) {
+      if (std::cin.fail()) {
+         if (std::cin.eof()) {
+            std::cerr << "User input was canceled. Aborting...\n";
+            returnCode = 1;
+            return;
+         }
+         std::cin.ignore();
+         std::cin.clear();
+      }
+
+      for (size_t i = 0; i < labelsCount; i++) {
+         printMessage(options, (' ' + labels[i] + ": ").c_str());
+         std::cin >> arr[i];
+         arr[i] = ComplexNumber::round(arr[i], 2);
+      }
+      try {
+         Quadrilateral tmp(static_cast< Point >(arr[0]),
+                           static_cast< Point >(arr[1]),
+                           static_cast< Point >(arr[2]),
+                           static_cast< Point >(arr[3]));
+      } catch (const std::invalid_argument&) {
+         std::cerr
+           << "Cannot construct quadrilateral by a,b,c,d. You should enter valid points.\n";
+         continue;
+      }
+      validPoints = true;
    }
 }
 
