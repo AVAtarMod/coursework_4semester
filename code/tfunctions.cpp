@@ -125,7 +125,7 @@ void task2::readNumbersFromUser(ComplexNumber arr[4],
    }
 }
 
-void task5::readNumbersFromUser(ComplexNumber arr[5],
+void task4::readNumbersFromUser(ComplexNumber arr[5],
                                 const std::string labels[5],
                                 const ProgramOptions& options, int& returnCode)
 {
@@ -173,7 +173,7 @@ void task5::readNumbersFromUser(ComplexNumber arr[5],
    }
 }
 
-void task6::readNumbersFromUser(ComplexNumber arr[4],
+void task5::readNumbersFromUser(ComplexNumber arr[4],
                                 const std::string labels[4],
                                 const ProgramOptions& options, int& returnCode)
 {
@@ -214,7 +214,7 @@ void task6::readNumbersFromUser(ComplexNumber arr[4],
    }
 }
 
-void task7::readNumbersFromUser(ComplexNumber arr[4],
+void task6::readNumbersFromUser(ComplexNumber arr[4],
                                 const std::string labels[4],
                                 const ProgramOptions& options, int& returnCode)
 {
