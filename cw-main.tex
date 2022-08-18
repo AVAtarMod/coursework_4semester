@@ -63,7 +63,7 @@
 \begin{enumerate}
    \item Модуль числа $z = \vert z\vert = \sqrt{x_0^2+y_0^2} = r$ -- расстояние между точкой
          \(O\) и \(M\) (рис. \ref{theory-1}).
-   \item Если $\angle \varphi$ - ориентированный, образованный $\overrightarrow{OM}$
+   \item Если $\angle \varphi$ -- ориентированный, образованный $\overrightarrow{OM}$
          с осью \(Ox\), то $x_0 = r\cos \varphi,~y_0 = r\sin \varphi$ (из определения функций).
          Тогда $z_0 = r(\cos \varphi + i \sin \varphi)$. Такое представление комплексного
          числа называют тригонометрическим.
@@ -219,16 +219,16 @@
    Зададим точку \(A(a) = 0 + i \cdot 0\).
    Тогда верны следующие утверждения: \(d = c + b\), \(\overrightarrow{CB} = b - c\).
    \begin{flalign}
-      \label{t3:s1}
+      \label{t3:f2}
        & AB^2 + BD^2 + CD^2 + AC^2 = \left\lvert b\right\rvert^2 + \left\lvert c\right\rvert^2 + \left\lvert b\right\rvert^2 + \left\lvert c\right\rvert^2 = 2b\bar{b} + 2c\bar{c} &
    \end{flalign}
    \begin{flalign}
-      \label{t3:s2}
+      \label{t3:f3}
        & AD^2 + BC^2 = \left\lvert d\right\rvert^2 + \left\lvert b - c\right\rvert^2 = d\bar{d} + (b-c)(\bar{b}-\bar{c}) = (c+b)(\bar{c}+\bar{c}) + b\bar{b} - b\bar{c} - & \\ \nonumber
        & - c\bar{b} + c\bar{c} = c\bar{c} + c\bar{b} + b\bar{c} + 2b\bar{b} + c\bar{c} - b\bar{c} - c\bar{b} = 2b\bar{b} + 2c\bar{c}                                      &
    \end{flalign}
    \noindent
-   Таким образом, выражения (\ref{t3:s1}) и (\ref{t3:s2}) равны друг другу, что и требовалось доказать.
+   Таким образом, выражения (\ref{t3:f2}) и (\ref{t3:f3}) равны друг другу, что и требовалось доказать.
 
    \paragraph{Вычислительная иллюстрация на частном случае:}
    На вход программы передаются координаты свободных точек комплексной плоскости, в данном примере это координаты
@@ -322,7 +322,7 @@
    считается решенной для данных входных данных и на экран выводятся координаты точек \(M,N,P\), а также координаты
    всех остальных. Блок-схема алгоритма приведена на Рис. \ref{t5:scheme}.
    \begin{center}
-      \includegraphics[width=0.9\textwidth]{images/task5-diagram.png}
+      \includegraphics[width=0.79\textwidth]{images/task5-diagram.png}
       \captionof{figure}{Блок-схема алгоритма программы}
       \label{t5:scheme}
    \end{center}
@@ -337,10 +337,61 @@
 {
    \section*{Задача 6}
    \paragraph{Постановка задачи:}
-   Докажите, что диагонали вписанного в окружность четырёхугольника перпендикулярны, тогда и только тогда, когда сумма квадратов его противоположных сторон равна квадрату диаметра описанной окружности.
+   Докажите, что диагонали вписанного в окружность четырёхугольника перпендикулярны, тогда и только тогда,
+   когда сумма квадратов его противоположных сторон равна квадрату диаметра описанной окружности (Рис.~\ref{t6:im}).
+   Таким образом, требуется доказать, что
+   \begin{equation}
+      AB^2+CD^2 = AC^2+BD^2 = PB^2 \Rightarrow AD \perp CB
+      \label{t6:f1}
+   \end{equation}
+   \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.7\textwidth]{images/task6.pdf}
+      \caption{Иллюстрация к задаче}
+      \label{t6:im}
+   \end{figure}
    \paragraph{Решение задачи:}
-   \paragraph{Вычислительная иллюстрация на частном случае:}
-   \paragraph{Программная реализация задачи:}
+   Обозначим диаметр окружности как \(PB\); будем считать, что окружность единичная с центром в т.\(O\).
+
+   Исходя из свойств комплексных чисел, верно следующее:
+   \begin{equation*}
+      AD \perp CB \Leftrightarrow (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0
+      \label{t6:f2}
+   \end{equation*}
+
+   Из условий задачи:
+   \begin{equation}
+      \left\{ \begin{aligned}
+          & (a - b)(\bar{a} - \bar{b}) + (c - d)(\bar{c} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
+          & (a - c)(\bar{a} - \bar{c}) + (b - d)(\bar{b} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
+      \end{aligned}
+      \right. \label{t6:f3}
+   \end{equation}
+
+   Почленно вычтя второе уравнение системы (\ref{t6:f3}) из первого, получаем:
+   \begin{flalign*}
+      \label{t6:f4}
+       & a\bar{a} - a\bar{b} - b\bar{a} + b\bar{b} + c\bar{c} - c\bar{d} - d\bar{c} + d\bar{d} - a\bar{a} + a\bar{c} + c\bar{a} - c\bar{c} - b\bar{b} + b\bar{d} + & \\ \nonumber
+       & + d\bar{b} - d\bar{d} = 0 \Leftrightarrow - a\bar{b} - b\bar{a} - c\bar{d} - d\bar{c} + a\bar{c} + c\bar{a} + b\bar{d} + d\bar{b} = 0 \Leftrightarrow     & \\ \nonumber
+       & (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0 \Leftrightarrow AD \perp CB                                                                             &
+   \end{flalign*}
+   Таким образом, утверждение (\ref{t6:f1}) доказано.
+   \paragraph{Вычислительная иллюстрация на частном случае:} На вход программы передаются координаты
+   свободных точек комплексной плоскости, в данном примере это координаты точек \(A,B,C,D\), по ним
+   строится окружность. Если условие (\ref{t6:f1}) выполняется (вместо \(PB\) используется конструкция
+   \(2OB\)), то задача считается решенной для данных входных данных и на экран выводятся
+   координаты точки \(O\), а также координаты всех остальных. Блок-схема алгоритма приведена
+   на Рис. \ref{t6:scheme}.
+   \begin{center}
+      \includegraphics[width=0.79\textwidth]{images/task6-diagram.png}
+      \captionof{figure}{Блок-схема алгоритма программы}
+      \label{t6:scheme}
+   \end{center}
+
+   \paragraph{Программная реализация задачи:} Решение задачи написано на языке C++ в виде части
+   программы для решения задач из данной работы.
+   Реализация алгоритма программы предоставлена в функции task6::solve (файл \filename{\taskFileName{6}}):
+   \lstinputlisting[frame=none,caption={Функция task6::solve},label=task6-code,captionpos=b,firstline=5]{\taskFileName{6}}
    \paragraph{Демонстрация работы:}
    TODO % TODO
 }
@@ -369,7 +420,7 @@
        & \frac{1}{2}\left((c+d) - (a+b)\right) \cdot \frac{1}{2}\left((\bar{c}+\bar{d}) - (\bar{a}+\bar{b})\right) = \frac{1}{2}\left((a+c) - (b+d)\right) \cdot \frac{1}{2}\left((\bar{a}+\bar{c}) - \vphantom{(\bar{c}+\bar{d})}\right. &
    \end{flalign*}
    \begin{flalign*}
-       & \left. (\bar{b}+\bar{d})\vphantom{(\bar{c}+\bar{d})}\right) \Leftrightarrow & \\
+       & \left. (\bar{b}+\bar{d})\vphantom{(\bar{c}+\bar{d})}\right) \Leftrightarrow                                                                                                                     & \\
        & \left(c + d - a - b\right) \cdot \left(\bar{c}+\bar{d} - \bar{a} - \bar{b}\right) = \left(a + c - b - d\right) \cdot \left(\bar{a} + \bar{c} - \bar{b} - \bar{d}\right) \Leftrightarrow         & \\
        & a\bar{c} - a\bar{b} + c\bar{a} - c\bar{d} - b\bar{a} + b\bar{d} - d\bar{c} + d\bar{b} = - a\bar{c} + a\bar{b} - c\bar{a} + c\bar{d} + b\bar{a} - b\bar{d} + d\bar{c} - d\bar{b} \Leftrightarrow & \\
        & a\bar{c} - a\bar{b} + c\bar{a} - c\bar{d} - b\bar{a} + b\bar{d} - d\bar{c} + d\bar{b} = 0 \Leftrightarrow                                                                                       & \\
@@ -382,11 +433,11 @@
 
    Если диагонали четырёхугольника перпендикулярны, то \(\angle{COD} = 90^\circ \Leftrightarrow \left\lvert AD\right\rvert \left\lvert CB\right\rvert \cos{\angle{COD}} = 0 \Leftrightarrow \overrightarrow{AD}\overrightarrow{CB}=
    0 \dots\)
-   Дальнейшие рассуждения выполняются в порядке, обратном доказательству в случае, когда средние линии четырёхугольника равны. 
-   
+   Дальнейшие рассуждения выполняются в порядке, обратном доказательству в случае, когда средние линии четырёхугольника равны.
+
    Таким образом, если средние линии четырёхугольника равны, то его диагонали перпендикулярны и наоборот.
    \paragraph{Вычислительная иллюстрация на частном случае:} На вход программы передаются координаты
-   свободных точек комплексной плоскости, в данном примере это координаты вершин четырёхугольника \(A,B,C,D\) (выпуклого). 
+   свободных точек комплексной плоскости, в данном примере это координаты вершин четырёхугольника \(A,B,C,D\) (выпуклого).
    Если средние линии четырёхугольника равны и его диагонали перпендикулярны, то задача
    считается решенной для данных входных данных и на экран выводятся координаты концов средних линий четырёхугольника, а также координаты
    всех остальных точек. Блок-схема алгоритма приведена на Рис. \ref{t7:scheme}.
@@ -398,7 +449,7 @@
    \paragraph{Программная реализация задачи:} Решение задачи написано на языке C++ в виде части
    программы для решения задач из данной работы.
    Реализация алгоритма программы предоставлена в функции task7::solve (файл \filename{\taskFileName{7}}):
-   \lstinputlisting[frame=none,caption={Функция task7::solve},label=task5-code,captionpos=b,firstline=6]{\taskFileName{7}}
+   \lstinputlisting[frame=none,caption={Функция task7::solve},label=task7-code,captionpos=b,firstline=6]{\taskFileName{7}}
    \paragraph{Демонстрация работы:}
    TODO % TODO
 }
