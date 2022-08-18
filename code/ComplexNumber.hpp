@@ -28,6 +28,7 @@ class ComplexNumber
    // TODO ComplexNumber operator/(const ComplexNumber& b) const;
 
    explicit operator Point() const { return Point(Re(), Im()); }
+   Point toPoint() const { return static_cast< Point >(*this); }
 
    bool operator==(const ComplexNumber& b) const;
    bool operator!=(const ComplexNumber& b) const;
