@@ -46,10 +46,10 @@
    \item Реализация программной верификации решения задач с применением метода.
 \end{enumerate}
 
-\tcchapter{Теория метода комплексных чисел}
+\tcchapter{Основные обозначения}
 Комплексное число \(z\) -- число вида $x + iy$, где $x,y \in \mathbf{R}, i = \sqrt{-1},z \in \mathbf{C},
    \mathbf{C}$ - поле комплексных чисел. У числа \(z\) можно выделить действительную $x = Re(z)$ и
-мнимую $y=Im(z)$ части.
+мнимую $y=Im(z)$ части \cite[стр. 357]{book:semendyaev}.
 
 На плоскости зададим прямоугольную декартову систему координат \(Oxy\) и отображение $f: M(x;y)
    \leftrightarrow z = x + iy$, где $M \in \mathbf{P}$ -- точка плоскости с координатами $x,y \in
@@ -69,7 +69,7 @@
          числа называют тригонометрическим.
    \item arg $z$ = $\angle \varphi$.
    \item Если существует вектор \(\overrightarrow{OM}\) (точка \(O\) -- начало координат),
-         то отображение \(M(z) \rightarrow OM\) биективно.
+         то отображение \(M(z) \rightarrow OM\) биективно \cite[стр. 32]{book:jaglom}.
    \item Из свойств операций над векторами следует, что сумме и разности векторов однозначно
          соответствуют сумма и разность соответствующих им комплексных чисел.
          \label{theory-properties}
@@ -251,32 +251,14 @@
 {
    \section*{Задача 4}
    \paragraph{Постановка задачи:}
-   В окружность вписан четырёхугольник. Касательные к окружности
-   в концах одной диагонали пересекаются на другой диагонали,
-   либо параллельны ей. Докажите, что касательные в концах второй
-   диагонали пересекаются на первой диагонали, либо параллельны ей (Рис. \ref{t4:im}).
-   \begin{figure}[h]
-      \centering
-      \includegraphics[width=0.7\textwidth]{images/task4.pdf}
-      \caption{Иллюстрация к задаче}
-      \label{t4:im}
-   \end{figure}
-   \paragraph{Вычислительная иллюстрация на частном случае:}
-   \paragraph{Программная реализация задачи:}
-   \paragraph{Демонстрация работы:}
-   TODO % TODO
-}
-{
-   \section*{Задача 5}
-   \paragraph{Постановка задачи:}
    Доказать, что если некоторая прямая пересекает прямые, содержащие стороны
    \(BC\), \(CA\), \(AB\) треугольника \(ABC\), в точках \(A_1\) , \(B_1\) , \(C_1\)
    соответственно, то середины отрезков \(AA_1\) , \(BB_1\) , \(CC_1\) коллинеарны (Рис. \ref{t5:im}).
    \begin{figure}[h]
       \centering
-      \includegraphics[width=0.5\textwidth]{images/task5.png}
+      \includegraphics[width=0.5\textwidth]{images/task4.png}
       \caption{Иллюстрация к задаче}
-      \label{t5:im}
+      \label{t4:im}
    \end{figure}
    \paragraph{Решение задачи:}
    %FIXME Для решения данной задачи требуется найти достаточные критерии коллинеарности точек 3 точек.
@@ -290,18 +272,18 @@
           & c(\bar{a_1} - \bar{b}) + a_1(\bar{b} - \bar{c}) + b(\bar{c} - \bar{a_1}) = 0             \\
           & a_1(\bar{b_1} - \bar{a_1}) + b_1(\bar{a_1} - \bar{a_1}) + a_1(\bar{a_1} - \bar{b_1}) = 0 \\
       \end{aligned}
-      \right. \label{t5:f1}
+      \right. \label{t4:f1}
    \end{equation}
    Если \(M, N, P\) -- середины отрезков \(AA_1, BB_1, CC_1\), то предстоит показать, что
    \begin{equation}
       m(\bar{n} -\bar{p})+n(\bar{p}-\bar{m})+p(\bar{m}-\bar{n})=0,
-      \label{t5:f2}
+      \label{t4:f2}
    \end{equation}
    Так как \(\displaystyle
    m=\frac{1}{2}(a+a_1),\;
    n=\frac{1}{2}(b+b_1),\;
    p=\frac{1}{2}(c+c_1)
-   \), то доказываемое равенство (\ref{t5:f2}) эквивалентно такому:
+   \), то доказываемое равенство (\ref{t4:f2}) эквивалентно такому:
 
    \(
    (a+a_1)(\bar{b}+\bar{b_1}-\bar{c}-\bar{c_1})+(b+b_1 )(\bar{c}+\bar{c_1}-\bar{a}-\bar{a_1})+(c+c_1)(\bar{a}+\bar{a_1}-\bar{b}-\bar{b_1})=0,
@@ -311,16 +293,77 @@
           & a(\bar{b_1} - \bar{c}) + a(\bar{b}- \bar{c_1}) + a_1(\bar{b_1} - \bar{c_1}) + a_1(\bar{b}- \bar{c}) + b(\bar{c_1} - \bar{a}) + b(\bar{c}- \bar{a_1}) + \\
           & +b_1(\bar{c_1}-\bar{a_1})+b_1 (\bar{c}-\bar{a})+c(\bar{a_1}-\bar{b})+c(\bar{a}-\bar{b_1})+c_1 (\bar{a_1}-\bar{b_1} )+c_1(\bar{a}-\bar{b})=0.
       \end{aligned}
-      \label{t5:f3}
+      \label{t4:f3}
    \end{equation}
-   Теперь легко видеть, что (\ref{t5:f3}) получается при почленном сложении
-   равенств (\ref{t5:f1})
+   Теперь легко видеть, что (\ref{t4:f3}) получается при почленном сложении
+   равенств (\ref{t4:f1})
    \paragraph{Вычислительная иллюстрация на частном случае:} На вход программы передаются координаты
    свободных точек комплексной плоскости, в данном примере это координаты точек \(A,B,C,A_1,B_1\). Если \(A_1,B_1\)
    лежат на треугольнике, то по данным входным данным строится прямая, соответствующая условиям задачи. Далее
    производится проверка того, что середины отрезков \(AA_1,BB_1,CC_1\) коллинеарны. Если условие выполняется, то задача
    считается решенной для данных входных данных и на экран выводятся координаты точек \(M,N,P\), а также координаты
-   всех остальных. Блок-схема алгоритма приведена на Рис. \ref{t5:scheme}.
+   всех остальных. Блок-схема алгоритма приведена на Рис. \ref{t4:scheme}.
+   \begin{center}
+      \includegraphics[width=0.79\textwidth]{images/task4-diagram.png}
+      \captionof{figure}{Блок-схема алгоритма программы}
+      \label{t4:scheme}
+   \end{center}
+
+   \paragraph{Программная реализация задачи:} Решение задачи написано на языке C++ в виде части
+   программы для решения задач из данной работы.
+   Реализация алгоритма программы предоставлена в функции task4::solve (файл \filename{\taskFileName{4}}):
+   \lstinputlisting[frame=none,caption={Функция task4::solve},label=task4-code,captionpos=b,firstline=5]{\taskFileName{4}}
+   \paragraph{Демонстрация работы:}
+   Здесь будут скриншоты работы. TODO % TODO
+}
+{
+   \section*{Задача 5}
+   \paragraph{Постановка задачи:}
+   Докажите, что диагонали вписанного в окружность четырёхугольника перпендикулярны, тогда и только тогда,
+   когда сумма квадратов его противоположных сторон равна квадрату диаметра описанной окружности (Рис.~\ref{t5:im}).
+   Таким образом, требуется доказать, что
+   \begin{equation}
+      AB^2+CD^2 = AC^2+BD^2 = PB^2 \Rightarrow AD \perp CB
+      \label{t5:f1}
+   \end{equation}
+   \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.7\textwidth]{images/task5.pdf}
+      \caption{Иллюстрация к задаче}
+      \label{t5:im}
+   \end{figure}
+   \paragraph{Решение задачи:}
+   Обозначим диаметр окружности как \(PB\); будем считать, что окружность единичная с центром в т.\(O\).
+
+   Исходя из свойств комплексных чисел, верно следующее:
+   \begin{equation*}
+      AD \perp CB \Leftrightarrow (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0
+      \label{t5:f2}
+   \end{equation*}
+
+   Из условий задачи:
+   \begin{equation}
+      \left\{ \begin{aligned}
+          & (a - b)(\bar{a} - \bar{b}) + (c - d)(\bar{c} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
+          & (a - c)(\bar{a} - \bar{c}) + (b - d)(\bar{b} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
+      \end{aligned}
+      \right. \label{t5:f3}
+   \end{equation}
+
+   Почленно вычтя второе уравнение системы (\ref{t5:f3}) из первого, получаем:
+   \begin{flalign*}
+      \label{t5:f4}
+       & a\bar{a} - a\bar{b} - b\bar{a} + b\bar{b} + c\bar{c} - c\bar{d} - d\bar{c} + d\bar{d} - a\bar{a} + a\bar{c} + c\bar{a} - c\bar{c} - b\bar{b} + b\bar{d} + & \\ \nonumber
+       & + d\bar{b} - d\bar{d} = 0 \Leftrightarrow - a\bar{b} - b\bar{a} - c\bar{d} - d\bar{c} + a\bar{c} + c\bar{a} + b\bar{d} + d\bar{b} = 0 \Leftrightarrow     & \\ \nonumber
+       & (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0 \Leftrightarrow AD \perp CB                                                                             &
+   \end{flalign*}
+   Таким образом, утверждение (\ref{t5:f1}) доказано.
+   \paragraph{Вычислительная иллюстрация на частном случае:} На вход программы передаются координаты
+   свободных точек комплексной плоскости, в данном примере это координаты точек \(A,B,C,D\), по ним
+   строится окружность. Если условие (\ref{t5:f1}) выполняется (вместо \(PB\) используется конструкция
+   \(2OB\)), то задача считается решенной для данных входных данных и на экран выводятся
+   координаты точки \(O\), а также координаты всех остальных. Блок-схема алгоритма приведена
+   на Рис. \ref{t5:scheme}.
    \begin{center}
       \includegraphics[width=0.79\textwidth]{images/task5-diagram.png}
       \captionof{figure}{Блок-схема алгоритма программы}
@@ -332,88 +375,27 @@
    Реализация алгоритма программы предоставлена в функции task5::solve (файл \filename{\taskFileName{5}}):
    \lstinputlisting[frame=none,caption={Функция task5::solve},label=task5-code,captionpos=b,firstline=5]{\taskFileName{5}}
    \paragraph{Демонстрация работы:}
-   Здесь будут скриншоты работы. TODO % TODO
+   TODO % TODO
 }
 {
    \section*{Задача 6}
    \paragraph{Постановка задачи:}
-   Докажите, что диагонали вписанного в окружность четырёхугольника перпендикулярны, тогда и только тогда,
-   когда сумма квадратов его противоположных сторон равна квадрату диаметра описанной окружности (Рис.~\ref{t6:im}).
-   Таким образом, требуется доказать, что
-   \begin{equation}
-      AB^2+CD^2 = AC^2+BD^2 = PB^2 \Rightarrow AD \perp CB
-      \label{t6:f1}
-   \end{equation}
+   Докажите, что если средние линии четырёхугольника равны,
+   то его диагонали перпендикулярны, и обратно (Рис. \ref{t6:im}).
    \begin{figure}[h]
       \centering
-      \includegraphics[width=0.7\textwidth]{images/task6.pdf}
+      \includegraphics[width=0.5\textwidth]{images/task6.pdf}
       \caption{Иллюстрация к задаче}
       \label{t6:im}
-   \end{figure}
-   \paragraph{Решение задачи:}
-   Обозначим диаметр окружности как \(PB\); будем считать, что окружность единичная с центром в т.\(O\).
-
-   Исходя из свойств комплексных чисел, верно следующее:
-   \begin{equation*}
-      AD \perp CB \Leftrightarrow (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0
-      \label{t6:f2}
-   \end{equation*}
-
-   Из условий задачи:
-   \begin{equation}
-      \left\{ \begin{aligned}
-          & (a - b)(\bar{a} - \bar{b}) + (c - d)(\bar{c} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
-          & (a - c)(\bar{a} - \bar{c}) + (b - d)(\bar{b} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
-      \end{aligned}
-      \right. \label{t6:f3}
-   \end{equation}
-
-   Почленно вычтя второе уравнение системы (\ref{t6:f3}) из первого, получаем:
-   \begin{flalign*}
-      \label{t6:f4}
-       & a\bar{a} - a\bar{b} - b\bar{a} + b\bar{b} + c\bar{c} - c\bar{d} - d\bar{c} + d\bar{d} - a\bar{a} + a\bar{c} + c\bar{a} - c\bar{c} - b\bar{b} + b\bar{d} + & \\ \nonumber
-       & + d\bar{b} - d\bar{d} = 0 \Leftrightarrow - a\bar{b} - b\bar{a} - c\bar{d} - d\bar{c} + a\bar{c} + c\bar{a} + b\bar{d} + d\bar{b} = 0 \Leftrightarrow     & \\ \nonumber
-       & (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0 \Leftrightarrow AD \perp CB                                                                             &
-   \end{flalign*}
-   Таким образом, утверждение (\ref{t6:f1}) доказано.
-   \paragraph{Вычислительная иллюстрация на частном случае:} На вход программы передаются координаты
-   свободных точек комплексной плоскости, в данном примере это координаты точек \(A,B,C,D\), по ним
-   строится окружность. Если условие (\ref{t6:f1}) выполняется (вместо \(PB\) используется конструкция
-   \(2OB\)), то задача считается решенной для данных входных данных и на экран выводятся
-   координаты точки \(O\), а также координаты всех остальных. Блок-схема алгоритма приведена
-   на Рис. \ref{t6:scheme}.
-   \begin{center}
-      \includegraphics[width=0.79\textwidth]{images/task6-diagram.png}
-      \captionof{figure}{Блок-схема алгоритма программы}
-      \label{t6:scheme}
-   \end{center}
-
-   \paragraph{Программная реализация задачи:} Решение задачи написано на языке C++ в виде части
-   программы для решения задач из данной работы.
-   Реализация алгоритма программы предоставлена в функции task6::solve (файл \filename{\taskFileName{6}}):
-   \lstinputlisting[frame=none,caption={Функция task6::solve},label=task6-code,captionpos=b,firstline=5]{\taskFileName{6}}
-   \paragraph{Демонстрация работы:}
-   TODO % TODO
-}
-{
-   \section*{Задача 7}
-   \paragraph{Постановка задачи:}
-   Докажите, что если средние линии четырёхугольника равны,
-   то его диагонали перпендикулярны, и обратно (Рис. \ref{t7:im}).
-   \begin{figure}[h]
-      \centering
-      \includegraphics[width=0.5\textwidth]{images/task7.pdf}
-      \caption{Иллюстрация к задаче}
-      \label{t7:im}
    \end{figure}
    \paragraph{Решение задачи:}
    Точка \(O\) -- точка пересечения диагоналей четырёхугольника.
    Концы средних линий четырёхугольника имеют следующие координаты:
    \begin{equation}
       \frac{1}{2}(c+d),\frac{1}{2}(a+b),\frac{1}{2}(a+c),\frac{1}{2}(b+d).
-      \label{t7:f1}
+      \label{t6:f1}
    \end{equation}
-   Если средние линии четырёхугольника равны, то на основании (\ref{t7:f1}) и свойств комплексных чисел, при \(AD \neq 0, CB \neq 0\), получаем следующее:
+   Если средние линии четырёхугольника равны, то на основании (\ref{t6:f1}) и свойств комплексных чисел, при \(AD \neq 0, CB \neq 0\), получаем следующее:
    \begin{flalign*}
        & \left\lvert \frac{1}{2}(c+d) - \frac{1}{2}(a+b)\right\rvert = \left\lvert \frac{1}{2}(a+c) - \frac{1}{2}(b+d)\right\rvert \Leftrightarrow  \left(\frac{1}{2}(c+d) - \frac{1}{2}(a+b)\right) \cdot                                & \\
        & \left(\frac{1}{2}(\bar{c}+\bar{d}) - \frac{1}{2}(\bar{a}+\bar{b})\right) = \left(\frac{1}{2}(a+c) - \frac{1}{2}(b+d)\right) \cdot \left(\frac{1}{2}(\bar{a}+\bar{c}) - \frac{1}{2}(\bar{b}+\bar{d})\right) \Leftrightarrow       & \\
@@ -440,16 +422,16 @@
    свободных точек комплексной плоскости, в данном примере это координаты вершин четырёхугольника \(A,B,C,D\) (выпуклого).
    Если средние линии четырёхугольника равны и его диагонали перпендикулярны, то задача
    считается решенной для данных входных данных и на экран выводятся координаты концов средних линий четырёхугольника, а также координаты
-   всех остальных точек. Блок-схема алгоритма приведена на Рис. \ref{t7:scheme}.
+   всех остальных точек. Блок-схема алгоритма приведена на Рис. \ref{t6:scheme}.
    \begin{center}
-      \includegraphics[width=0.9\textwidth]{images/task7-diagram.png}
+      \includegraphics[width=0.9\textwidth]{images/task6-diagram.png}
       \captionof{figure}{Блок-схема алгоритма программы}
-      \label{t7:scheme}
+      \label{t6:scheme}
    \end{center}
    \paragraph{Программная реализация задачи:} Решение задачи написано на языке C++ в виде части
    программы для решения задач из данной работы.
-   Реализация алгоритма программы предоставлена в функции task7::solve (файл \filename{\taskFileName{7}}):
-   \lstinputlisting[frame=none,caption={Функция task7::solve},label=task7-code,captionpos=b,firstline=6]{\taskFileName{7}}
+   Реализация алгоритма программы предоставлена в функции task6::solve (файл \filename{\taskFileName{6}}):
+   \lstinputlisting[frame=none,caption={Функция task6::solve},label=task6-code,captionpos=b,firstline=6]{\taskFileName{6}}
    \paragraph{Демонстрация работы:}
    TODO % TODO
 }
