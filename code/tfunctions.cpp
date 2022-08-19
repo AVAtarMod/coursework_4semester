@@ -291,10 +291,10 @@ void printElement(const ProgramOptions& options, const ElementType& type,
                   const void* data)
 {
    switch (options.outputStyle) {
-      case ProgramOptions::UNIX:
+      case ProgramOptions::sDEBUG:
          printElementUnixStyle(type, data);
          break;
-      case ProgramOptions::RICH:
+      case ProgramOptions::sRICH:
          printElementRichStyle(type, data);
          break;
       default:
@@ -305,7 +305,7 @@ void printElement(const ProgramOptions& options, const ElementType& type,
 void printChar(const ProgramOptions& options, const char& c)
 {
    switch (options.outputStyle) {
-      case ProgramOptions::RICH:
+      case ProgramOptions::sRICH:
          std::cout << c;
          break;
       default:
@@ -352,18 +352,19 @@ void printNumbers(const ProgramOptions& options, const ComplexNumber numbers[],
                   const std::string labels[], const size_t amount)
 {
    switch (options.outputStyle) {
-      case ProgramOptions::UNIX:
+      case ProgramOptions::sDEBUG:
          for (size_t i = 0; i < amount; i++) {
             printElementUnixStyle(ElementType::ComplexNumber, &numbers[i]);
             if (i < amount - 1)
                std::cout << ' ';
          }
          break;
-      case ProgramOptions::RICH:
+      case ProgramOptions::sRICH:
          for (size_t i = 0; i < amount; i++) {
+            std::cout << " " << labels[i] << ": ";
             printElementRichStyle(ElementType::ComplexNumber, &numbers[i]);
             if (i < amount - 1)
-               std::cout << ' ';
+               std::cout << '\n';
          }
          break;
       default:

@@ -34,12 +34,13 @@ inline void task5::solve(int& returnCode, const ProgramOptions& options)
 
    o = circle.center();
 
-   // Check AB^2 + CD^2 = AC^2 + BD^2 = (2OB)^2
    double first = power(LineSegment(a.toPoint(), b.toPoint()).length(), 2) +
                   power(LineSegment(c.toPoint(), d.toPoint()).length(), 2);
    double second = power(LineSegment(a.toPoint(), c.toPoint()).length(), 2) +
                    power(LineSegment(b.toPoint(), d.toPoint()).length(), 2);
    double third = power(2 * LineSegment(o.toPoint(), b.toPoint()).length(), 2);
+
+   // Check AB^2 + CD^2 = AC^2 + BD^2 = (2OB)^2
    if (areEqual(first, second, comparePrecision) &&
        areEqual(second, third, comparePrecision)) {
       printMessage(options, "Computed coordinates:\n");

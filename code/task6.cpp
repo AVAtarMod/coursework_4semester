@@ -34,20 +34,17 @@ inline void task6::solve(int& returnCode, const ProgramOptions& options)
    do {
       try {
          readNumbersFromUser(numbers, labels, options, returnCode);
-         Quadrilateral tmp(static_cast< Point >(a),
-                           static_cast< Point >(b),
-                           static_cast< Point >(c),
-                           static_cast< Point >(d));
+         Quadrilateral tmp(a.toPoint(), b.toPoint(), c.toPoint(), d.toPoint());
       } catch (const std::invalid_argument&) {
          std::cerr
            << "Cannot construct quadrilateral by a,b,c,d. You should enter valid points.\n";
          continue;
       }
       t_1 = (a + b) * half, t_2 = (c + d) * half;
-      T1T2 = LineSegment(static_cast< Point >(t_1), static_cast< Point >(t_2));
+      T1T2 = LineSegment(t_1.toPoint(), t_2.toPoint());
 
       p_1 = (a + c) * half, p_2 = (b + d) * half;
-      P1P2 = LineSegment(static_cast< Point >(p_1), static_cast< Point >(p_2));
+      P1P2 = LineSegment(p_1.toPoint(), p_2.toPoint());
    } while (!areEqual(P1P2.length(), T1T2.length(), comparePrecision));
 
    const Line AD(a, d), BC(b, c);

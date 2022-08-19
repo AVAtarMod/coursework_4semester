@@ -21,9 +21,9 @@ struct ProgramOptions
 {
    enum OutputStyle
    {
-      UNIX, // Plain, no output except result, useful for debug
-      RICH  // Plain, print messages to user
-   } outputStyle = RICH;
+      sDEBUG, // Plain, no output except result, useful for debug
+      sRICH  // Plain, print messages to user
+   } outputStyle = sRICH;
 };
 
 /**
@@ -35,7 +35,7 @@ ComplexNumber intersect(const clineSegment_t& first, clineSegment_t second);
 bool isPointBelongsSegment(const clineSegment_t& segment, ComplexNumber point);
 
 /**
- * @brief Print message. It prints only numbers if options.outputStyle == UNIX.
+ * @brief Print message. It prints only numbers if options.outputStyle == DEBUG.
  * Passing non null-terminated string is UB, don't do this!
  * Supported format specifiers:
  * %N - complex number (ComplexNumber*)

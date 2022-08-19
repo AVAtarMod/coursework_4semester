@@ -27,15 +27,13 @@ inline void task3::solve(int& returnCode, const ProgramOptions& options)
    if (returnCode != EXIT_SUCCESS)
       return;
 
-   const LineSegment AB { static_cast< Point >(a), static_cast< Point >(b) },
-     AC { static_cast< Point >(a), static_cast< Point >(c) },
-     BC { static_cast< Point >(b), static_cast< Point >(c) };
+   const LineSegment AB { a.toPoint(), b.toPoint() },
+     AC { a.toPoint(), c.toPoint() }, BC { b.toPoint(), c.toPoint() };
    const std::pair< Point, Point >& pair = AC.move(AB).getEndpoints();
-   d = (pair.first == static_cast< Point >(b)) ? pair.second : pair.first;
+   d = (pair.first == b.toPoint()) ? pair.second : pair.first;
 
-   const LineSegment BD { static_cast< Point >(b), static_cast< Point >(d) },
-     CD { static_cast< Point >(c), static_cast< Point >(d) },
-     AD { static_cast< Point >(a), static_cast< Point >(d) };
+   const LineSegment BD { b.toPoint(), d.toPoint() },
+     CD { c.toPoint(), d.toPoint() }, AD { a.toPoint(), d.toPoint() };
 
    // Check 'AD^2 + BC^2 = AB^2 + CD^2 + BD^2 + AC^2'
    if (areEqual(power(AD.length(), 2) + power(BC.length(), 2),

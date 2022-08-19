@@ -34,21 +34,17 @@ inline void task2::solve(int& returnCode, const ProgramOptions& options)
       readNumbersFromUser(numbers, labels, options, returnCode);
       if (returnCode != EXIT_SUCCESS)
          return;
-   } while (!circle.isBelongs(static_cast< Point >(a), comparePrecision) ||
-            !circle.isBelongs(static_cast< Point >(b), comparePrecision) ||
-            !circle.isBelongs(static_cast< Point >(n), comparePrecision));
+   } while (!circle.isBelongs(a.toPoint(), comparePrecision) ||
+            !circle.isBelongs(b.toPoint(), comparePrecision) ||
+            !circle.isBelongs(n.toPoint(), comparePrecision));
 
-   m = CircleArc(circle,
-                 static_cast< Point >(a),
-                 static_cast< Point >(b),
-                 static_cast< Point >(t),
-                 useApproximation)
-         .middle();
+   m =
+     CircleArc(circle, a.toPoint(), b.toPoint(), t.toPoint(), useApproximation)
+       .middle();
 
-   const LineSegment AM { static_cast< Point >(a), static_cast< Point >(m) },
-     MN { static_cast< Point >(m), static_cast< Point >(n) },
-     AN { static_cast< Point >(a), static_cast< Point >(n) },
-     BN { static_cast< Point >(b), static_cast< Point >(n) };
+   const LineSegment AM { a.toPoint(), m.toPoint() },
+     MN { m.toPoint(), n.toPoint() }, AN { a.toPoint(), n.toPoint() },
+     BN { b.toPoint(), n.toPoint() };
 
    // Check '|AM^2 - MN^2| = AN * BN'
    if (areEqual(std::abs(power(AM.length(), 2) - power(MN.length(), 2)),

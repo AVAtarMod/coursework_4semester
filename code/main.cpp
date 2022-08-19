@@ -12,7 +12,7 @@
 #include <iostream>
 
 const char* taskMessageBegin = "Task #";
-const char* taskMessageEnd = "-----\n";
+const char* taskMessageEnd = "\n-----\n";
 
 void printTaskBegin(const ProgramOptions& options, int choice)
 {
@@ -42,7 +42,7 @@ int main(int argc, char const* argv[])
          std::cin.ignore();
       } else {
          if (strcmp(argv[i], "-d") == 0) {
-            options.outputStyle = ProgramOptions::UNIX;
+            options.outputStyle = ProgramOptions::sDEBUG;
             continue;
          }
          choice = std::stoi(argv[i]);

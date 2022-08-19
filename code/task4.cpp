@@ -29,12 +29,12 @@ inline void task4::solve(int& returnCode, const ProgramOptions& options)
    std::pair< ComplexNumber, ComplexNumber > pairs[2] { { a, b }, { b1, a1 } };
 
    c1 = intersect(pairs[0], pairs[1]);
-   m = Point::middle(static_cast<Point>(a), static_cast<Point>(a1));
-   n = Point::middle(static_cast<Point>(b), static_cast<Point>(b1));
-   p = Point::middle(static_cast<Point>(c), static_cast<Point>(c1));
+   m = Point::middle(a.toPoint(), a1.toPoint());
+   n = Point::middle(b.toPoint(), b1.toPoint());
+   p = Point::middle(c.toPoint(), c1.toPoint());
 
    if (Line::isOnSameLine(m, n, p)) {
-      printMessage(options, "Computed coordinates:");
+      printMessage(options, "Computed coordinates:\n");
       printNumbers(options, numbers, labels, numbersAmount);
    } else
       std::cerr
