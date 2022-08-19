@@ -1,7 +1,8 @@
 # file format:
 #
-# task_number: (there may be comments)
+# task_number: (there may be comments without '#')
 #              input data | expected data
+#  # this is comment
 #
 # Also you can add empty lines between tests
 
@@ -23,6 +24,14 @@
 
 5: a  |b  |c  |d   ; a  |b  |c  |d  |o
    0 0 2 0 0 2 2 2 | 0 0 2 0 0 2 2 2 1 1
+   1 0 3 0 1 2 3 2 | 1 0 3 0 1 2 3 2 2 1
+   -1 0 1 0 -1 2 1 2 | -1 0 1 0 -1 2 1 2 0 1
+   0 1 2 1 0 3 2 3 | 0 1 2 1 0 3 2 3 1 2
+   0 -1 2 -1 0 1 2 1 | 0 -1 2 -1 0 1 2 1 1 0
 
 6: a  |b  |c  |d   ; a  |b  |c  |d  |o  |p1 |p2 |t1 |t2
    0 0 2 0 0 2 2 2 | 0 0 2 0 0 2 2 2 1 1 0 1 2 1 1 0 1 2
+   1 0 3 0 1 2 3 2 | 1 0 3 0 1 2 3 2 2 1 1 1 3 1 2 0 2 2
+   -1 0 1 0 -1 2 1 2 | -1 0 1 0 -1 2 1 2 0 1 -1 1 1 1 0 0 0 2
+   0 1 2 1 0 3 2 3 | 0 1 2 1 0 3 2 3 1 2 0 2 2 2 1 1 1 3
+   0 -1 2 -1 0 1 2 1 | 0 -1 2 -1 0 1 2 1 1 0 0 0 2 0 1 -1 1 1

@@ -249,8 +249,17 @@ void printElementUnixStyle(const ElementType& type, const void* data)
    switch (type) {
       case ElementType::ComplexNumber:
          number = static_cast< const ComplexNumber* >(data);
-         if (number)
-            std::cout << number->Re() << ' ' << number->Im();
+         if (number) {
+            const double re = number->Re(), im = number->Im();
+            std::cout
+              << ((std::abs(re) < std::numeric_limits< double >::epsilon())
+                    ? 0
+                    : re)
+              << ' '
+              << ((std::abs(im) < std::numeric_limits< double >::epsilon())
+                    ? 0
+                    : im);
+         }
          break;
 
       case ElementType::String:
