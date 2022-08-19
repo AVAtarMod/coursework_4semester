@@ -8,6 +8,7 @@
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{titlesec}
+\usepackage{titletoc}
 \usepackage{xinttools}
 \usepackage{ragged2e}
 \usepackage{ulem}
@@ -102,3 +103,12 @@
 \setcase 9      {code/task9.cpp}
 
 % NormalTeXSyntaxOff
+
+\contentsmargin{2.55em}
+\dottedcontents{chapter}[3.8em]{}{2.3em}{1pc}
+\dottedcontents{section}[11.1em]{}{8.2em}{1pc}
+
+\addto\captionsrussian{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Содержание}%
+}
