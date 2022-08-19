@@ -208,11 +208,6 @@ Point Line::intersect(const Line& first, const Line& second)
    }
 }
 
-bool Line::isCollinear(const Line& other) const
-{
-   // TODO
-   return true;
-}
 bool Line::isPerpendicular(const Line& other, double precision) const
 {
    switch (_type) {

@@ -56,7 +56,7 @@ class Line
    bool isInX(double x) const;
    bool isInY(double y) const;
    bool isBelongs(Point point) const;
-   bool isCollinear(const Line& other) const;
+   // bool isCollinear(const Line& other) const;
    bool isPerpendicular(const Line& other, double precision = 0.01) const;
 
    /**
