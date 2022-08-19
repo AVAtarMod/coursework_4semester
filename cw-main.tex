@@ -1,5 +1,4 @@
 \input{cw-config.tex}
-
 \begin{document}
 \lstset{language=[11]C++}
 
@@ -135,8 +134,25 @@
    Решение задачи написано на языке C++ в виде части программы для решения задач из данной работы.
    Реализация алгоритма программы предоставлена в функции task1::solve (файл \filename{\taskFileName{1}}):
    \lstinputlisting[frame=none,caption={Функция task1::solve},label=task1-code,captionpos=b,firstline=14]{\taskFileName{1}}
+
+   Программа поддерживает запуск нескольких заданий из командной строки. Для этого нужно через пробел ввести каждое из них (так, запуск приложения с параметрами '1 2 3 3') произведет последовательный запуск задач 1,2,3 (задача №3 запускается дважды). Для вывода информации в виде, пригодным для считывания сторонними программами, необходимо задать параметр '-d' (он должен быть первым. Пример: '-d 1 2').
    \paragraph{Демонстрация работы:}
-   TODO % TODO
+   \vphantom{code}
+   \begin{lstlisting}[language={},frame=none]
+      [codetest] ./realease.app 1
+      Task #1
+      Enter coordinates of triangle's points:
+       A: 0 0
+       B: 4 0
+       C: 2 3.24
+      Computed coordinates:
+       A: 0 + 0i
+       B: 4 + 0i
+       C: 2 + 3.24i
+       D: 2 + -1i
+       O: 2 + 1i
+      -----
+   \end{lstlisting}
 }
 {
    \section*{Задача 2}
@@ -190,7 +206,23 @@
    Реализация алгоритма программы предоставлена в функции task2::solve (файл \filename{\taskFileName{2}}):
    \lstinputlisting[frame=none,caption={Функция task2::solve},label=task2-code,captionpos=b,firstline=8]{\taskFileName{2}}
    \paragraph{Демонстрация работы:}
-   TODO % TODO
+   \vphantom{code}
+   \begin{lstlisting}[language={},frame=none]
+      [codetest] ./realease.app 2
+      Task #2
+      Enter coordinates of a,b,n,t points (must conform x^2+y^2 = 1, t between a and b):
+       A: 0.5 0.866
+       B: 0.5 -0.866
+       N: -1 0
+       T: 0.707 0.707
+      Computed coordinates:
+       A: 0.5 + 0.87i
+       B: 0.5 + -0.87i
+       N: -1 + 0i
+       T: 0.71 + 0.71i
+       M: 1 + 0i
+      -----
+   \end{lstlisting}
 }
 {
    \section*{Задача 3}
@@ -239,7 +271,21 @@
    Реализация алгоритма программы предоставлена в функции task3::solve (файл \filename{\taskFileName{3}}):
    \lstinputlisting[frame=none,caption={Функция task3::solve},label=task3-code,captionpos=b,firstline=5]{\taskFileName{3}}
    \paragraph{Демонстрация работы:}
-   TODO % TODO
+   \vphantom{code}
+   \begin{lstlisting}[language={},frame=none]
+      [codetest] ./realease.app 3
+      Task #3
+      Enter coordinates of triangle's points:
+       A: 1 0
+       B: 5 0
+       C: 2 3
+      Computed coordinates:
+       A: 1 + 0i
+       B: 5 + 0i
+       C: 2 + 3i
+       D: 6 + 3i
+      -----
+   \end{lstlisting}
 }
 {
    \section*{Задача 4}
@@ -307,7 +353,28 @@
    Реализация алгоритма программы предоставлена в функции task4::solve (файл \filename{\taskFileName{4}}):
    \lstinputlisting[frame=none,caption={Функция task4::solve},label=task4-code,captionpos=b,firstline=5]{\taskFileName{4}}
    \paragraph{Демонстрация работы:}
-   Здесь будут скриншоты работы. TODO % TODO
+   \vphantom{code}
+   \begin{lstlisting}[language={},frame=none]
+      [codetest] ./realease.app 4
+      Task #4
+      Enter coordinates of a,b,c,a1,b1 points:
+       A: 0 0
+       B: 10 0
+       C: 8 10
+       A1: 9.5 2.5
+       B1: 4 5
+      Computed coordinates:
+       A: 0 + 0i
+       B: 10 + 0i
+       C: 8 + 10i
+       A1: 9.5 + 2.5i
+       B1: 4 + 5i
+       C1: 15 + 0i
+       M: 4.75 + 1.25i
+       N: 7 + 2.5i
+       P: 11.5 + 5i
+      -----
+   \end{lstlisting}
 }
 {
    \section*{Задача 5}
@@ -368,7 +435,23 @@
    Реализация алгоритма программы предоставлена в функции task5::solve (файл \filename{\taskFileName{5}}):
    \lstinputlisting[frame=none,caption={Функция task5::solve},label=task5-code,captionpos=b,firstline=5]{\taskFileName{5}}
    \paragraph{Демонстрация работы:}
-   TODO % TODO
+   \vphantom{code}
+   \begin{lstlisting}[language={},frame=none]
+      [codetest] ./realease.app 5
+      Task #5
+      Enter coordinates of a,b,c,d points (must be points of quadrilateral):
+       A: 0 -1
+       B: 2 -1
+       C: 0 1
+       D: 2 1
+      Computed coordinates:
+       A: 0 + -1i
+       B: 2 + -1i
+       C: 0 + 1i
+       D: 2 + 1i
+       O: 1 + 0i
+      -----
+   \end{lstlisting}
 }
 {
    \section*{Задача 6}
@@ -426,12 +509,36 @@
    Реализация алгоритма программы предоставлена в функции task6::solve (файл \filename{\taskFileName{6}}):
    \lstinputlisting[frame=none,caption={Функция task6::solve},label=task6-code,captionpos=b,firstline=6]{\taskFileName{6}}
    \paragraph{Демонстрация работы:}
-   TODO % TODO
+   \vphantom{code}
+   \begin{lstlisting}[language={},frame=none]
+      [codetest] ./realease.app 6
+      Task #6
+      Enter coordinates of a,b,c,d points (must be points of quadrilateral):
+       A: 1 0
+       B: 3 0
+       C: 1 2
+       D: 3 2
+      Computed coordinates:
+       A: 1 + 0i
+       B: 3 + 0i
+       C: 1 + 2i
+       D: 3 + 2i
+       O: 2 + 1i
+       P1: 1 + 1i
+       P2: 3 + 1i
+       T1: 2 + 0i
+       T2: 2 + 2i
+      -----
+   \end{lstlisting}
 }
 \tcchapter{Заключение}
 В ходе выполнения работы изложены основы метода комплексных чисел, было проиллюстрировано его
-применение при решении 3 задач. Каждая задача имеет решение на языке C++.
+применение при решении 6 задач. Каждая задача имеет вычислительную иллюстрацию,
+реализованную в виде части программы на C++. Сама программа как целое -- консольное приложение, поддерживающая следующие функции: множественный выбор заданий, вывод текста в разном формате (в режиме отладки для считывания данных сторонними приложениями, а также в человеко-читаемом).
 
+Метод имеет большие перспективы для применения в области решения геометрических
+задач, особенно тех, в которых широко применяются единичные окружности, потому как в алгебре
+комплексных чисел геометрические объекты, лежащие или принадлежащие таким окружностям выражаются более простыми уравнениями, чем их канонические действительнозначные аналоги.
 
 Таким образом, все поставленные задачи были успешно выполнены, цель
 достигнута.
