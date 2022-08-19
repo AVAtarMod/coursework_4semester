@@ -61,6 +61,9 @@ inline void task1::solve(int& returnCode, const ProgramOptions& options)
    const Line p = Line::makePerpendicular(AB, o.toPoint());
    const Point i = Line::intersect(AB, p);
 
+   /**
+    * @brief Calculating d (it depends line type of p)
+    */
    switch (p.getType()) {
       case LineType::CONST_X:
          d = Point { p.x(randY), -o.toPoint().Y() + 2 * i.Y() };

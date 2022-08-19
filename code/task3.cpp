@@ -29,6 +29,7 @@ inline void task3::solve(int& returnCode, const ProgramOptions& options)
 
    const LineSegment AB { a.toPoint(), b.toPoint() },
      AC { a.toPoint(), c.toPoint() }, BC { b.toPoint(), c.toPoint() };
+     
    const std::pair< Point, Point >& pair = AC.move(AB).getEndpoints();
    d = (pair.first == b.toPoint()) ? pair.second : pair.first;
 

@@ -29,6 +29,9 @@ inline void task2::solve(int& returnCode, const ProgramOptions& options)
    // clang-format on
    const Circle circle { Point::zero(), circleRadius };
 
+   /**
+    * @brief Read the numbers until points not belongs to the circle.
+    */
    returnCode = 0;
    do {
       readNumbersFromUser(numbers, labels, options, returnCode);
