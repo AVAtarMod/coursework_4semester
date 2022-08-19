@@ -192,6 +192,9 @@
         "yaml.schemas": {
             "file:///home/lgs/.vscode-oss/extensions/ms-python.python-2022.10.1/schemas/conda-meta.json": "file:///home/lgs/UNI/Course%20work/4SST-PSnRA/code/.clang-format"
       },
-      "C_Cpp.default.cppStandard": "c++11"
+      "C_Cpp.default.cppStandard": "c++11",
+      "todo-tree.filtering.includeGlobs": [
+         "/home/lgs/UNI/Course work/4SST-PSnRA/**/*"
+      ]
     }
 }
