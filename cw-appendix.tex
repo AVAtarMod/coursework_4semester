@@ -1,10 +1,9 @@
 \clearpage
+\titleformat{\section}
+  {\normalfont\fontsize{17.28}{15}\bfseries}{\thesection}{1em}{}
+\renewcommand*{\thesection}{Приложение~\Alph{section}.}
 \tcchapter{Приложения}
 \appendix
-% FIXME TOC format of the sections
-\titleformat{\section}[block]{\bfseries}{Приложение \Alph{section}.}{1em}{}[]
-\renewcommand{\thesection}{\Alph{section}}
-
 \section{Листинг программы}
 {\setlength{\parindent}{0cm}
 \inputcode[Файл меню ]{code/main.cpp}{frame=none}
