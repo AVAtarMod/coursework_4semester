@@ -1,18 +1,37 @@
 \clearpage
 \titleformat{\section}
-  {\normalfont\fontsize{17.28}{15}\bfseries}{\thesection}{1em}{}
-\renewcommand*{\thesection}{Приложение~\Alph{section}.}
+  {\normalfont\fontsize{17.28}{15}\bfseries}{\thesection.}{1em}{}
+\renewcommand*{\thesection}{Приложение~\Alph{section}}
+
 \tcchapter{Приложения}
 \appendix
-\section{Листинг программы}
+\section{Листинг программной реализации задачи №1}
+\label{task1-code}
+\inputcode{\taskFileName{1}}{frame=none}
+
+\section{Листинг программной реализации задачи №2}
+\label{task2-code}
+\inputcode{\taskFileName{2}}{frame=none}
+
+\section{Листинг программной реализации задачи №3}
+\label{task3-code}
+\inputcode{\taskFileName{3}}{frame=none}
+
+\section{Листинг программной реализации задачи №4}
+\label{task4-code}
+\inputcode{\taskFileName{4}}{frame=none}
+
+\section{Листинг программной реализации задачи №5}
+\label{task5-code}
+\inputcode{\taskFileName{5}}{frame=none}
+
+\section{Листинг программной реализации задачи №6}
+\label{task6-code}
+\inputcode{\taskFileName{6}}{frame=none}
+
+\section{Листинг программы и используемых библиотек}
 {\setlength{\parindent}{0cm}
 \inputcode[Файл меню ]{code/main.cpp}{frame=none}
-\inputcode{\taskFileName{1}}{frame=none}
-\inputcode{\taskFileName{2}}{frame=none}
-\inputcode{\taskFileName{3}}{frame=none}
-\inputcode{\taskFileName{4}}{frame=none}
-\inputcode{\taskFileName{5}}{frame=none}
-\inputcode{\taskFileName{6}}{frame=none}
 
 \vspace{20pt}
 
@@ -55,3 +74,11 @@
 \inputcode{/home/lgs/Programming/C++/Library/functions.hpp}{frame=none}
 \inputcode{/home/lgs/Programming/C++/Library/functions.cpp}{frame=none}
 }
+
+\section{Листинг скрипта тестирования работы программы}
+\label{test-script-code}
+\inputcode{code/test.sh}{frame=none}
+
+\section{Листинг файла с тестами для программы}
+\label{test-script-data}
+\inputcode{code/files/tests.txt}{language=bash,frame=none}
