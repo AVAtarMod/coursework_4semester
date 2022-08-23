@@ -81,16 +81,16 @@ tasksSummaryDebug() {
 
 help() {
    if [[ -n $1 ]]; then
-      echo "'$1' не поддерживается (необходимо использовать верный ключ)."
+      echo "'$1' not supported (use valid options)."
    fi
 
    echo
-   echo "Список возможных параметров (вводить через пробел):"
-   echo "-h    Вывести справку"
-   echo "-d    Включить отладочную информацию"
-   echo "-v    Включить более подробный вывод"
+   echo "List available options:"
+   echo "-h    Show help."
+   echo "-d    Print debug information."
+   echo "-v    Print more detailed messages."
    echo
-   echo "Coursework test runner. Copyright (C) 2022  Stupnikov Grigory, лицензировано под GPLv3"
+   echo "Coursework test runner. Copyright (C) 2022  Stupnikov Grigory, licensed under GNU GPLv3"
    exit 0
 }
 
