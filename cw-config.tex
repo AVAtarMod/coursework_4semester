@@ -3,7 +3,7 @@
 \usepackage[T2A,T1]{fontenc}
 \usepackage[russian]{babel}
 \usepackage{vmargin}
-\usepackage{caption}
+\usepackage[labelsep=endash]{caption}
 \usepackage{indentfirst}
 \usepackage{setspace}
 \usepackage{graphicx}
@@ -65,14 +65,29 @@
    #1{\filename@base.\filename@ext}%
    \endgroup
 }
-\makeatother
 
-\makeatletter
 \newcommand\inputcode[3][]{
    {\bfseries #1\filename{#2}}:
    \lstinputlisting[%
       #3,
    ]{#2}%
+}
+
+\renewcommand*{\@alph}[1]{%
+  \ifcase#1\or а\or б\or в\or г\or
+    д\or е\or ё\or ж\or з\or и\or й\or
+    к\or л\or м\or н\or о\or п\or р\or с\or т\or
+    у\or ф\or х\or ц\or ч\or
+    ш\or щ\or ы\or э\or у \or я
+    \else\@ctrerr\fi
+}
+\renewcommand*{\@Alph}[1]{%
+  \ifcase#1\or А\or Б\or В\or Г\or
+  Д\or Е\or Ё\or Ж\or З\or И\or Й\or
+  К\or Л\or М\or Н\or О\or П\or Р\or С\or Т\or
+  У\or Ф\or Х\or Ц\or Ч\or
+  Ш\or Щ\or Ы\or Э\or У\or Я
+  \else\@ctrerr\fi
 }
 \makeatother
 
@@ -112,3 +127,5 @@
   \renewcommand{\contentsname}%
     {Содержание}%
 }
+
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок }}
