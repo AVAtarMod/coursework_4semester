@@ -35,9 +35,9 @@
 \end{frame}
 \begin{frame}
    \frametitleSpec{Введение}
-   Метод комплексных чисел -- это расширение алгебраического метода.
+   Метод комплексных чисел -- это расширение алгебраического метода, способ задания точки на плоскости не через одну, комплексную координату.
    \begin{enumerate}
-      \item Проблема состоит в том, что для данного метода отсутствуют программные материалы для внедрения в среду самостоятельного и школьного обучения.
+      \item Проблема состоит в том, что для данного метода отсутствуют вспомогательные программные материалы для внедрения в среду самостоятельного и школьного обучения.
       \item Целью данной работы является изучение метода комплексных чисел при решении геометрических задач, реализация программной верификации решения выбранных задач. Для достижения цели необходимо выполнить следующие задачи:
             \begin{itemize}
                \item Изучить имеющиеся способы применения алгебры комплексных чисел при решении геометрических задач.
@@ -212,33 +212,39 @@
 \begin{frame}
    \subsection{Задача 3}
    \begin{block}{Задача 3. Постановка задачи:}
-      \begin{columns}
-         \begin{column}{0.5\textwidth}
-            Докажите, что сумма квадратов диагоналей параллелограмма
-            равна сумме квадратов всех его сторон (Рис. \ref{t3:im}).
-            Таким образом, требуется доказать, что
-            \begin{equation}
-               AD^2 + BC^2 = AB^2 +CD^2 + BD^2 + AC^2
-               \label{t3:f1}
-            \end{equation}
 
-         \end{column}
-         \begin{column}{0.5\textwidth}
-            \begin{figure}[h]
-               \centering
-               \includegraphics[width=1\textwidth]{images/task3.pdf}
-               \caption{Иллюстрация к задаче}
-               \label{t3:im}
-            \end{figure}
-         \end{column}
-      \end{columns}
+      Докажите, что сумма квадратов диагоналей параллелограмма
+      равна сумме квадратов всех его сторон (Рис. \ref{t3:im}).
+      Таким образом, требуется доказать, что
+      \begin{equation}
+         AD^2 + BC^2 = AB^2 +CD^2 + BD^2 + AC^2
+         \label{t3:f1}
+      \end{equation}
+
+      \begin{figure}[h]
+         \centering
+         \includegraphics[width=0.55\textwidth]{images/task3.pdf}
+         \caption{Иллюстрация к задаче}
+         \label{t3:im}
+      \end{figure}
    \end{block}
 \end{frame}
 
 \begin{frame}
    \begin{block}{Задача 3. Решение задачи:}
-
-      Кратко
+      Зададим точку \(A(a) = 0 + i \cdot 0\).
+      Тогда верны следующие утверждения: \(d = c + b\), \(\overrightarrow{CB} = b - c\).
+      \begin{flalign}
+         \label{t3:f2}
+          & AB^2 + BD^2 + CD^2 + AC^2 = \left\lvert b\right\rvert^2 + \left\lvert c\right\rvert^2 + \left\lvert b\right\rvert^2 + \left\lvert c\right\rvert^2 = 2b\bar{b} + 2c\bar{c} &
+      \end{flalign}
+      \begin{flalign}
+         \label{t3:f3}
+          & AD^2 + BC^2 = \left\lvert d\right\rvert^2 + \left\lvert b - c\right\rvert^2 = d\bar{d} + (b-c)(\bar{b}-\bar{c}) = (c+b)(\bar{c}+\bar{c}) + b\bar{b} - b\bar{c} - & \\ \nonumber
+          & - c\bar{b} + c\bar{c} = c\bar{c} + c\bar{b} + b\bar{c} + 2b\bar{b} + c\bar{c} - b\bar{c} - c\bar{b} = 2b\bar{b} + 2c\bar{c}                                      &
+      \end{flalign}
+      \noindent
+      Таким образом, выражения (\ref{t3:f2}) и (\ref{t3:f3}) равны друг другу, что и требовалось доказать.
    \end{block}
 \end{frame}
 
@@ -286,7 +292,7 @@
 
       \begin{figure}[h]
          \centering
-         \includegraphics[width=0.4\textwidth]{images/task1.png}
+         \includegraphics[width=0.4\textwidth]{images/task4.png}
          \label{task4}
       \end{figure}
    \end{block}
@@ -294,8 +300,33 @@
 
 \begin{frame}
    \begin{block}{Задача 4. Решение задачи:}
+      Условие коллинеарности троек точек \(A, B_1, C\); \(C,
+      A_1, B\); \(B, C_1,\) \(A\); \(A_1, B_1, C_1\):
 
-      Кратко
+      \begin{equation}
+         \left\{ \begin{aligned}
+             & a(\bar{b_1} - \bar{c}) + b_1(\bar{c} - \bar{a}) + c(\bar{a} - \bar{b_1}) = 0 \\
+             & b(\bar{c_1} - \bar{a}) + c_1(\bar{a} - \bar{b}) + a(\bar{b} - \bar{c_1}) = 0 \\
+             & ...
+         \end{aligned}
+         \right. \label{t4:f1}
+      \end{equation}
+      Предстоит показать, что
+      \begin{equation}
+         m(\bar{n} -\bar{p})+n(\bar{p}-\bar{m})+p(\bar{m}-\bar{n})=0,
+         \label{t4:f2}
+      \end{equation}
+      Так как \(\displaystyle
+      m=\frac{1}{2}(a+a_1),\;
+      n=\frac{1}{2}(b+b_1),\;
+      p=\frac{1}{2}(c+c_1)
+      \), то доказываемое равенство (\ref{t4:f2}) эквивалентно такому:
+      \begin{equation}
+         \begin{aligned}
+             & a(\bar{b_1} - \bar{c}) + a(\bar{b}- \bar{c_1}) + a_1(\bar{b_1} - \bar{c_1}) + a_1(\bar{b}- \bar{c}) + b(\bar{c_1} - \bar{a}) + ... =0.
+         \end{aligned}
+         \label{t4:f3}
+      \end{equation}
    \end{block}
 \end{frame}
 
@@ -348,7 +379,7 @@
 
       \begin{figure}[h]
          \centering
-         \includegraphics[width=0.4\textwidth]{images/task1.png}
+         \includegraphics[width=0.4\textwidth]{images/task5.pdf}
          \label{task5}
       \end{figure}
    \end{block}
@@ -356,8 +387,30 @@
 
 \begin{frame}
    \begin{block}{Задача 5. Решение задачи:}
+      Обозначим диаметр окружности как \(PB\); будем считать, что окружность единичная с центром в т.\(O\).
 
-      Кратко
+      Исходя из свойств комплексных чисел, верно следующее:
+      \begin{equation*}
+         AD \perp CB \Leftrightarrow (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0
+         \label{t5:f2}
+      \end{equation*}
+
+      Из условий задачи:
+      \begin{equation}
+         \left\{ \begin{aligned}
+             & (a - b)(\bar{a} - \bar{b}) + (c - d)(\bar{c} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
+             & (a - c)(\bar{a} - \bar{c}) + (b - d)(\bar{b} - \bar{d}) = (p - b)(\bar{p} - \bar{b}) \\
+         \end{aligned}
+         \right. \label{t5:f3}
+      \end{equation}
+
+      Почленно вычтя второе уравнение системы (\ref{t5:f3}) из первого, получаем:
+      \begin{flalign*}
+         \label{t5:f4}
+          & a\bar{a} - a\bar{b} - b\bar{a} + b\bar{b} + c\bar{c} - c\bar{d} - d\bar{c} + d\bar{d} - a\bar{a} + a\bar{c} + c\bar{a} - c\bar{c} - b\bar{b} + b\bar{d} + & \\ \nonumber
+          & + d\bar{b} - d\bar{d} = 0 \Leftrightarrow (d-a)(\bar{b}-\bar{c})+(\bar{d}-\bar{a})(b-c) = 0 \Leftrightarrow AD \perp CB                                   &
+      \end{flalign*}
+      Таким образом, утверждение \(AD \perp CB\) доказано.
    \end{block}
 \end{frame}
 
@@ -407,7 +460,7 @@
 
       \begin{figure}[h]
          \centering
-         \includegraphics[width=0.4\textwidth]{images/task1.png}
+         \includegraphics[width=0.4\textwidth]{images/task6.pdf}
          \label{task6}
       \end{figure}
    \end{block}
@@ -415,7 +468,20 @@
 
 \begin{frame}
    \begin{block}{Задача 6. Решение задачи:}
-      Кратко
+      Если средние линии четырёхугольника равны, то на основании свойств комплексных
+      чисел, при \(AD \neq 0, CB \neq 0\), получаем следующее:
+      \begin{flalign*}
+          & \left\lvert \frac{1}{2}(c+d) - \frac{1}{2}(a+b)\right\rvert = \left\lvert \frac{1}{2}(a+c) - \frac{1}{2}(b+d)\right\rvert \Leftrightarrow  ... \Leftrightarrow & \\                                                                                       & \\
+          & (a-d)(\bar{c} - \bar{b}) + (c-b)(\bar{a} - \bar{d})  = 0                                                                                                       &
+      \end{flalign*}
+
+      Тогда \(2 \overrightarrow{AD} \overrightarrow{CB} = 0\Leftrightarrow \left\lvert AD\right\rvert
+      \left\lvert CB\right\rvert \cos{\angle{COD}} \Leftrightarrow \angle{COD} = 90^\circ\),
+      что и требовалось доказать.
+
+      Если диагонали четырёхугольника перпендикулярны, то \(\angle{COD} = 90^\circ \Leftrightarrow \left\lvert AD\right\rvert \left\lvert CB\right\rvert \cos{\angle{COD}} = 0 \Leftrightarrow \overrightarrow{AD}\overrightarrow{CB}=
+      0 \dots\)
+      Дальнейшие рассуждения выполняются в порядке, обратном доказательству в случае, когда средние линии четырёхугольника равны.
    \end{block}
 \end{frame}
 
@@ -474,7 +540,19 @@
 \end{frame}
 \begin{frame}
    \frametitleSpec{Заключение}
+   В ходе выполнения работы изложены основы метода комплексных чисел, было проиллюстрировано его
+   применение при решении 6 задач. Каждая задача имеет вычислительную иллюстрацию,
+   реализованную в виде части программы на C++. Сама программа как целое --- консольное приложение,
+   поддерживающая следующие функции: множественный выбор заданий, вывод текста в разном формате (в режиме
+   отладки для считывания данных сторонними приложениями, а также в человеко-читаемом).
 
+   Метод имеет большие перспективы для применения в области решения геометрических
+   задач, особенно тех, в которых широко применяются единичные окружности, потому как в алгебре
+   комплексных чисел геометрические объекты, лежащие или принадлежащие таким окружностям выражаются
+   более простыми уравнениями, чем их канонические действительнозначные аналоги.
+
+   Таким образом, все поставленные задачи были успешно выполнены, цель
+   достигнута.
 \end{frame}
 \begin{frame}
    \begin{center}
