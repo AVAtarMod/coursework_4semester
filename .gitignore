@@ -6,5 +6,5 @@ code/build
 code/*.app
 code/*.d
 code/*.dg
-*.pdf
 !docs/**
+literature
